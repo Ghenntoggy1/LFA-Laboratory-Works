@@ -8,4 +8,4 @@ Laboratory Works done during LFM Course at TUM
 **Professors:** Irina Cojuhari, Dumitru Crețu
 
 ## Table of Contents
-- [Submission for Laboratory Work 1](src/Lab1/README.md)
+- [Submission for Laboratory Work 1](Laboratory-Work-1-Grammar-Finite-Automaton)
