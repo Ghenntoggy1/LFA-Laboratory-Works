@@ -62,7 +62,9 @@ if __name__ == '__main__':
         if list_of_chars is None:
             exit()
         generated_word = "".join(list_of_chars)
-        # Verify if the word is duplicate (is already in the list) or if word length increases maxLength
+        # Verify if the word is duplicate (is already in the list)
+        # or if word length increases maxLength
+        # or if last term is Non-Terminal and its derivation is not contained in Rules Dictionary
         while generated_word in generated_words or len(generated_word) > max_length or (generated_word[-1] not in P and generated_word[-1].isupper()):
             if generated_word in generated_words:
                 print("\nDuplicate: " + "".join(generated_word) +
