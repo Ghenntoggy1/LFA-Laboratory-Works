@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     # Rules
     P = {
-        "S": ["aB", "bB"],
+        "S": ["aB", "bD"],
         "B": ["bD", "cB", "aS"],
         "D": ["b", "aD"]
     }
@@ -86,3 +86,9 @@ if __name__ == '__main__':
 
     finite_automaton = grammar.to_finite_automaton()
     finite_automaton.print_variables()
+
+    # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
+    for word in generated_words:
+        finite_automaton.string_belong_to_language(word)
+
+    finite_automaton.string_belong_to_language("abba")

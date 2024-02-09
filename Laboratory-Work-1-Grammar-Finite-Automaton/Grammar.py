@@ -90,9 +90,13 @@ class Grammar:
                         next_state = term
                 # Initialize a list for the Left Hand side of the transition function (current state, current input
                 # term)
-                LHS = [current_input_term, current_state]
+                LHS = tuple([current_state, current_input_term])
+
                 # Place it in the dictonary as a tuple as key and its value is assigned to the next state.
-                delta[tuple(LHS)] = next_state
+                if LHS in delta.keys():
+                    delta[LHS].append(next_state)
+                else:
+                    delta[LHS] = [next_state]
 
         # Return object of type FiniteAutomaton, with the parameters that I found above
         return FiniteAutomaton.FiniteAutomaton(Q, sigma, delta, q0, F)
