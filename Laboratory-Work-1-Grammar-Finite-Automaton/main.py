@@ -14,6 +14,7 @@
 #         B → cB
 #         B → aS
 #     }
+import itertools
 
 import Grammar
 import random
@@ -100,6 +101,7 @@ if __name__ == '__main__':
     #     result = finite_automaton.string_belong_to_language(input_word)
     #     print(f"Word {input_word} is {"Accepted" if result else "Rejected"}")
         # Get all the ASCII letters in lowercase and uppercase
+
     letters = ["a", "b", "c"]
 
     rejected_words = [
@@ -112,3 +114,16 @@ if __name__ == '__main__':
 
     print(rejected_words)
 
+    letters = ["a", "b", "c"]
+    index = 1
+    rejected_words = []
+    for i in range(6):
+        lst = [''.join(comb) for comb in itertools.product(letters, repeat=i)]
+        for word in lst:
+            rejected_words.append(word)
+    for word in rejected_words:
+        result = finite_automaton.string_belong_to_language(word)
+        print(f"Word {word} is {"Accepted" if result else "Rejected"}")
+
+    for rejected_word in rejected_words:
+        print(rejected_word)
