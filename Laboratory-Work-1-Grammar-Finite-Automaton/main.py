@@ -91,4 +91,7 @@ if __name__ == '__main__':
     for word in generated_words:
         finite_automaton.string_belong_to_language(word)
 
-    finite_automaton.string_belong_to_language("abba")
+    for i in range(10):
+        input_word = input("\nEnter word: ")
+        result = finite_automaton.string_belong_to_language(input_word)
+        print(f"Word {input_word} is {"Accepted" if result else "Rejected"}")

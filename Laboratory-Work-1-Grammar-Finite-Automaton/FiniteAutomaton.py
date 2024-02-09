@@ -11,57 +11,28 @@ class FiniteAutomaton:
     def string_belong_to_language(self, input_string):
         # Current state is q0
         current_state = [self.q0]
-        next_state = ""
-        # String that will be constructed iteratively and tracked by state
-        current_length = 1
-
-        # Get first initial next State from Start state
-        # for LHS, RHS in self.delta.items():
-        #     if LHS[0] == string[-1] and LHS[1] == current_state:
-        #         next_state = RHS
-
-        # flag = True
-        # while flag:
-        #     string = inputString[:current_length]
-        #     for LHS, RHS in self.delta.items():
-        #         if LHS[1] == string[-1] and LHS[0] == current_state:
-        #             print(LHS, "-", RHS)
-        #             print("String: ", string)
-        #             print("Current State: ", current_state)
-        #             print("Next State: ", RHS)
-        #             current_state = RHS
-        #             current_length += 1
-        #             break
-        #         else:
-        #             print(LHS, "-", RHS)
-        #             print("String: ", string)
-        #             print("Current State: ", current_state)
-        #             print("Next State: ", RHS)
-        #             flag = False
-        # if flag:
-        #     print("ACCEPTED")
-        # else:
-        #     print("REJECTED")
-        # print(self.delta)
+        # Iterate over the Input String taking char by char
         for char in input_string:
             # Transition to the next state using the current state and input alphabet
-            if current_state is not None:
-                for state in current_state:
+            if current_state is None:
+                return False
 
-                    try:
-                        current_state = self.delta[(state, char)]
-                        # print(char, current_state)
-                    except KeyError:
-                        print("Rejected")
-                        current_state = None
-                        break
+            for state in current_state:
+                try:
+                    current_state = self.delta[(state, char)]
+                except KeyError:
+
+                    return False
+
         else:
             # When entire string is parsed, check whether the final state is an accepted state
-            if current_state is not None:
-                if "" in current_state:
-                    print("Accepted")
-                else:
-                    print("Rejected")
+
+            if "" in current_state:
+
+                return True
+            else:
+
+                return False
 
         # while True:
         #     current_word = input_string[:current_length]
