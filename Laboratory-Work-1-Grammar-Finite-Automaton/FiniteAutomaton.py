@@ -21,7 +21,6 @@ class FiniteAutomaton:
                 try:
                     current_state = self.delta[(state, char)]
                 except KeyError:
-
                     return False
 
         else:

@@ -16,6 +16,7 @@
 #     }
 
 import Grammar
+import random
 
 if __name__ == '__main__':
     print("Laboratory Work 1 - Intro to formal languages. Regular grammars. Finite Automata.")
@@ -89,9 +90,25 @@ if __name__ == '__main__':
 
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
     for word in generated_words:
-        finite_automaton.string_belong_to_language(word)
+        print(
+            f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
+            else "Rejected"}"
+        )
 
-    for i in range(10):
-        input_word = input("\nEnter word: ")
-        result = finite_automaton.string_belong_to_language(input_word)
-        print(f"Word {input_word} is {"Accepted" if result else "Rejected"}")
+    # for i in range(10):
+    #     input_word = input("\nEnter word: ")
+    #     result = finite_automaton.string_belong_to_language(input_word)
+    #     print(f"Word {input_word} is {"Accepted" if result else "Rejected"}")
+        # Get all the ASCII letters in lowercase and uppercase
+    letters = ["a", "b", "c"]
+
+    rejected_words = [
+        # Randomly choose characters from letters for the given length of the string
+        ''.join(random.choice(letters) for _ in range(3)) for _ in range(50)
+    ]
+    for word in rejected_words:
+        result = finite_automaton.string_belong_to_language(word)
+        print(f"Word {word} is {"Accepted" if result else "Rejected"}")
+
+    print(rejected_words)
+
