@@ -9,49 +9,32 @@ class FiniteAutomaton:
         self.F = F
 
     def string_belong_to_language(self, input_string):
-        # Current state is q0
+        # Current state is q0 - Start State
         current_state = [self.q0]
+        # next_state = []
         # Iterate over the Input String taking char by char
         for char in input_string:
-            # Transition to the next state using the current state and input alphabet
+            # Check if current state is Null, which became during the process next state. If yes, return false -
+            # no possible next state for a specific terminal term and current state
             if current_state is None:
                 return False
 
+            # next_state = []
+            # there might be multiple possible next states from a current state, so we iterate over them
             for state in current_state:
+                # Try to get from the dictionary next state by the state
                 try:
                     current_state = self.delta[(state, char)]
+                    # next_state.append(current_state)
                 except KeyError:
                     return False
-
         else:
             # When entire string is parsed, check whether the final state is an accepted state
-
+            # for possible_state in next_state:
             if "" in current_state:
-
                 return True
             else:
-
                 return False
-
-        # while True:
-        #     current_word = input_string[:current_length]
-        #     print("Current Word: ", current_word)
-        #     if self.delta.contains([current_state, current_word[-1]]):
-        #         current_state = self.delta.get([current_state, current_word[-1]])
-        #     # for LHS, RHS in self.delta.items():
-        #     #     if LHS[0] == current_state and LHS[1] == current_word[-1]:
-        #     #         print(LHS, RHS)
-        #     #         current_state = RHS
-        #
-        #     current_length += 1
-        #     if current_length > len(input_string):
-        #         break
-        #
-        # if current_state == "":
-        #     print("Accepted")
-        # else:
-        #     print("Rejected")
-
 
     def print_variables(self):
         print("Q:", self.Q)
