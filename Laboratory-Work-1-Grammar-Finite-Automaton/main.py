@@ -96,18 +96,20 @@ if __name__ == '__main__':
             f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
             else "Rejected"}"
         )
-    # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
 
-    # for i in range(1):
+    # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
+    # iterations = 5
+    # for i in range(iterations + 1):
     #     input_word = input("\nEnter word: ")
     #     result = finite_automaton.string_belong_to_language(input_word)
     #     print(f"Word {input_word} is {"Accepted" if result else "Rejected"}")
 
     # FOR RANDOM WORD COMBINATION, UNCOMMENT FOLLOWING LINES OF CODE:
-
+    # length_random = 3
+    # number_words = 15
     # random_words = [
     #     # Randomly choose characters from letters for the given length of the string
-    #     ''.join(random.choice(V_t) for _ in range(3)) for _ in range(15)
+    #     ''.join(random.choice(V_t) for _ in range(length_random)) for _ in range(number_words)
     # ]
     # for word in random_words:
     #     result = finite_automaton.string_belong_to_language(word)
