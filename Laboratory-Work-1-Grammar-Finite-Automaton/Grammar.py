@@ -2,6 +2,7 @@
 import random
 import FiniteAutomaton
 
+
 class Grammar:
     # Constructor with some state variables as needed.
     # {V_n, V_t, P, S}
@@ -66,13 +67,13 @@ class Grammar:
         new_element_terminal_state = "q_f"
         Q.append(new_element_terminal_state)
         # Alphabet = Terminal Terms
-        sigma = self.V_t
+        delta = self.V_t
         # Start state = Start term
         q0 = self.S
         # Final states
         F = [new_element_terminal_state]
         # Transitions Set
-        delta = {}
+        sigma = {}
         # Iterate over all the Rules in the Product Dictionary (current state = non-terminal term from the dictionary)
         for current_state, derivations_list in self.P.items():
             # Iterate over all the derivations for a Non-Terminal Term
@@ -84,7 +85,7 @@ class Grammar:
                 # Next State is the Non-Terminal term in the derivation string
                 next_state = ""
                 for term in terms:
-                    if term.islower() and term in sigma:
+                    if term.islower() and term in delta:
                         current_input_term += term
                     if term.isupper() and term in Q:
                         next_state = term
@@ -93,13 +94,16 @@ class Grammar:
                 LHS = tuple([current_state, current_input_term])
 
                 # Place it in the dictonary as a tuple as key and its value is assigned to the next state.
-                if LHS in delta.keys():
-                    delta[LHS].append(next_state)
+                if LHS in sigma.keys():
+                    sigma[LHS].append(next_state)
                 else:
-                    delta[LHS] = [next_state]
+                    sigma[LHS] = [next_state]
 
         # Return object of type FiniteAutomaton, with the parameters that I found above
-        return FiniteAutomaton.FiniteAutomaton(Q, sigma, delta, q0, F)
+        return FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
+
+
+# Rudimentary Method for finding final states.  
 
 # # Check if in the derivation list we can achieve a final state - if the rule derives into an expression
 # # without non-terminal term.
@@ -113,7 +117,7 @@ class Grammar:
 #         for term in derivation:
 #             # Check if it has Non-Terminal Terms or if the term is not in the alphabet, then flag is set to
 #             # false - therefore this Non-Terminal is not a final state
-#             if term.isupper() or term not in sigma:
+#             if term.isupper() or term not in delta:
 #                 flag = False
 #         # If flag is still true and term is not contained in the Final states list, then add it to the list
 #         if flag and term not in F:

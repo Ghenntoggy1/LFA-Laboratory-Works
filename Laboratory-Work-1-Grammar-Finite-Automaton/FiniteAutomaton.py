@@ -1,7 +1,7 @@
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
-    def __init__(self, Q, sigma, delta, q0, F):
+    def __init__(self, Q, delta, sigma, q0, F):
         self.Q = Q
         self.sigma = sigma
         self.delta = delta
@@ -11,7 +11,7 @@ class FiniteAutomaton:
     def string_belong_to_language(self, input_string):
         # Edge-case: if Input String contain Terms that are not accepted by the Finite Automaton.
         for term in input_string:
-            if term not in self.sigma:
+            if term not in self.delta:
                 return False
 
         # Current state is q0 - Start State
@@ -32,7 +32,7 @@ class FiniteAutomaton:
                     # from the transitions list, which might give Key Error (such transition does not exit in the list
                     # therefore no possible transition for the current state and terminal term => reject the word)
                     if state != '':
-                        current_state = self.delta[(state, char)]
+                        current_state = self.sigma[(state, char)]
                     # Edge-case: if state is final state, and it is the only possible next State, then return false,
                     # because this term program checks is not the last character in the input string therefore no
                     # possible further transition.
@@ -52,9 +52,10 @@ class FiniteAutomaton:
 
     # Print function to easy print the variables in the console.
     def print_variables(self):
-        print("Q:", self.Q)
-        print("Sigma:", self.sigma)
+        print("\nQ:", self.Q)
         print("Delta:", self.delta)
+        print("Sigma:")
+        for (k, v) in self.sigma.items():
+            print("\u03C3" + str(k), "-", v)
         print("q0:", self.q0)
         print("F:", self.F)
-

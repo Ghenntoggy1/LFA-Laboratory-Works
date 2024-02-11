@@ -15,9 +15,9 @@
 #         B → aS
 #     }
 import itertools
+import random
 
 import Grammar
-import random
 
 if __name__ == '__main__':
     print("Laboratory Work 1 - Intro to formal languages. Regular grammars. Finite Automata.")
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     # Rules
     P = {
-        "S": ["aB", "bD"],
+        "S": ["aB", "bB"],
         "B": ["bD", "cB", "aS"],
         "D": ["b", "aD"]
     }
@@ -90,12 +90,12 @@ if __name__ == '__main__':
     finite_automaton.print_variables()
 
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
-    # for word in generated_words:
-    #     print(
-    #         f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
-    #         else "Rejected"}"
-    #     )
-
+    print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
+    for word in generated_words:
+        print(
+            f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
+            else "Rejected"}"
+        )
     # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
 
     # for i in range(1):
@@ -105,27 +105,25 @@ if __name__ == '__main__':
 
     # FOR RANDOM WORD COMBINATION, UNCOMMENT FOLLOWING LINES OF CODE:
 
-    # letters = ["a", "b", "c"]
-    #
-    # rejected_words = [
+    # random_words = [
     #     # Randomly choose characters from letters for the given length of the string
-    #     ''.join(random.choice(letters) for _ in range(3)) for _ in range(15)
+    #     ''.join(random.choice(V_t) for _ in range(3)) for _ in range(15)
     # ]
-    # for word in rejected_words:
+    # for word in random_words:
     #     result = finite_automaton.string_belong_to_language(word)
     #     print(f"Word {word} is {"Accepted" if result else "Rejected"}")
-
-    # print(rejected_words)
+    #
+    # print(random_words)
 
     # ALL POSSIBLE COMBINATIONS OF WORDS MADE OUT OF TERMINAL TERMS:
-    #
-    letters = ["a", "b", "c"]
-    index = 1
-    rejected_words = []
+
+    print("\nCHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:")
+    possible_words = []
     for i in range(6):
-        lst = [''.join(comb) for comb in itertools.product(letters, repeat=i)]
+        lst = [''.join(comb) for comb in itertools.product(V_t, repeat=i)]
         for word in lst:
-            rejected_words.append(word)
-    for word in rejected_words:
+            possible_words.append(word)
+
+    for word in possible_words:
         result = finite_automaton.string_belong_to_language(word)
         print(f"Word {word} is {"Accepted" if result else "Rejected"}")
