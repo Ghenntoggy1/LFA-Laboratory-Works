@@ -39,12 +39,6 @@ if __name__ == '__main__':
         "B": ["bD", "cB", "aS"],
         "D": ["b", "aD"]
     }
-
-    # P = {
-    #         "S": ["aB", "bD", "c"],
-    #         "B": ["bD", "cB", "aS", "c", "bS"],
-    #         "D": ["b", "aD", "c"]
-    #     }  further impovement
     print("Rules:")
     for curr_term in P:
         print(curr_term + " -> " + str(P[curr_term]))
@@ -124,7 +118,7 @@ if __name__ == '__main__':
     # print(rejected_words)
 
     # ALL POSSIBLE COMBINATIONS OF WORDS MADE OUT OF TERMINAL TERMS:
-
+    #
     letters = ["a", "b", "c"]
     index = 1
     rejected_words = []
