@@ -118,7 +118,6 @@ if __name__ == '__main__':
     # print(random_words)
 
     # ALL POSSIBLE COMBINATIONS OF WORDS MADE OUT OF TERMINAL TERMS:
-
     print("\nCHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:")
     possible_words = []
     for i in range(6):

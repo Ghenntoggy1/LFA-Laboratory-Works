@@ -44,13 +44,12 @@ class FiniteAutomaton:
                     # KeyError means that no possible transition from current state with terminal term
                     # Check if there are no more possible next states so that don't lose another possible branch
                     if len(current_state) == 1:
+                        # Goes into a dead State => Rejected Word
+                        print("{q_d}", end="")
                         return False
                     # Else, go to the next possible State and check that one.
                     if list(current_state)[-1] == state:
-                        if len(next_state) == 0:
-                            print("[q_d]", end="")
-                        else:
-                            print(next_state, end="")
+                        print(next_state, end="")
                     continue
             current_state = next_state
         # Transform list to set so that apply method intersection
