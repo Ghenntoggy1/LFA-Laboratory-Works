@@ -98,11 +98,11 @@ if __name__ == '__main__':
         )
 
     # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
-    iterations = 5
-    for i in range(iterations + 1):
-        input_word = input("\nEnter word: ")
-        result = finite_automaton.string_belong_to_language(input_word)
-        print(f"\nWord {input_word} is {"Accepted" if result else "Rejected"}")
+    # iterations = 5
+    # for i in range(iterations + 1):
+    #     input_word = input("\nEnter word: ")
+    #     result = finite_automaton.string_belong_to_language(input_word)
+    #     print(f"\nWord {input_word} is {"Accepted" if result else "Rejected"}")
 
     # FOR RANDOM WORD COMBINATION, UNCOMMENT FOLLOWING LINES OF CODE:
     # length_random = 3
