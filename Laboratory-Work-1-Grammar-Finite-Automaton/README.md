@@ -392,46 +392,7 @@ possible next States, based on the current Terminal Term and Current State:
   with the current State and current Terminal Term, that may lead to success, and will get the next possible states, or
   KeyError, that is caught, that means that there are no possible transitions, and then return False or, in other words,
   reject the word. Otherwise, I check if the current state list contain only on element and its element is "" final
-  state, which again means that no possible transition (this part may need improvement in the future, because when there
-  are multiple transitions for a state with the same input term, it may lead to uncertainty and give wrong output, I
-  have tried to fix this 3 days in a row, but no success :sad_emoji: ) and reject the word.
-
-```python
-class FiniteAutomaton:
-    ...
-    def string_belong_to_language(self, input_string):
-        ...
-        # Current state is q0 - Start State
-        current_state = [self.q0]
-        # Iterate over the Input String taking char by char
-        for char in input_string:
-            # Check if current state is Null, which became during the process next state. If yes, return false -
-            # no possible next state for a specific terminal term and current state
-            if current_state is None:
-                return False
-            # This method puts final state on the index 0 of the list.
-            current_state.sort()
-            # There might be multiple possible next states from a current state, so we iterate over them
-            for state in current_state:
-                # Try to get from the dictionary next state by the state
-                try:
-                    # Case: if state is not "", that is final state, then try to get the next state
-                    # from the transitions list, which might give Key Error (such transition does not exit in the list
-                    # therefore no possible transition for the current state and terminal term => reject the word)
-                    if state != '':
-                        current_state = self.sigma[(state, char)]
-                    # Edge-case: if state is final state, and it is the only possible next State, then return false,
-                    # because this term program checks is not the last character in the input string therefore no
-                    # possible further transition.
-                    elif len(current_state) == 1 and current_state[0] == "":
-                        return False
-                except KeyError:
-                    # As I mentioned, if the transition is not present in the list, it gives error when trying to get
-                    # that specific transition, therefore return False aka reject the worc
-                    return False
-        ...
-```
-
+  state, which again means that no possible transition and reject the word.
   * In case that the iterations are finalized, it means that during the process of validation of the string / word,
   program did not encounter any of the edge-cases I found during the design of the algorithm, it means that program got
   to the last character and found all the possible next states that the word may go from the current state and terminal
@@ -441,16 +402,48 @@ class FiniteAutomaton:
     ...
     def string_belong_to_language(self, input_string):
         ...
-        # Iterate over the Input String taking char by char
-        for char in input_string:
+        # Current state is q0 - Start State
+        current_state = [self.q0]
+        # Print Start transition for input string
+        print(f"-> {current_state[0] if len(current_state) == 1 else current_state}", end="")
+        # Iterate over Input String term by term
+        for term in input_string:
+            # Print current term
+            print(" --" + term, end="--> ")
+            # Initialize a set that will contain next possible States to translate into
+            next_state = set()
+            # Iterate over the current states and try to find next possible State to translate into
+            for state in current_state:
+                try:
+                    # Retrieve all next possible States to translate from current state with current term and iterate
+                    # over that list of possible next States and add them to the set that will replace the current state
+                    # list
+                    for next_state_single in self.sigma[(state, term)]:
+                        next_state.add(next_state_single)
+
+                    # Print next states
+                    if list(current_state)[-1] == state:
+                        print(next_state, end="")
+
+                except KeyError:
+                    # KeyError means that no possible transition from current state with terminal term
+                    # Check if there are no more possible next states so that don't lose another possible branch
+                    if len(current_state) == 1:
+                        # Goes into a dead State => Rejected Word
+                        print("{q_d}", end="")
+                        return False
+                    # Else, go to the next possible State and check that one.
+                    if list(current_state)[-1] == state:
+                        print(next_state, end="")
+                    continue
+            current_state = next_state
+        # Transform list to set so that apply method intersection
+        current_state = set(current_state)
+
+        # Check if last possible state list contains final state
+        return current_state.intersection(self.F)
+
         ...
-        else:
-            # When entire string is parsed, check whether the final state is an accepted state
-            # for possible_state in next_state:
-            if "" in current_state:
-                return True
-            else:
-                return False
 ```
 * This is the whole logic for the method to validate the String by rejection or acceptance based on the Grammar we have.
 
