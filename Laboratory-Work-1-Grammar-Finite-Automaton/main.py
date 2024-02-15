@@ -35,8 +35,8 @@ if __name__ == '__main__':
 
     # Rules
     P = {
-        "S": ["aB", "bB", "bD"],
-        "B": ["bD", "cB", "aS", "aD"],
+        "S": ["aB", "bB"],
+        "B": ["bD", "cB", "aS"],
         "D": ["b", "aD"]
     }
     print("Rules:")
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     # print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
     # for word in generated_words:
     #     print(
-    #         f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
+    #         f"\nWord {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
     #         else "Rejected"}"
     #     )
 
