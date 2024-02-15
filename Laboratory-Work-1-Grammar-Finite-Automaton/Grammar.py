@@ -83,7 +83,7 @@ class Grammar:
                 # Current input term is the part of the derivation that is of Terminal terms
                 current_input_term = ""
                 # Next State is the Non-Terminal term in the derivation string
-                next_state = ""
+                next_state = "q_f"
                 for term in terms:
                     if term.islower() and term in delta:
                         current_input_term += term

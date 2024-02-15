@@ -17,23 +17,28 @@ class FiniteAutomaton:
 
         # Current state is q0 - Start State
         current_state = [self.q0]
-        print(f"-> {current_state[0] if len(current_state) == 1 else current_state}", end=", ")
+        print(f"-> {current_state[0] if len(current_state) == 1 else current_state}", end=" --")
         for term in input_string:
-            print(term, end=" -> ")
-            next_state = []
+            if not term:
+                print("epsilon", end="--> ")
+            else:
+                print(term, end="--> ")
+
+            next_state = set()
             for state in current_state:
                 try:
                     for next_state_single in self.sigma[(state, term)]:
-                        next_state.append(next_state_single)
-                        print(next_state_single, end=", ")
+                        next_state.add(next_state_single)
+
+                    print(next_state, end=" --")
                 except KeyError:
                     if len(current_state) == 1:
                         return False
                     continue
             current_state = next_state
         current_state = set(current_state)
-        print("epsilon", end="")
-        return current_state.intersection({""})
+
+        return current_state.intersection(self.F)
 
 
 
