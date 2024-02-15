@@ -35,8 +35,8 @@ if __name__ == '__main__':
 
     # Rules
     P = {
-        "S": ["aB", "bB"],
-        "B": ["bD", "cB", "aS"],
+        "S": ["aB", "bB", "bD"],
+        "B": ["bD", "cB", "aS", "aD"],
         "D": ["b", "aD"]
     }
     print("Rules:")
@@ -90,12 +90,12 @@ if __name__ == '__main__':
     finite_automaton.print_variables()
 
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
-    print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
-    for word in generated_words:
-        print(
-            f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
-            else "Rejected"}"
-        )
+    # print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
+    # for word in generated_words:
+    #     print(
+    #         f"Word {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
+    #         else "Rejected"}"
+    #     )
 
     # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
     # iterations = 5
@@ -128,4 +128,9 @@ if __name__ == '__main__':
 
     for word in possible_words:
         result = finite_automaton.string_belong_to_language(word)
-        print(f"Word {word} is {"Accepted" if result else "Rejected"}")
+        print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
+
+
+
+    # for word in possible_words:
+    #     print(word)
