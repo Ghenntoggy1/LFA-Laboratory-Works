@@ -1,12 +1,55 @@
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
-    def __init__(self, Q, delta, sigma, q0, F):
+    def __init__(self, Q=None, delta=None, sigma=None, q0=None, F=None):
+        if Q is None or delta is None or sigma is None or q0 is None or F is None:
+            self.create_finite_automaton()
+        else:
+            self.Q = Q
+            self.sigma = sigma
+            self.delta = delta
+            self.q0 = q0
+            self.F = F
+
+    def create_finite_automaton(self):
+        print("CREATE YOUR OWN FINITE AUTOMATON:")
+
+        Q = input("INPUT STATES SEPARATED BY COMMA: ")
+        Q = Q.split(",")
+        Q.append("q_f")
+        print(Q)
         self.Q = Q
-        self.sigma = sigma
+
+        delta = input("INPUT TERMINAL TERMS SEPARATED BY COMMA: ")
+        delta = delta.split(",")
+        print(delta)
         self.delta = delta
+
+        q0 = input("INPUT START STATE: ")
+        print(q0)
         self.q0 = q0
-        self.F = F
+
+        self.F = ["q_f"]
+
+        print(
+            "INPUT TRANSITIONS (SEPARATED BY COMMA \"{STATE},{TERMINAL_TERM},{NEXT_STATE}\") AND USE FOR FINAL STATE \"q_f\": ")
+        sigma = {}
+        while True:
+            transition_string = input("")
+            transition = transition_string.split(",")
+            print(transition)
+            if tuple(transition[0] + transition[1]) in sigma:
+                sigma[tuple(transition[0] + transition[1])].append(transition[2])
+            else:
+                sigma[tuple(transition[0] + transition[1])] = [transition[2]]
+            print(f"\u03C3({transition[0]}, {transition[1]}) -> {[transition[2]]}")
+            if input("CONTINUE? (Y/N) ").lower() == "n":
+                break
+        for (k, v) in sigma.items():
+            print("\u03C3" + str(k), "-", v)
+        self.sigma = sigma
+
+
 
     def string_belong_to_language(self, input_string):
         print("\nInput String:", input_string)
