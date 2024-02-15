@@ -232,12 +232,15 @@ thing developed was the constructor, that will hold the parameters for the Finit
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
-    def __init__(self, Q, delta, sigma, q0, F):
-        self.Q = Q
-        self.sigma = sigma
-        self.delta = delta
-        self.q0 = q0
-        self.F = F
+    def __init__(self, Q=None, delta=None, sigma=None, q0=None, F=None):
+        if Q is None or delta is None or sigma is None or q0 is None or F is None:
+            self.create_finite_automaton()
+        else:
+            self.Q = Q
+            self.sigma = sigma
+            self.delta = delta
+            self.q0 = q0
+            self.F = F
     ...
 ```
 * In order to print all the variables in the console in a pretty format, I designed a method that will print them line
@@ -522,6 +525,50 @@ if __name__ == '__main__':
           result = finite_automaton.string_belong_to_language(word)
           print(f"Word {word} is {"Accepted" if result else "Rejected"}")
   ```
+  * Additionally, I added a function to FiniteAutomaton class that, in case that for the creation of FA are not provided
+  some parameters, they might be taken as input from the User:
+  ```python
+  class FiniteAutomaton:
+      ...
+      def create_finite_automaton(self):
+          print("CREATE YOUR OWN FINITE AUTOMATON:")
+  
+          Q = input("INPUT STATES SEPARATED BY COMMA: ")
+          Q = Q.split(",")
+          Q.append("q_f")
+          print(Q)
+          self.Q = Q
+  
+          delta = input("INPUT TERMINAL TERMS SEPARATED BY COMMA: ")
+          delta = delta.split(",")
+          print(delta)
+          self.delta = delta
+  
+          q0 = input("INPUT START STATE: ")
+          print(q0)
+          self.q0 = q0
+  
+          self.F = ["q_f"]
+  
+          print(
+              "INPUT TRANSITIONS (SEPARATED BY COMMA \"{STATE},{TERMINAL_TERM},{NEXT_STATE}\") AND USE FOR FINAL STATE \"q_f\": ")
+          sigma = {}
+          while True:
+              transition_string = input("")
+              transition = transition_string.split(",")
+              print(transition)
+              if tuple(transition[0] + transition[1]) in sigma:
+                  sigma[tuple(transition[0] + transition[1])].append(transition[2])
+              else:
+                  sigma[tuple(transition[0] + transition[1])] = [transition[2]]
+              print(f"\u03C3({transition[0]}, {transition[1]}) -> {[transition[2]]}")
+              if input("CONTINUE? (Y/N) ").lower() == "n":
+                  break
+          for (k, v) in sigma.items():
+              print("\u03C3" + str(k), "-", v)
+          self.sigma = sigma
+      ...
+  ```
 ## Conclusions / Screenshots / Results:
 I present here one output for the Grammar Exercise of the Laboratory Work nr1.
 * First part of the console output is the general information about the laboratory work, variant, student and group:
@@ -718,9 +765,109 @@ Word bba is Rejected
 Input String: bbb
 -> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
 Word bbb is Accepted
-
 ...
 ```
+
+* Also, here is how creating a new FiniteAutomaton without passing some parameters looks like:
+```
+CREATE YOUR OWN FINITE AUTOMATON:
+INPUT STATES SEPARATED BY COMMA: S,B,D
+['S', 'B', 'D', 'q_f']
+INPUT TERMINAL TERMS SEPARATED BY COMMA: a,b,c
+['a', 'b', 'c']
+INPUT START STATE: S
+S
+INPUT TRANSITIONS (SEPARATED BY COMMA "{STATE},{TERMINAL_TERM},{NEXT_STATE}") AND USE FOR FINAL STATE "q_f": 
+S,a,B
+['S', 'a', 'B']
+σ(S, a) -> ['B']
+CONTINUE? (Y/N) y
+S,b,B
+['S', 'b', 'B']
+σ(S, b) -> ['B']
+CONTINUE? (Y/N) y
+B,b,D
+['B', 'b', 'D']
+σ(B, b) -> ['D']
+CONTINUE? (Y/N) y
+D,b,q_f
+['D', 'b', 'q_f']
+σ(D, b) -> ['q_f']
+CONTINUE? (Y/N) y
+D,a,D
+['D', 'a', 'D']
+σ(D, a) -> ['D']
+CONTINUE? (Y/N) y
+B,c,B
+['B', 'c', 'B']
+σ(B, c) -> ['B']
+CONTINUE? (Y/N) y
+B,a,S
+['B', 'a', 'S']
+σ(B, a) -> ['S']
+CONTINUE? (Y/N) n
+```
+* I input the grammar I got in my Variant and the output for the variables is the same as for the original FiniteAutomaton generated from the given Grammar.
+```
+Q: ['S', 'B', 'D', 'q_f']
+Delta: ['a', 'b', 'c']
+Sigma:
+σ('S', 'a') - ['B']
+σ('S', 'b') - ['B']
+σ('B', 'b') - ['D']
+σ('D', 'b') - ['q_f']
+σ('D', 'a') - ['D']
+σ('B', 'c') - ['B']
+σ('B', 'a') - ['S']
+q0: S
+F: ['q_f']
+```
+* And to check if they are correct, I used the same function with all the possible combinations and got the same Output
+as for the original generated Finite Automaton from the Grammar directly through a method.
+```
+CHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word abb is Accepted
+
+Input String: abc
+-> S --a--> {'B'} --b--> {'D'} --c--> {q_d}
+Word abc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
+Word aca is Rejected
+
+Input String: acb
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'}
+Word acb is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
+Word baa is Rejected
+
+Input String: bab
+-> S --b--> {'B'} --a--> {'S'} --b--> {'B'}
+Word bab is Rejected
+
+Input String: bac
+-> S --b--> {'B'} --a--> {'S'} --c--> {q_d}
+Word bac is Rejected
+
+Input String: bba
+-> S --b--> {'B'} --b--> {'D'} --a--> {'D'}
+Word bba is Rejected
+
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
+...
+```
+
 As a conclusion to this Laboratory Work, I can say that I accomplished all the given tasks, specifically creation of 2
 classes:
 * Grammar - used to hold the parameters of a Grammar and methods to generate different random words and a method to

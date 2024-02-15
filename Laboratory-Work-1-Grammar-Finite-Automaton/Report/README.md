@@ -232,12 +232,15 @@ thing developed was the constructor, that will hold the parameters for the Finit
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
-    def __init__(self, Q, delta, sigma, q0, F):
-        self.Q = Q
-        self.sigma = sigma
-        self.delta = delta
-        self.q0 = q0
-        self.F = F
+    def __init__(self, Q=None, delta=None, sigma=None, q0=None, F=None):
+        if Q is None or delta is None or sigma is None or q0 is None or F is None:
+            self.create_finite_automaton()
+        else:
+            self.Q = Q
+            self.sigma = sigma
+            self.delta = delta
+            self.q0 = q0
+            self.F = F
     ...
 ```
 * In order to print all the variables in the console in a pretty format, I designed a method that will print them line
@@ -392,46 +395,7 @@ possible next States, based on the current Terminal Term and Current State:
   with the current State and current Terminal Term, that may lead to success, and will get the next possible states, or
   KeyError, that is caught, that means that there are no possible transitions, and then return False or, in other words,
   reject the word. Otherwise, I check if the current state list contain only on element and its element is "" final
-  state, which again means that no possible transition (this part may need improvement in the future, because when there
-  are multiple transitions for a state with the same input term, it may lead to uncertainty and give wrong output, I
-  have tried to fix this 3 days in a row, but no success :sad_emoji: ) and reject the word.
-
-```python
-class FiniteAutomaton:
-    ...
-    def string_belong_to_language(self, input_string):
-        ...
-        # Current state is q0 - Start State
-        current_state = [self.q0]
-        # Iterate over the Input String taking char by char
-        for char in input_string:
-            # Check if current state is Null, which became during the process next state. If yes, return false -
-            # no possible next state for a specific terminal term and current state
-            if current_state is None:
-                return False
-            # This method puts final state on the index 0 of the list.
-            current_state.sort()
-            # There might be multiple possible next states from a current state, so we iterate over them
-            for state in current_state:
-                # Try to get from the dictionary next state by the state
-                try:
-                    # Case: if state is not "", that is final state, then try to get the next state
-                    # from the transitions list, which might give Key Error (such transition does not exit in the list
-                    # therefore no possible transition for the current state and terminal term => reject the word)
-                    if state != '':
-                        current_state = self.sigma[(state, char)]
-                    # Edge-case: if state is final state, and it is the only possible next State, then return false,
-                    # because this term program checks is not the last character in the input string therefore no
-                    # possible further transition.
-                    elif len(current_state) == 1 and current_state[0] == "":
-                        return False
-                except KeyError:
-                    # As I mentioned, if the transition is not present in the list, it gives error when trying to get
-                    # that specific transition, therefore return False aka reject the worc
-                    return False
-        ...
-```
-
+  state, which again means that no possible transition and reject the word.
   * In case that the iterations are finalized, it means that during the process of validation of the string / word,
   program did not encounter any of the edge-cases I found during the design of the algorithm, it means that program got
   to the last character and found all the possible next states that the word may go from the current state and terminal
@@ -441,16 +405,48 @@ class FiniteAutomaton:
     ...
     def string_belong_to_language(self, input_string):
         ...
-        # Iterate over the Input String taking char by char
-        for char in input_string:
+        # Current state is q0 - Start State
+        current_state = [self.q0]
+        # Print Start transition for input string
+        print(f"-> {current_state[0] if len(current_state) == 1 else current_state}", end="")
+        # Iterate over Input String term by term
+        for term in input_string:
+            # Print current term
+            print(" --" + term, end="--> ")
+            # Initialize a set that will contain next possible States to translate into
+            next_state = set()
+            # Iterate over the current states and try to find next possible State to translate into
+            for state in current_state:
+                try:
+                    # Retrieve all next possible States to translate from current state with current term and iterate
+                    # over that list of possible next States and add them to the set that will replace the current state
+                    # list
+                    for next_state_single in self.sigma[(state, term)]:
+                        next_state.add(next_state_single)
+
+                    # Print next states
+                    if list(current_state)[-1] == state:
+                        print(next_state, end="")
+
+                except KeyError:
+                    # KeyError means that no possible transition from current state with terminal term
+                    # Check if there are no more possible next states so that don't lose another possible branch
+                    if len(current_state) == 1:
+                        # Goes into a dead State => Rejected Word
+                        print("{q_d}", end="")
+                        return False
+                    # Else, go to the next possible State and check that one.
+                    if list(current_state)[-1] == state:
+                        print(next_state, end="")
+                    continue
+            current_state = next_state
+        # Transform list to set so that apply method intersection
+        current_state = set(current_state)
+
+        # Check if last possible state list contains final state
+        return current_state.intersection(self.F)
+
         ...
-        else:
-            # When entire string is parsed, check whether the final state is an accepted state
-            # for possible_state in next_state:
-            if "" in current_state:
-                return True
-            else:
-                return False
 ```
 * This is the whole logic for the method to validate the String by rejection or acceptance based on the Grammar we have.
 
@@ -529,6 +525,50 @@ if __name__ == '__main__':
           result = finite_automaton.string_belong_to_language(word)
           print(f"Word {word} is {"Accepted" if result else "Rejected"}")
   ```
+  * Additionally, I added a function to FiniteAutomaton class that, in case that for the creation of FA are not provided
+  some parameters, they might be taken as input from the User:
+  ```python
+  class FiniteAutomaton:
+      ...
+      def create_finite_automaton(self):
+          print("CREATE YOUR OWN FINITE AUTOMATON:")
+  
+          Q = input("INPUT STATES SEPARATED BY COMMA: ")
+          Q = Q.split(",")
+          Q.append("q_f")
+          print(Q)
+          self.Q = Q
+  
+          delta = input("INPUT TERMINAL TERMS SEPARATED BY COMMA: ")
+          delta = delta.split(",")
+          print(delta)
+          self.delta = delta
+  
+          q0 = input("INPUT START STATE: ")
+          print(q0)
+          self.q0 = q0
+  
+          self.F = ["q_f"]
+  
+          print(
+              "INPUT TRANSITIONS (SEPARATED BY COMMA \"{STATE},{TERMINAL_TERM},{NEXT_STATE}\") AND USE FOR FINAL STATE \"q_f\": ")
+          sigma = {}
+          while True:
+              transition_string = input("")
+              transition = transition_string.split(",")
+              print(transition)
+              if tuple(transition[0] + transition[1]) in sigma:
+                  sigma[tuple(transition[0] + transition[1])].append(transition[2])
+              else:
+                  sigma[tuple(transition[0] + transition[1])] = [transition[2]]
+              print(f"\u03C3({transition[0]}, {transition[1]}) -> {[transition[2]]}")
+              if input("CONTINUE? (Y/N) ").lower() == "n":
+                  break
+          for (k, v) in sigma.items():
+              print("\u03C3" + str(k), "-", v)
+          self.sigma = sigma
+      ...
+  ```
 ## Conclusions / Screenshots / Results:
 I present here one output for the Grammar Exercise of the Laboratory Work nr1.
 * First part of the console output is the general information about the laboratory work, variant, student and group:
@@ -591,7 +631,7 @@ Sigma:
 σ('B', 'b') - ['D']
 σ('B', 'c') - ['B']
 σ('B', 'a') - ['S']
-σ('D', 'b') - ['']
+σ('D', 'b') - ['q_f']
 σ('D', 'a') - ['D']
 q0: S
 F: ['q_f']
@@ -601,11 +641,25 @@ After that, I check the previously generated words (they should be always accept
 Grammar):
 ```
 CHECKING GENERATED WORDS FOR ACCEPTANCE:
-Word 1 acaabaab: Accepted
-Word 2 bcaabaaab: Accepted
-Word 3 abaab: Accepted
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word 1 abb: Accepted
+
+Input String: bcbb
+-> S --b--> {'B'} --c--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word 2 bcbb: Accepted
+
+Input String: aabcaacbab
+-> S --a--> {'B'} --a--> {'S'} --b--> {'B'} --c--> {'B'} --a--> {'S'} --a--> {'B'} --c--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
+Word 3 aabcaacbab: Accepted
+
+Input String: baabab
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
 Word 4 baabab: Accepted
-Word 5 bcbb: Accepted
+
+Input String: acbab
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
+Word 5 acbab: Accepted
 ```
 As you may see, all the words were accepted.
 
@@ -618,54 +672,202 @@ Enter word:
 Then input the word you want:
 ```
 Enter word: aaacabbab
+
+Input String: aaacabbab
+-> S --a--> {'B'} --a--> {'S'} --a--> {'B'} --c--> {'B'} --a--> {'S'} --b--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
 Word aaacabbab is Accepted
 ```
 * Random combinations of Terminal Terms:
 ```
-Word bba is Rejected
-Word bca is Rejected
-Word bba is Rejected
-Word abc is Rejected
-Word bcb is Rejected
-Word bba is Rejected
-Word bcb is Rejected
-Word cca is Rejected
-Word bcc is Rejected
-Word aca is Rejected
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
+Word baa is Rejected
+
+Input String: cab
+-> S --c--> {q_d}
+Word cab is Rejected
+
+Input String: cac
+-> S --c--> {q_d}
 Word cac is Rejected
-Word bac is Rejected
-Word cba is Rejected
+
+Input String: aba
+-> S --a--> {'B'} --b--> {'D'} --a--> {'D'}
+Word aba is Rejected
+
+Input String: aab
+-> S --a--> {'B'} --a--> {'S'} --b--> {'B'}
+Word aab is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
 Word aca is Rejected
-Word bca is Rejected
+
+Input String: ccc
+-> S --c--> {q_d}
+Word ccc is Rejected
+
+Input String: aac
+-> S --a--> {'B'} --a--> {'S'} --c--> {q_d}
+Word aac is Rejected
 ```
 * All Possible Combinations of Terminal Terms:
 ```
 CHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:
-Word  is Rejected
-Word a is Rejected
-Word b is Rejected
-Word c is Rejected
-Word aa is Rejected
-Word ab is Rejected
-Word ac is Rejected
-Word ba is Rejected
-Word bb is Rejected
-Word bc is Rejected
-Word ca is Rejected
-Word cb is Rejected
-Word cc is Rejected
-Word aaa is Rejected
-Word aab is Rejected
-Word aac is Rejected
-Word aba is Rejected
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
 Word abb is Accepted
+
+Input String: abc
+-> S --a--> {'B'} --b--> {'D'} --c--> {q_d}
 Word abc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
 Word aca is Rejected
+
+Input String: acb
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'}
 Word acb is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
 Word acc is Rejected
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
 Word baa is Rejected
+
+Input String: bab
+-> S --b--> {'B'} --a--> {'S'} --b--> {'B'}
+Word bab is Rejected
+
+Input String: bac
+-> S --b--> {'B'} --a--> {'S'} --c--> {q_d}
+Word bac is Rejected
+
+Input String: bba
+-> S --b--> {'B'} --b--> {'D'} --a--> {'D'}
+Word bba is Rejected
+
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
 ...
 ```
+
+* Also, here is how creating a new FiniteAutomaton without passing some parameters looks like:
+```
+CREATE YOUR OWN FINITE AUTOMATON:
+INPUT STATES SEPARATED BY COMMA: S,B,D
+['S', 'B', 'D', 'q_f']
+INPUT TERMINAL TERMS SEPARATED BY COMMA: a,b,c
+['a', 'b', 'c']
+INPUT START STATE: S
+S
+INPUT TRANSITIONS (SEPARATED BY COMMA "{STATE},{TERMINAL_TERM},{NEXT_STATE}") AND USE FOR FINAL STATE "q_f": 
+S,a,B
+['S', 'a', 'B']
+σ(S, a) -> ['B']
+CONTINUE? (Y/N) y
+S,b,B
+['S', 'b', 'B']
+σ(S, b) -> ['B']
+CONTINUE? (Y/N) y
+B,b,D
+['B', 'b', 'D']
+σ(B, b) -> ['D']
+CONTINUE? (Y/N) y
+D,b,q_f
+['D', 'b', 'q_f']
+σ(D, b) -> ['q_f']
+CONTINUE? (Y/N) y
+D,a,D
+['D', 'a', 'D']
+σ(D, a) -> ['D']
+CONTINUE? (Y/N) y
+B,c,B
+['B', 'c', 'B']
+σ(B, c) -> ['B']
+CONTINUE? (Y/N) y
+B,a,S
+['B', 'a', 'S']
+σ(B, a) -> ['S']
+CONTINUE? (Y/N) n
+```
+* I input the grammar I got in my Variant and the output for the variables is the same as for the original FiniteAutomaton generated from the given Grammar.
+```
+Q: ['S', 'B', 'D', 'q_f']
+Delta: ['a', 'b', 'c']
+Sigma:
+σ('S', 'a') - ['B']
+σ('S', 'b') - ['B']
+σ('B', 'b') - ['D']
+σ('D', 'b') - ['q_f']
+σ('D', 'a') - ['D']
+σ('B', 'c') - ['B']
+σ('B', 'a') - ['S']
+q0: S
+F: ['q_f']
+```
+* And to check if they are correct, I used the same function with all the possible combinations and got the same Output
+as for the original generated Finite Automaton from the Grammar directly through a method.
+```
+CHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word abb is Accepted
+
+Input String: abc
+-> S --a--> {'B'} --b--> {'D'} --c--> {q_d}
+Word abc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
+Word aca is Rejected
+
+Input String: acb
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'}
+Word acb is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
+Word baa is Rejected
+
+Input String: bab
+-> S --b--> {'B'} --a--> {'S'} --b--> {'B'}
+Word bab is Rejected
+
+Input String: bac
+-> S --b--> {'B'} --a--> {'S'} --c--> {q_d}
+Word bac is Rejected
+
+Input String: bba
+-> S --b--> {'B'} --b--> {'D'} --a--> {'D'}
+Word bba is Rejected
+
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
+...
+```
+
 As a conclusion to this Laboratory Work, I can say that I accomplished all the given tasks, specifically creation of 2
 classes:
 * Grammar - used to hold the parameters of a Grammar and methods to generate different random words and a method to
