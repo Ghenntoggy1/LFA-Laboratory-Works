@@ -584,7 +584,7 @@ Sigma:
 σ('B', 'b') - ['D']
 σ('B', 'c') - ['B']
 σ('B', 'a') - ['S']
-σ('D', 'b') - ['']
+σ('D', 'b') - ['q_f']
 σ('D', 'a') - ['D']
 q0: S
 F: ['q_f']
@@ -594,11 +594,25 @@ After that, I check the previously generated words (they should be always accept
 Grammar):
 ```
 CHECKING GENERATED WORDS FOR ACCEPTANCE:
-Word 1 acaabaab: Accepted
-Word 2 bcaabaaab: Accepted
-Word 3 abaab: Accepted
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word 1 abb: Accepted
+
+Input String: bcbb
+-> S --b--> {'B'} --c--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word 2 bcbb: Accepted
+
+Input String: aabcaacbab
+-> S --a--> {'B'} --a--> {'S'} --b--> {'B'} --c--> {'B'} --a--> {'S'} --a--> {'B'} --c--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
+Word 3 aabcaacbab: Accepted
+
+Input String: baabab
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
 Word 4 baabab: Accepted
-Word 5 bcbb: Accepted
+
+Input String: acbab
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
+Word 5 acbab: Accepted
 ```
 As you may see, all the words were accepted.
 
@@ -611,52 +625,100 @@ Enter word:
 Then input the word you want:
 ```
 Enter word: aaacabbab
+
+Input String: aaacabbab
+-> S --a--> {'B'} --a--> {'S'} --a--> {'B'} --c--> {'B'} --a--> {'S'} --b--> {'B'} --b--> {'D'} --a--> {'D'} --b--> {'q_f'}
 Word aaacabbab is Accepted
 ```
 * Random combinations of Terminal Terms:
 ```
-Word bba is Rejected
-Word bca is Rejected
-Word bba is Rejected
-Word abc is Rejected
-Word bcb is Rejected
-Word bba is Rejected
-Word bcb is Rejected
-Word cca is Rejected
-Word bcc is Rejected
-Word aca is Rejected
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
+Word baa is Rejected
+
+Input String: cab
+-> S --c--> {q_d}
+Word cab is Rejected
+
+Input String: cac
+-> S --c--> {q_d}
 Word cac is Rejected
-Word bac is Rejected
-Word cba is Rejected
+
+Input String: aba
+-> S --a--> {'B'} --b--> {'D'} --a--> {'D'}
+Word aba is Rejected
+
+Input String: aab
+-> S --a--> {'B'} --a--> {'S'} --b--> {'B'}
+Word aab is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
+Word acc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
 Word aca is Rejected
-Word bca is Rejected
+
+Input String: ccc
+-> S --c--> {q_d}
+Word ccc is Rejected
+
+Input String: aac
+-> S --a--> {'B'} --a--> {'S'} --c--> {q_d}
+Word aac is Rejected
 ```
 * All Possible Combinations of Terminal Terms:
 ```
 CHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:
-Word  is Rejected
-Word a is Rejected
-Word b is Rejected
-Word c is Rejected
-Word aa is Rejected
-Word ab is Rejected
-Word ac is Rejected
-Word ba is Rejected
-Word bb is Rejected
-Word bc is Rejected
-Word ca is Rejected
-Word cb is Rejected
-Word cc is Rejected
-Word aaa is Rejected
-Word aab is Rejected
-Word aac is Rejected
-Word aba is Rejected
+Input String: abb
+-> S --a--> {'B'} --b--> {'D'} --b--> {'q_f'}
 Word abb is Accepted
+
+Input String: abc
+-> S --a--> {'B'} --b--> {'D'} --c--> {q_d}
 Word abc is Rejected
+
+Input String: aca
+-> S --a--> {'B'} --c--> {'B'} --a--> {'S'}
 Word aca is Rejected
+
+Input String: acb
+-> S --a--> {'B'} --c--> {'B'} --b--> {'D'}
 Word acb is Rejected
+
+Input String: acc
+-> S --a--> {'B'} --c--> {'B'} --c--> {'B'}
 Word acc is Rejected
+
+Input String: baa
+-> S --b--> {'B'} --a--> {'S'} --a--> {'B'}
 Word baa is Rejected
+
+Input String: bab
+-> S --b--> {'B'} --a--> {'S'} --b--> {'B'}
+Word bab is Rejected
+
+Input String: bac
+-> S --b--> {'B'} --a--> {'S'} --c--> {q_d}
+Word bac is Rejected
+
+Input String: bba
+-> S --b--> {'B'} --b--> {'D'} --a--> {'D'}
+Word bba is Rejected
+
+Input String: bbb
+-> S --b--> {'B'} --b--> {'D'} --b--> {'q_f'}
+Word bbb is Accepted
+
 ...
 ```
 As a conclusion to this Laboratory Work, I can say that I accomplished all the given tasks, specifically creation of 2
