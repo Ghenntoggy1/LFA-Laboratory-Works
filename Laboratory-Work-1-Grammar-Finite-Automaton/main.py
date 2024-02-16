@@ -92,12 +92,12 @@ if __name__ == '__main__':
     finite_automaton.print_variables()
 
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
-    # print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
-    # for word in generated_words:
-    #     print(
-    #         f"\nWord {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
-    #         else "Rejected"}"
-    #     )
+    print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
+    for word in generated_words:
+        print(
+            f"\nWord {generated_words.index(word) + 1} {word}: {"Accepted" if finite_automaton.string_belong_to_language(word)
+            else "Rejected"}"
+        )
 
     # FOR MANUAL INPUT, UNCOMMENT FOLLOWING LINES OF CODE:
     # iterations = 5
