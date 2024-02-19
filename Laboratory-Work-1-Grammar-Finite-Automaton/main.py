@@ -14,12 +14,10 @@
 #         B → cB
 #         B → aS
 #     }
-
-import itertools
-import random
-
 import Grammar
+import itertools
 import FiniteAutomaton
+import random
 
 if __name__ == '__main__':
     print("Laboratory Work 1 - Intro to formal languages. Regular grammars. Finite Automata.")
@@ -131,6 +129,9 @@ if __name__ == '__main__':
 
     # for word in possible_words:
     #     print(word)
+
+    finite_automaton.draw_graph()
+
 
     finite_automaton = FiniteAutomaton.FiniteAutomaton()
     finite_automaton.print_variables()

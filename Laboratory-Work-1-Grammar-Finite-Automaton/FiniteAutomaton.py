@@ -1,3 +1,6 @@
+from graphviz import Digraph
+import os
+
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
@@ -48,8 +51,6 @@ class FiniteAutomaton:
         for (k, v) in sigma.items():
             print("\u03C3" + str(k), "-", v)
         self.sigma = sigma
-
-
 
     def string_belong_to_language(self, input_string):
         print("\nInput String:", input_string)
@@ -110,6 +111,35 @@ class FiniteAutomaton:
             print("\u03C3" + str(k), "-", v)
         print("q0:", self.q0)
         print("F:", self.F)
+
+    def draw_graph(self):
+        graph = Digraph(comment='Graphical Representation of Finite Automaton')
+        # Add states to the graph of Finite Automaton
+        for state in self.Q:
+            if state in self.F:
+                graph.attr('node', shape='doublecircle')
+            else:
+                graph.attr('node', shape='circle')
+            graph.node(state)
+        # Add transitions to the graph of Finite Automaton
+        for (state, term), next_states in self.sigma.items():
+            for next_state in next_states:
+                graph.edge(state, next_state, label=term)
+
+        # Show the State that is Start State
+        # Delete from the Graph the outline of the Invisible State
+        graph.attr('node', shape='none')
+        # Delete the name of the Invisible State
+        graph.node('start', label='')
+        # Add the edge between Invisible state and Start State
+        graph.edge('start', self.q0)
+
+        # Draw the Graph of FA
+        path = os.path.dirname(os.path.realpath(__file__)) + "\Graph_Representation\\"
+        print(path)
+        graph.render(path + 'finite_automaton', view=True)
+
+
 
     # def string_belong_to_language(self, input_string):
     #     # Edge-case: if Input String contain Terms that are not accepted by the Finite Automaton.
