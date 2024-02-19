@@ -48,8 +48,6 @@ class FiniteAutomaton:
             print(f"\u03C3({transition[0]}, {transition[1]}) -> {[transition[2]]}")
             if input("CONTINUE? (Y/N) ").lower() == "n":
                 break
-        for (k, v) in sigma.items():
-            print("\u03C3" + str(k), "-", v)
         self.sigma = sigma
 
     def string_belong_to_language(self, input_string):
@@ -99,7 +97,7 @@ class FiniteAutomaton:
         # Transform list to set so that apply method intersection
         current_state = set(current_state)
 
-        # Check if last possible state list contains final state
+        # Check if last possible state list contains final state (Intersection of 2 sets => finds same elements)
         return current_state.intersection(self.F)
 
     # Print function to easy print the variables in the console.
