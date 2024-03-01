@@ -1,6 +1,7 @@
 from graphviz import Digraph
 import os
 
+
 class FiniteAutomaton:
     # Some state variables as needed.
     #    {Q, Sigma, delta, q0, F}
@@ -19,7 +20,6 @@ class FiniteAutomaton:
 
         Q = input("INPUT STATES SEPARATED BY COMMA: ")
         Q = Q.split(",")
-        Q.append("q_f")
         print(Q)
         self.Q = Q
 
@@ -32,7 +32,12 @@ class FiniteAutomaton:
         print(q0)
         self.q0 = q0
 
-        self.F = ["q_f"]
+        F = input("INPUT FINAL STATE: ")
+        print(F)
+        self.F = [F]
+
+        if self.F not in self.Q:
+            self.Q.append(F)
 
         print(
             "INPUT TRANSITIONS (SEPARATED BY COMMA \"{STATE},{TERMINAL_TERM},{NEXT_STATE}\") AND USE FOR FINAL STATE \"q_f\": ")
@@ -138,8 +143,6 @@ class FiniteAutomaton:
         path = os.path.dirname(os.path.realpath(__file__)) + "\Graph_Representation\\"
         print(path)
         graph.render(path + 'finite_automaton', view=True)
-
-
 
     # def string_belong_to_language(self, input_string):
     #     # Edge-case: if Input String contain Terms that are not accepted by the Finite Automaton.
