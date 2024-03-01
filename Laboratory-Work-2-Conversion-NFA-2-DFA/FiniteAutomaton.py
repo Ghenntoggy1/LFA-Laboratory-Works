@@ -41,10 +41,12 @@ class FiniteAutomaton:
             transition_string = input("")
             transition = transition_string.split(",")
             print(transition)
-            if tuple(transition[0] + transition[1]) in sigma:
-                sigma[tuple(transition[0] + transition[1])].append(transition[2])
+            LHS = (transition[0], transition[1])
+            print(LHS)
+            if LHS in sigma:
+                sigma[LHS].append(transition[2])
             else:
-                sigma[tuple(transition[0] + transition[1])] = [transition[2]]
+                sigma[LHS] = [transition[2]]
             print(f"\u03C3({transition[0]}, {transition[1]}) -> {[transition[2]]}")
             if input("CONTINUE? (Y/N) ").lower() == "n":
                 break
