@@ -27,6 +27,7 @@ if __name__ == '__main__':
 
     # Non-Terminal Terms
     V_n = ["q0", "q1", "q2"]
+    # V_n = ["S", "B", "D"]
     print("Non-Terminal Terms:", V_n, "\n")
 
     # Terminal Terms
@@ -39,12 +40,18 @@ if __name__ == '__main__':
         "q1": ["bq2", "cq1", "aq0"],
         "q2": ["b", "aq2"]
     }
+    # P = {
+    #     "S": ["aB", "bB"],
+    #     "B": ["bD", "cB", "aS"],
+    #     "D": ["b", "aD"]
+    # }
     print("Rules:")
     for curr_term in P:
         print(curr_term + " -> " + str(P[curr_term]))
 
     # Start Term
     S = "q0"
+    # S = "S"
     print("\nStart Term:", S)
 
     # Maximum Length for generated Words
@@ -127,8 +134,8 @@ if __name__ == '__main__':
         result = finite_automaton.string_belong_to_language(word)
         print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
 
-    # for word in possible_words:
-    #     print(word)
+    for word in possible_words:
+        print(word)
 
     finite_automaton.draw_graph()
 

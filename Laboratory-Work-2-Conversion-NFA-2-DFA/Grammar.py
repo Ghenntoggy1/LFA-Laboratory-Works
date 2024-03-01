@@ -42,7 +42,9 @@ class Grammar:
             curr_derivation = random.choice(curr_derivation_list)
 
             # Check if last term is Non-Terminal, then add -> at the end, else - do not add
-            if curr_derivation[-1].isupper() or ('q' in curr_derivation[-2:] and curr_derivation[-1].isnumeric()):
+            if curr_derivation[-1].isupper():
+                print(f'{"".join(current_word)}{curr_derivation} -> ', end="")
+            elif len(curr_derivation) > 1 and 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
                 print(f'{"".join(current_word)}{curr_derivation} -> ', end="")
             else:
                 print(f'{"".join(current_word)}{curr_derivation}', end="")
@@ -52,8 +54,16 @@ class Grammar:
             if curr_derivation[-1].isupper():
                 for separate_term in curr_derivation:
                     self.__generate_next_string(current_word, separate_term, max_length)
-            elif curr_derivation[-2:].contains('q') and curr_derivation[-1].isnumeric():
-                self.__generate_next_string(current_word, curr_derivation, max_length)
+            elif len(curr_derivation) == 1:
+                self.__generate_next_string(current_word, curr_derivation[0], max_length)
+            elif 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
+                for separate_term in curr_derivation:
+                    if separate_term != "q" and not separate_term.isnumeric():
+                        self.__generate_next_string(current_word, separate_term, max_length)
+                    elif separate_term == "q" and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
+                        self.__generate_next_string(current_word, curr_derivation[curr_derivation.index("q"):curr_derivation.index("q") + 2], max_length)
+
+
         # Case: if there is no rule/produce for this specific Non-Terminal Term -> ends recursion
         else:
             # Edge-case: if the Term is Non-Terminal and has no further derivation
@@ -87,11 +97,23 @@ class Grammar:
                 current_input_term = ""
                 # Next State is the Non-Terminal term in the derivation string
                 next_state = "q_f"
-                for term in terms:
-                    if term.islower() and term in delta:
+
+                try:
+                    state_index = terms.index("q")
+                except ValueError:
+                    state_index = -1
+                if state_index >= 0 and terms[state_index + 1].isnumeric():
+                    terminal_terms = terms[:state_index]
+                    for term in terminal_terms:
                         current_input_term += term
-                    if term.isupper() and term in Q:
-                        next_state = term
+                    next_state = "".join(terms[state_index: state_index + 2])
+                else:
+                    for term in terms:
+                        if term.islower() and term in delta:
+                            current_input_term += term
+                        if term.isupper() and term in Q:
+                            next_state = term
+
                 # Initialize a list for the Left Hand side of the transition function (current state, current input
                 # term)
                 LHS = tuple([current_state, current_input_term])

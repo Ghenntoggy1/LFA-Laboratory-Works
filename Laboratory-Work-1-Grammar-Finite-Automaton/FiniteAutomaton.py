@@ -41,6 +41,7 @@ class FiniteAutomaton:
             transition_string = input("")
             transition = transition_string.split(",")
             print(transition)
+            print(tuple(transition[0] + transition[1]))
             if tuple(transition[0] + transition[1]) in sigma:
                 sigma[tuple(transition[0] + transition[1])].append(transition[2])
             else:
