@@ -6,11 +6,49 @@ import FiniteAutomaton
 class Grammar:
     # Constructor with some state variables as needed.
     # {V_n, V_t, P, S}
-    def __init__(self, V_n, V_t, P, S):
+    def __init__(self, V_n=None, V_t=None, P=None, S=None):
+        if V_n is None or V_t is None or P is None or S is None:
+            self.create_grammar()
+        else:
+            self.V_n = V_n
+            self.V_t = V_t
+            self.P = P
+            self.S = S
+
+    def create_grammar(self):
+        print("CREATE YOUR OWN GRAMMAR:")
+
+        V_n = input("INPUT NON-TERMINAL TERMS SEPARATED BY COMMA: ")
+        V_n = V_n.split(",")
+        print(V_n)
         self.V_n = V_n
+
+        V_t = input("INPUT TERMINAL TERMS SEPARATED BY COMMA: ")
+        V_t = V_t.split(",")
+        print(V_t)
         self.V_t = V_t
-        self.P = P
+
+        S = input("INPUT START TERM: ")
+        print(S)
         self.S = S
+
+        print(
+            "INPUT RULES (SEPARATED BY COMMA \"{LEFT-HAND SIDE},{RIGHT-HAND SIDE}\"): ")
+        P = {}
+        while True:
+            rule_string = input("")
+            rule = rule_string.split(",")
+            print(rule)
+            LHS = rule[0]
+            print(LHS)
+            if LHS in P:
+                P[LHS].append(rule[1])
+            else:
+                P[LHS] = [rule[1]]
+            print(f"{rule[0]} -> {rule[1]}")
+            if input("CONTINUE? (Y/N) ").lower() == "n":
+                break
+        self.P = P
 
     def generate_string(self, max_length):
         # Edge-case: If Start term is not present in the Non-Terminal List, then return empty string = cannot be
@@ -127,6 +165,9 @@ class Grammar:
         # Return object of type FiniteAutomaton, with the parameters that I found above
         return FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
 
+
+    # def check_grammar(self):
+    #
 
 # Rudimentary Method for finding final states.  
 

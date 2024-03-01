@@ -129,26 +129,36 @@ if __name__ == '__main__':
         lst = [''.join(comb) for comb in itertools.product(V_t, repeat=i)]
         for word in lst:
             possible_words.append(word)
+    #
+    # for word in possible_words:
+    #     result = finite_automaton.string_belong_to_language(word)
+    #     print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
 
-    for word in possible_words:
-        result = finite_automaton.string_belong_to_language(word)
-        print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
-
-    for word in possible_words:
-        print(word)
+    # for word in possible_words:
+    #     print(word)
 
     finite_automaton.draw_graph()
 
 
-    finite_automaton = FiniteAutomaton.FiniteAutomaton()
+    # finite_automaton = FiniteAutomaton.FiniteAutomaton()
+    # finite_automaton.print_variables()
+    # # ALL POSSIBLE COMBINATIONS OF WORDS MADE OUT OF TERMINAL TERMS:
+    # print("\nCHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:")
+    # possible_words = []
+    # for i in range(6):
+    #     lst = [''.join(comb) for comb in itertools.product(V_t, repeat=i)]
+    #     for word in lst:
+    #         possible_words.append(word)
+    #
+    # for word in possible_words:
+    #     result = finite_automaton.string_belong_to_language(word)
+    #     print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
+
+    new_grammar = Grammar.Grammar()
+
+
+    finite_automaton = grammar.to_finite_automaton()
     finite_automaton.print_variables()
-    # ALL POSSIBLE COMBINATIONS OF WORDS MADE OUT OF TERMINAL TERMS:
-    print("\nCHECKING ALL POSSIBLE COMBINATIONS OF TERMINAL TERMS:")
-    possible_words = []
-    for i in range(6):
-        lst = [''.join(comb) for comb in itertools.product(V_t, repeat=i)]
-        for word in lst:
-            possible_words.append(word)
 
     for word in possible_words:
         result = finite_automaton.string_belong_to_language(word)
