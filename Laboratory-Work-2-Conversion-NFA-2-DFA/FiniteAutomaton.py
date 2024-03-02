@@ -1,5 +1,6 @@
 from graphviz import Digraph
 import os
+import Grammar
 
 
 class FiniteAutomaton:
@@ -36,8 +37,9 @@ class FiniteAutomaton:
         print(F)
         self.F = [F]
 
-        if self.F not in self.Q:
-            self.Q.append(F)
+        for final_state in self.F:
+            if final_state not in self.Q:
+                self.Q.append(final_state)
 
         print(
             "INPUT TRANSITIONS (SEPARATED BY COMMA \"{STATE},{TERMINAL_TERM},{NEXT_STATE}\") AND USE FOR FINAL STATE \"q_f\": ")
@@ -143,6 +145,32 @@ class FiniteAutomaton:
         path = os.path.dirname(os.path.realpath(__file__)) + "\Graph_Representation\\"
         print(path)
         graph.render(path + name, view=True)
+
+    def to_grammar(self):
+        # Non-Terminal Terms - will hold possible Non-Terminal Terms = States
+        V_n = self.Q
+        # Terminal Terms - will hold possible Terminal Terms = Alphabet
+        V_t = self.delta
+        # Start Term = Start State
+        S = self.q0
+        # Product Set - will hold the Rules for the Grammar = Converted from Transition Set
+        P = {}
+        # Iterate over all the Transitions in the Transitions Dictionary (non-terminal term = current state
+        # from the dictionary)
+        for (state, term), next_states in self.sigma.items():
+            for next_state in next_states:
+                if state not in P:
+                    P[state] = [term + next_state]
+                else:
+                    P[state].append(term + next_state)
+
+        for final_state in self.F:
+            if final_state not in P:
+                P[final_state] = ["\u03B5"]
+
+        return Grammar.Grammar(V_n, V_t, P, S)
+
+
 
     # def string_belong_to_language(self, input_string):
     #     # Edge-case: if Input String contain Terms that are not accepted by the Finite Automaton.

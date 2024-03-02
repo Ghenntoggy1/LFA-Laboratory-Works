@@ -15,6 +15,15 @@ class Grammar:
             self.P = P
             self.S = S
 
+    # Print function to easy print the variables in the console.
+    def print_variables(self):
+        print("\nV_n:", self.V_n)
+        print("V_t:", self.V_t)
+        print("S:", self.S)
+        print("P:")
+        for (k, v) in self.P.items():
+            print(k, "->", v)
+
     def create_grammar(self):
         print("CREATE YOUR OWN GRAMMAR:")
 
@@ -105,7 +114,6 @@ class Grammar:
                                                                   curr_derivation.index("q"):curr_derivation.index(
                                                                       "q") + 2], max_length)
 
-
         # Case: if there is no rule/produce for this specific Non-Terminal Term -> ends recursion
         else:
             # Edge-case: if the Term is Non-Terminal and has no further derivation
@@ -117,7 +125,7 @@ class Grammar:
                 current_word.append(term)  # add the terminal term and exits recursion
 
     def to_finite_automaton(self):
-        # Terminal States - will hold the possible states = Non-Terminal Terms + another terminal state
+        # States - will hold the possible states = Non-Terminal Terms
         Q = self.V_n
         new_element_terminal_state = "q_f"
         Q.append(new_element_terminal_state)
@@ -194,8 +202,6 @@ class Grammar:
         # Check if Grammar is Invalid
         is_invalid = False
 
-        print(self.P)
-
         for LHS, RHS_list in self.P.items():
             # If Grammar is Invalid, exit loop.
             if is_invalid:
@@ -253,11 +259,15 @@ class Grammar:
                     # If Regular Grammar and first term is Non-Terminal and rest are terminals,
                     # then Left Linear Regular Grammar
                     if RHS[0].isupper():
+                        if not is_left_linear:
+                            is_type_3 = False
+                            break
                         is_right_linear = False
                         for rest_terms in RHS[1:]:
-                            if rest_terms.isupper():
-                                is_type_3 = False
-                                break
+                            for rest_term in rest_terms:
+                                if rest_term.isupper():
+                                    is_type_3 = False
+                                    break
                     # If Regular Grammar and last term is Non-Terminal and rest has at least one Non-Terminal,
                     # then Grammar is not Regular
                     if RHS[-1].isupper():
@@ -266,9 +276,10 @@ class Grammar:
                             break
                         is_left_linear = False
                         for rest_terms in RHS[:-1]:
-                            if rest_terms.isupper():
-                                is_type_3 = False
-                                break
+                            for rest_term in rest_terms:
+                                if rest_term.isupper():
+                                    is_type_3 = False
+                                    break
 
                     # Check if Right-Hand Side is longer than 2 terms => Extended Regular Grammar
                     if len(RHS) > 2 and is_type_3:
