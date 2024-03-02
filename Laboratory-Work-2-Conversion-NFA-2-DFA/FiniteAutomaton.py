@@ -173,11 +173,14 @@ class FiniteAutomaton:
     def NFA_or_DFA(self):
         # Initialize boolean for NFA check
         is_NFA = False
+        # Initialize a list that will hold the relations with ambiguity
+        ambiguous_states = {}
         # Iterate over next_States from state with the same term
         for (state, term), next_states in self.sigma.items():
             # If there are multiple possible unique next_States => ambiguity and choice in options => NFA
             if len(set(next_states)) > 1:
                 is_NFA = True
-                # No need to iterate further, we know that FA is NFA
-                break
-        return is_NFA
+                ambiguous_states[(state, term)] = next_states
+                # # No need to iterate further, we know that FA is NFA
+                # break
+        return is_NFA, ambiguous_states
