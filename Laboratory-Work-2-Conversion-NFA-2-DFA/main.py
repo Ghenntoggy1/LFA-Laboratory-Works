@@ -60,35 +60,6 @@ if __name__ == '__main__':
 
     # -----------------------------HERE STARTS LAB 2--------------------------------------------------------------------
 
-    # States
-    Q = ['q0', 'q1', 'q2', 'q3']
-
-    # Alphabet
-    delta = ['a', 'b', 'c']
-
-    # Start State
-    q0 = 'q0'
-
-    # Final States
-    F = ['q3']
-
-    # Transitions
-    sigma = {
-        ('q0', 'a'): ['q1'],
-        ('q1', 'b'): ['q2'],
-        ('q2', 'c'): ['q0', "q3"],
-        ('q1', 'a'): ['q3'],
-        ('q0', 'b'): ['q2']
-    }
-    print("\nGiven Finite Automaton:", end="")
-    finite_automaton_lab_2 = FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
-    finite_automaton_lab_2.print_variables()
-    finite_automaton_lab_2.draw_graph("finite_automaton_lab_2")
-
-    print("\nConverted Given Finite Automaton to Regular Grammar:", end="")
-    grammar_from_finite_automaton_lab_2 = finite_automaton_lab_2.to_grammar()
-    grammar_from_finite_automaton_lab_2.print_variables()
-
     # Instance of Grammar Class with uppercase notation of Non-Terminal Terms
     grammar = Grammar.Grammar(V_n, V_t, P, S)
 
@@ -122,7 +93,7 @@ if __name__ == '__main__':
             else:
                 print("\nWord is too long: " + "".join(generated_word) + " | Length: ", len(generated_word))
             print("Generating new Word...")
-            generated_word = "".join(grammar.generate_string(max_length))
+            generated_word = "".join(grammar2.generate_string(max_length))
         # Add the generated word to the list
         generated_words.append(generated_word)
         # Output the Word
@@ -147,6 +118,38 @@ if __name__ == '__main__':
     grammar_converted = finite_automaton2.to_grammar()
     grammar_converted.print_variables()
 
+    # States
+    Q = ['q0', 'q1', 'q2', 'q3']
+
+    # Alphabet
+    delta = ['a', 'b', 'c']
+
+    # Start State
+    q0 = 'q0'
+
+    # Final States
+    F = ['q3']
+
+    # Transitions
+    sigma = {
+        ('q0', 'a'): ['q1'],
+        ('q1', 'b'): ['q2'],
+        ('q2', 'c'): ['q0', "q3"],
+        ('q1', 'a'): ['q3'],
+        ('q0', 'b'): ['q2']
+    }
+    print("\nGiven Finite Automaton:", end="")
+    finite_automaton_lab_2 = FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
+    finite_automaton_lab_2.print_variables()
+    finite_automaton_lab_2.draw_graph("finite_automaton_lab_2")
+
+    print("\nConverted Given Finite Automaton to Regular Grammar:", end="")
+    grammar_from_finite_automaton_lab_2 = finite_automaton_lab_2.to_grammar()
+    grammar_from_finite_automaton_lab_2.print_variables()
+
+    is_NFA = finite_automaton_lab_2.NFA_or_DFA()
+    print(f"Finite Automaton is: {"Non-Deterministic" if is_NFA else "Deterministic"}")
+
     # Example of Grammars
     extended_left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
                                                     V_t=['a', 'b', 'c'],
@@ -159,16 +162,24 @@ if __name__ == '__main__':
     extended_left_regular_grammar.print_variables()
     extended_left_regular_grammar.check_type_grammar()
 
+    NFA = extended_left_regular_grammar.to_finite_automaton()
+    is_NFA = NFA.NFA_or_DFA()
+    print(f"Finite Automaton is: {"Non-Deterministic" if is_NFA else "Deterministic"}")
+
     extended_right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
                                                      V_t=['a', 'b', 'c'],
                                                      P={
-                                                         'S': ["aaA", 'abB'],
+                                                         'S': ["aaA", 'abB', 'aaB'],
                                                          'A': ["baA", "B"],
                                                          'B': ["a"]
                                                      },
                                                      S="S")
     extended_right_regular_grammar.print_variables()
     extended_right_regular_grammar.check_type_grammar()
+
+    NFA = extended_right_regular_grammar.to_finite_automaton()
+    is_NFA = NFA.NFA_or_DFA()
+    print(f"Finite Automaton is: {"Non-Deterministic" if is_NFA else "Deterministic"}")
 
     left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
                                            V_t=['a', 'b', 'c'],
@@ -181,6 +192,10 @@ if __name__ == '__main__':
     left_regular_grammar.print_variables()
     left_regular_grammar.check_type_grammar()
 
+    NFA = left_regular_grammar.to_finite_automaton()
+    is_NFA = NFA.NFA_or_DFA()
+    print(f"Finite Automaton is: {"Non-Deterministic" if is_NFA else "Deterministic"}")
+
     right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
                                             V_t=['a', 'b', 'c'],
                                             P={
@@ -191,6 +206,10 @@ if __name__ == '__main__':
                                             S="S")
     right_regular_grammar.print_variables()
     right_regular_grammar.check_type_grammar()
+
+    NFA = right_regular_grammar.to_finite_automaton()
+    is_NFA = NFA.NFA_or_DFA()
+    print(f"Finite Automaton is: {"Non-Deterministic" if is_NFA else "Deterministic"}")
 
     context_free_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
                                            V_t=['a', 'b', 'c'],
@@ -224,6 +243,9 @@ if __name__ == '__main__':
                                            S="S")
     unrestricted_grammar.print_variables()
     unrestricted_grammar.check_type_grammar()
+
+
+
 
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
     # print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
