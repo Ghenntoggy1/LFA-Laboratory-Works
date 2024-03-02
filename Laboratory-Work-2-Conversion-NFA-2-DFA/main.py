@@ -119,22 +119,33 @@ if __name__ == '__main__':
     grammar_converted.print_variables()
 
     # States
-    Q = ['q0', 'q1', 'q2']
+    # Q = ['q0', 'q1', 'q2']
+    Q = ['q0', 'q1', 'q2', 'q3']
 
     # Alphabet
-    delta = ['a', 'b']
+    # delta = ['a', 'b']
+    delta = ['a', 'b', 'c']
 
     # Start State
     q0 = 'q0'
 
     # Final States
-    F = ['q2']
+    # F = ['q2']
+    F = ['q3']
 
     # Transitions
+    # sigma = {
+    #     ('q0', 'a'): ['q0', 'q1'],
+    #     ('q1', 'a'): ['q1'],
+    #     ('q1', 'b'): ['q1', 'q2']
+    # }
+
     sigma = {
-        ('q0', 'a'): ['q0', 'q1'],
-        ('q1', 'a'): ['q1'],
-        ('q1', 'b'): ['q1', 'q2']
+        ('q0', 'a'): ['q1'],
+        ('q0', 'b'): ['q2'],
+        ('q1', 'a'): ['q3'],
+        ('q1', 'b'): ['q2'],
+        ('q2', 'c'): ['q0', 'q3']
     }
     print("\nGiven Finite Automaton:", end="")
     finite_automaton_lab_2 = FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
@@ -154,135 +165,136 @@ if __name__ == '__main__':
     else:
         print("Finite Automaton is: Deterministic")
 
-    DFA = finite_automaton_lab_2.to_DFA()
+
+    DFA = finite_automaton_lab_2.to_DFA(choice=0)
     DFA.print_variables()
     DFA.draw_graph("DFA1")
 
-    # Example of Grammars
-    extended_left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                                    V_t=['a', 'b', 'c'],
-                                                    P={
-                                                        'S': ["Aab"],
-                                                        'A': ["Aab", "B"],
-                                                        'B': ["a"]
-                                                    },
-                                                    S="S")
-    extended_left_regular_grammar.print_variables()
-    extended_left_regular_grammar.check_type_grammar()
-
-    NFA = extended_left_regular_grammar.to_finite_automaton()
-    is_NFA, ambiguous_states = NFA.NFA_or_DFA()
-    if is_NFA:
-        print("Finite Automaton is: Non-Deterministic")
-        print("Ambiguous States:")
-        for (state, term), next_states in ambiguous_states.items():
-            print("\u03C3" + str((state, term)), "-", next_states)
-    else:
-        print("Finite Automaton is: Deterministic")
-
-    DFA = NFA.to_DFA()
-
-    extended_right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                                     V_t=['a', 'b', 'c'],
-                                                     P={
-                                                         'S': ["aaA", 'abB', 'aaB'],
-                                                         'A': ["baA", "B"],
-                                                         'B': ["a"]
-                                                     },
-                                                     S="S")
-    extended_right_regular_grammar.print_variables()
-    extended_right_regular_grammar.check_type_grammar()
-
-    NFA = extended_right_regular_grammar.to_finite_automaton()
-    is_NFA, ambiguous_states = NFA.NFA_or_DFA()
-    if is_NFA:
-        print("Finite Automaton is: Non-Deterministic")
-        print("Ambiguous States:")
-        for (state, term), next_states in ambiguous_states.items():
-            print("\u03C3" + str((state, term)), "-", next_states)
-    else:
-        print("Finite Automaton is: Deterministic")
-
-    DFA = NFA.to_DFA()
-
-    left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                           V_t=['a', 'b', 'c'],
-                                           P={
-                                               'S': ["Bb", 'Ac'],
-                                               'A': ["Sa", "Ac"],
-                                               'B': ["a"]
-                                           },
-                                           S="S")
-    left_regular_grammar.print_variables()
-    left_regular_grammar.check_type_grammar()
-
-    NFA = left_regular_grammar.to_finite_automaton()
-    is_NFA, ambiguous_states = NFA.NFA_or_DFA()
-    if is_NFA:
-        print("Finite Automaton is: Non-Deterministic")
-        print("Ambiguous States:")
-        for (state, term), next_states in ambiguous_states.items():
-            print("\u03C3" + str((state, term)), "-", next_states)
-    else:
-        print("Finite Automaton is: Deterministic")
-
-    DFA = NFA.to_DFA()
-
-    right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                            V_t=['a', 'b', 'c'],
-                                            P={
-                                                'S': ["aA", 'bB'],
-                                                'A': ["bA", "B"],
-                                                'B': ["a"]
-                                            },
-                                            S="S")
-    right_regular_grammar.print_variables()
-    right_regular_grammar.check_type_grammar()
-
-    NFA = right_regular_grammar.to_finite_automaton()
-    is_NFA, ambiguous_states = NFA.NFA_or_DFA()
-    if is_NFA:
-        print("Finite Automaton is: Non-Deterministic")
-        print("Ambiguous States:")
-        for (state, term), next_states in ambiguous_states.items():
-            print("\u03C3" + str((state, term)), "-", next_states)
-    else:
-        print("Finite Automaton is: Deterministic")
-
-    DFA = NFA.to_DFA()
-
-    context_free_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                           V_t=['a', 'b', 'c'],
-                                           P={
-                                               'S': ["aA", 'bB'],
-                                               'A': ["BbA", "BA"],
-                                               'B': ["a"]
-                                           },
-                                           S="S")
-    context_free_grammar.print_variables()
-    context_free_grammar.check_type_grammar()
-
-    context_sensitive_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                                V_t=['a', 'b', 'c'],
-                                                P={
-                                                    'S': ["aA", 'bB'],
-                                                    'AS': ["BbA", "BA"],
-                                                    'B': ["a"]
-                                                },
-                                                S="S")
-    context_sensitive_grammar.print_variables()
-    context_sensitive_grammar.check_type_grammar()
-
-    unrestricted_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                           V_t=['a', 'b', 'c'],
-                                           P={
-                                               'S': ["aA", 'bB'],
-                                               'AS': ["BbA", "B"],
-                                               'B': ["a"]
-                                           },
-                                           S="S")
-    unrestricted_grammar.print_variables()
-    unrestricted_grammar.check_type_grammar()
+    # # Example of Grammars
+    # extended_left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                                 V_t=['a', 'b', 'c'],
+    #                                                 P={
+    #                                                     'S': ["Aab"],
+    #                                                     'A': ["Aab", "B"],
+    #                                                     'B': ["a"]
+    #                                                 },
+    #                                                 S="S")
+    # extended_left_regular_grammar.print_variables()
+    # extended_left_regular_grammar.check_type_grammar()
+    #
+    # NFA = extended_left_regular_grammar.to_finite_automaton()
+    # is_NFA, ambiguous_states = NFA.NFA_or_DFA()
+    # if is_NFA:
+    #     print("Finite Automaton is: Non-Deterministic")
+    #     print("Ambiguous States:")
+    #     for (state, term), next_states in ambiguous_states.items():
+    #         print("\u03C3" + str((state, term)), "-", next_states)
+    # else:
+    #     print("Finite Automaton is: Deterministic")
+    #
+    # DFA = NFA.to_DFA(choice=1)
+    #
+    # extended_right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                                  V_t=['a', 'b', 'c'],
+    #                                                  P={
+    #                                                      'S': ["aaA", 'abB', 'aaB'],
+    #                                                      'A': ["baA", "B"],
+    #                                                      'B': ["a"]
+    #                                                  },
+    #                                                  S="S")
+    # extended_right_regular_grammar.print_variables()
+    # extended_right_regular_grammar.check_type_grammar()
+    #
+    # NFA = extended_right_regular_grammar.to_finite_automaton()
+    # is_NFA, ambiguous_states = NFA.NFA_or_DFA()
+    # if is_NFA:
+    #     print("Finite Automaton is: Non-Deterministic")
+    #     print("Ambiguous States:")
+    #     for (state, term), next_states in ambiguous_states.items():
+    #         print("\u03C3" + str((state, term)), "-", next_states)
+    # else:
+    #     print("Finite Automaton is: Deterministic")
+    #
+    # DFA = NFA.to_DFA(choice=1)
+    #
+    # left_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                        V_t=['a', 'b', 'c'],
+    #                                        P={
+    #                                            'S': ["Bb", 'Ac'],
+    #                                            'A': ["Sa", "Ac"],
+    #                                            'B': ["a"]
+    #                                        },
+    #                                        S="S")
+    # left_regular_grammar.print_variables()
+    # left_regular_grammar.check_type_grammar()
+    #
+    # NFA = left_regular_grammar.to_finite_automaton()
+    # is_NFA, ambiguous_states = NFA.NFA_or_DFA()
+    # if is_NFA:
+    #     print("Finite Automaton is: Non-Deterministic")
+    #     print("Ambiguous States:")
+    #     for (state, term), next_states in ambiguous_states.items():
+    #         print("\u03C3" + str((state, term)), "-", next_states)
+    # else:
+    #     print("Finite Automaton is: Deterministic")
+    #
+    # DFA = NFA.to_DFA(choice=1)
+    #
+    # right_regular_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                         V_t=['a', 'b', 'c'],
+    #                                         P={
+    #                                             'S': ["aA", 'bB'],
+    #                                             'A': ["bA", "B"],
+    #                                             'B': ["a"]
+    #                                         },
+    #                                         S="S")
+    # right_regular_grammar.print_variables()
+    # right_regular_grammar.check_type_grammar()
+    #
+    # NFA = right_regular_grammar.to_finite_automaton()
+    # is_NFA, ambiguous_states = NFA.NFA_or_DFA()
+    # if is_NFA:
+    #     print("Finite Automaton is: Non-Deterministic")
+    #     print("Ambiguous States:")
+    #     for (state, term), next_states in ambiguous_states.items():
+    #         print("\u03C3" + str((state, term)), "-", next_states)
+    # else:
+    #     print("Finite Automaton is: Deterministic")
+    #
+    # DFA = NFA.to_DFA(choice=1)
+    #
+    # context_free_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                        V_t=['a', 'b', 'c'],
+    #                                        P={
+    #                                            'S': ["aA", 'bB'],
+    #                                            'A': ["BbA", "BA"],
+    #                                            'B': ["a"]
+    #                                        },
+    #                                        S="S")
+    # context_free_grammar.print_variables()
+    # context_free_grammar.check_type_grammar()
+    #
+    # context_sensitive_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                             V_t=['a', 'b', 'c'],
+    #                                             P={
+    #                                                 'S': ["aA", 'bB'],
+    #                                                 'AS': ["BbA", "BA"],
+    #                                                 'B': ["a"]
+    #                                             },
+    #                                             S="S")
+    # context_sensitive_grammar.print_variables()
+    # context_sensitive_grammar.check_type_grammar()
+    #
+    # unrestricted_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
+    #                                        V_t=['a', 'b', 'c'],
+    #                                        P={
+    #                                            'S': ["aA", 'bB'],
+    #                                            'AS': ["BbA", "B"],
+    #                                            'B': ["a"]
+    #                                        },
+    #                                        S="S")
+    # unrestricted_grammar.print_variables()
+    # unrestricted_grammar.check_type_grammar()
 
 
 

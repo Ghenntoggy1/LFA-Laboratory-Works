@@ -198,7 +198,7 @@ class FiniteAutomaton:
                 # break
         return is_NFA, ambiguous_states
 
-    def to_DFA(self):
+    def to_DFA(self, choice):
         # Edge-Case: If FA is DFA, no need to convert
         if not self.NFA_or_DFA()[0]:
             print("Finite Automaton is already Deterministic!")
@@ -210,9 +210,6 @@ class FiniteAutomaton:
         # Alphabet is the same
         delta_DFA = self.delta
 
-        # New Final States Set
-        F = self.F
-
         # New State List
         Q_DFA = [[q0_DFA]]
 
@@ -221,56 +218,42 @@ class FiniteAutomaton:
 
         for converted_state in Q_DFA:
             lst = []
-            for transition in self.sigma.keys():
+            for transition, next_state in self.sigma.items():
+                for curr_state in converted_state:
+                    if next_state not in lst and curr_state in transition[0]:
+                        lst.append(next_state)
+
+            for terminal_term in delta_DFA:
                 if len(converted_state) == 1:
-                    if converted_state[0] in transition:
-                        if len(self.sigma[transition]) == 1:
-                            if converted_state[0] not in sigma_DFA:
-                                sigma_DFA[tuple([converted_state[0], transition[1]])] = self.sigma[transition]
-                                lst.append(self.sigma[transition])
-                            else:
-                                sigma_DFA[tuple([converted_state[0], transition[1]])] = sigma_DFA[tuple([converted_state[0], transition[1]])] + self.sigma[transition]
+                    try:
+                        l = [converted_state[0], terminal_term]
+                        next_state = self.sigma[tuple(l)]
+
+                        if len(next_state) == 1:
+                            sigma_DFA[tuple(l)] = next_state
                         else:
-                            if converted_state[0] not in sigma_DFA:
-                                if len(self.sigma[transition]) > 1:
-                                    lst.append(self.sigma[transition])
-                                    sigma_DFA[tuple([converted_state[0], transition[1]])] = ["".join(self.sigma[transition])]
-                                else:
-                                    sigma_DFA[tuple([converted_state[0], transition[1]])] = sigma_DFA[tuple([converted_state[0], transition[1]])] + self.sigma[transition]
-                            else:
-                                sigma_DFA[tuple([converted_state[0], transition[1]])] += self.sigma[transition]
+                            sigma_DFA[tuple(l)] = ["".join(next_state)]
+
+                    except KeyError:
+                        if choice == 1:
+                            l = [converted_state[0], terminal_term]
+                            next_state = "q_d"
+                            sigma_DFA[tuple(l)] = [next_state]
                 else:
-                    for component_state in converted_state:
-                        if component_state in transition:
-                            if len(self.sigma[transition]) == 1:
-                                if component_state not in sigma_DFA:
-                                    sigma_DFA[tuple([tuple(converted_state), transition[1]])] = self.sigma[transition]
-                                else:
-                                    sigma_DFA[tuple([tuple(converted_state), transition[1]])] = sigma_DFA[tuple([tuple(
-                                        converted_state), transition[1]])] + self.sigma[transition]
-                            else:
-                                combined_state = "".join(self.sigma[transition])
-                                if component_state not in sigma_DFA:
-                                    sigma_DFA[tuple([component_state, transition[1]])] = self.sigma[transition]
-                                else:
-                                    sigma_DFA[tuple([component_state, transition[1]])] += self.sigma[transition]
+                    combined_state = []
+                    print(converted_state)
 
             for state in lst:
-                if len(state) == 1:
-                    if state not in Q_DFA:
-                        Q_DFA.append(state)
-                else:
-                    if state not in Q_DFA:
-                        Q_DFA.append(state)
+                if state not in Q_DFA:
+                    Q_DFA.append(state)
 
         F_DFA = []
-        for states in delta_DFA:
-            for final_state in self.F:
+        for final_state in self.F:
+            for states in Q_DFA:
                 if final_state in states:
                     F_DFA.append(states)
 
         return FiniteAutomaton(Q_DFA, delta_DFA, sigma_DFA, q0_DFA, F_DFA)
-
 
 # from graphviz import Digraph
 # import os
