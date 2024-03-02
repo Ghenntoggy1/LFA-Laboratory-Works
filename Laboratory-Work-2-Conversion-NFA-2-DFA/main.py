@@ -34,17 +34,13 @@ if __name__ == '__main__':
     print("Laboratory Work 2 - Determinism in Finite Automata. Conversion from NDFA 2 DFA. Chomsky Hierarchy.")
     print("Variant: 11")
     print("Student: Gusev Roman")
-    print("Group: FAF-222\n")
+    print("Group: FAF-222")
 
     # Non-Terminal Terms
     V_n2 = ["q0", "q1", "q2"]
     V_n = ["S", "B", "D", "A"]
-    print("Non-Terminal Terms:", V_n, "\n")
-
     # Terminal Terms
     V_t = ["a", "b", "c"]
-    print("Terminal Terms:", V_t, "\n")
-
     # Rules
     P2 = {
         "q0": ["aq1", "bq1"],
@@ -56,58 +52,85 @@ if __name__ == '__main__':
         "B": ["bD", "cB", "aS"],
         "D": ["b", "aD"]
     }
-    print("Rules:")
-    for curr_term in P:
-        print(curr_term + " -> " + str(P[curr_term]))
-
     # Start Term
     S2 = "q0"
     S = "S"
-    print("\nStart Term:", S)
-
     # Maximum Length for generated Words
     max_length = 10
 
-    # Instance of Grammar Class
+    # -----------------------------HERE STARTS LAB 2--------------------------------------------------------------------
+
+    # States
+    Q = ['q0', 'q1', 'q2', 'q3']
+
+    # Alphabet
+    delta = ['a', 'b', 'c']
+
+    # Start State
+    q0 = 'q0'
+
+    # Final States
+    F = ['q3']
+
+    # Transitions
+    sigma = {
+        ('q0', 'a'): ['q1'],
+        ('q1', 'b'): ['q2'],
+        ('q2', 'c'): ['q0', "q3"],
+        ('q1', 'a'): ['q3'],
+        ('q0', 'b'): ['q2']
+    }
+    print("\nGiven Finite Automaton:", end="")
+    finite_automaton_lab_2 = FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
+    finite_automaton_lab_2.print_variables()
+    finite_automaton_lab_2.draw_graph("finite_automaton_lab_2")
+
+    print("\nConverted Given Finite Automaton to Regular Grammar:", end="")
+    grammar_from_finite_automaton_lab_2 = finite_automaton_lab_2.to_grammar()
+    grammar_from_finite_automaton_lab_2.print_variables()
+
+    # Instance of Grammar Class with uppercase notation of Non-Terminal Terms
     grammar = Grammar.Grammar(V_n, V_t, P, S)
 
+    # Check the Grammar type from Laboratory Work 1
     print("Checking Type of Grammar:")
     grammar.check_type_grammar()
 
+    # Instance of Grammar Class with q_ notation of Non-Terminal Terms
     grammar2 = Grammar.Grammar(V_n2, V_t, P2, S2)
 
-    # # List that will store all unique Words
-    # generated_words = []
-    #
-    # # 5 iterations = 5 words
-    # for i in range(1, 6):
-    #     # Generate a word
-    #     list_of_chars = grammar.generate_string(max_length)
-    #     if list_of_chars is None:
-    #         exit()
-    #     generated_word = "".join(list_of_chars)
-    #     # Verify if the word is duplicate (is already in the list)
-    #     # or if word length increases maxLength
-    #     # or if last term is Non-Terminal and its derivation is not contained in Rules Dictionary
-    #     while generated_word in generated_words or len(generated_word) > max_length or (
-    #             generated_word[-1] not in P and generated_word[-1].isupper()):
-    #         if generated_word in generated_words:
-    #             print("\nDuplicate: " + "".join(generated_word) +
-    #                   " (Same as Word:", str(generated_words.index(generated_word) + 1) + ")")
-    #         elif generated_word[-1] not in P and generated_word[-1].isupper():
-    #             print("\nNo available further derivation for: " + "".join(generated_word))
-    #         else:
-    #             print("\nWord is too long: " + "".join(generated_word) + " | Length: ", len(generated_word))
-    #         print("Generating new Word...")
-    #         generated_word = "".join(grammar.generate_string(max_length))
-    #     # Add the generated word to the list
-    #     generated_words.append(generated_word)
-    #     # Output the Word
-    #     print("\nWord:", i, ": " + "".join(generated_word) + " : Length:", len(generated_word), "\n")
-    #
-    # print("Generated words are: ")
-    # for word in generated_words:
-    #     print("Word", generated_words.index(word) + 1, ":", word)
+    # List that will store all unique Words
+    generated_words = []
+
+    # 5 iterations = 5 words
+    for i in range(1, 6):
+        # Generate a word
+        list_of_chars = grammar2.generate_string(max_length)
+        if list_of_chars is None:
+            exit()
+        generated_word = "".join(list_of_chars)
+        # Verify if the word is duplicate (is already in the list)
+        # or if word length increases maxLength
+        # or if last term is Non-Terminal and its derivation is not contained in Rules Dictionary
+        while generated_word in generated_words or len(generated_word) > max_length or (
+                generated_word[-1] not in P and generated_word[-1].isupper()):
+            if generated_word in generated_words:
+                print("\nDuplicate: " + "".join(generated_word) +
+                      " (Same as Word:", str(generated_words.index(generated_word) + 1) + ")")
+            elif generated_word[-1] not in P and generated_word[-1].isupper():
+                print("\nNo available further derivation for: " + "".join(generated_word))
+            else:
+                print("\nWord is too long: " + "".join(generated_word) + " | Length: ", len(generated_word))
+            print("Generating new Word...")
+            generated_word = "".join(grammar.generate_string(max_length))
+        # Add the generated word to the list
+        generated_words.append(generated_word)
+        # Output the Word
+        print("\nWord:", i, ": " + "".join(generated_word) + " : Length:", len(generated_word), "\n")
+
+    print("Generated words are: ")
+    for word in generated_words:
+        print("Word", generated_words.index(word) + 1, ":", word)
 
     finite_automaton = grammar.to_finite_automaton()
     finite_automaton.print_variables()
@@ -170,24 +193,24 @@ if __name__ == '__main__':
     right_regular_grammar.check_type_grammar()
 
     context_free_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                            V_t=['a', 'b', 'c'],
-                                            P={
-                                                'S': ["aA", 'bB'],
-                                                'A': ["BbA", "BA"],
-                                                'B': ["a"]
-                                            },
-                                            S="S")
+                                           V_t=['a', 'b', 'c'],
+                                           P={
+                                               'S': ["aA", 'bB'],
+                                               'A': ["BbA", "BA"],
+                                               'B': ["a"]
+                                           },
+                                           S="S")
     context_free_grammar.print_variables()
     context_free_grammar.check_type_grammar()
 
     context_sensitive_grammar = Grammar.Grammar(V_n=['S', 'A', 'B'],
-                                           V_t=['a', 'b', 'c'],
-                                           P={
-                                               'S': ["aA", 'bB'],
-                                               'AS': ["BbA", "BA"],
-                                               'B': ["a"]
-                                           },
-                                           S="S")
+                                                V_t=['a', 'b', 'c'],
+                                                P={
+                                                    'S': ["aA", 'bB'],
+                                                    'AS': ["BbA", "BA"],
+                                                    'B': ["a"]
+                                                },
+                                                S="S")
     context_sensitive_grammar.print_variables()
     context_sensitive_grammar.check_type_grammar()
 
