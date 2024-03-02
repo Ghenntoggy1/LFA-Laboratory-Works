@@ -7,9 +7,8 @@
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/finite_automaton_lab_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/finite_automaton_lab_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/DFA1" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/DFA1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/DFA1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/DFA1.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +141,7 @@
       <workItem from="1708630037346" duration="2000" />
       <workItem from="1708960211132" duration="34000" />
       <workItem from="1709312460634" duration="22689000" />
-      <workItem from="1709374283008" duration="8954000" />
+      <workItem from="1709374283008" duration="10077000" />
     </task>
     <servers />
   </component>
@@ -164,19 +163,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py</url>
-          <line>221</line>
+          <line>218</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py</url>
-          <line>263</line>
+          <line>265</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1709383275393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1709384403295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
