@@ -82,7 +82,8 @@ class Grammar:
             # Check if last term is Non-Terminal, then add -> at the end, else - do not add
             if curr_derivation[-1].isupper():
                 print(f'{"".join(current_word)}{curr_derivation} -> ', end="")
-            elif len(curr_derivation) > 1 and 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
+            elif len(curr_derivation) > 1 and 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[
+                curr_derivation.index("q") + 1].isnumeric():
                 print(f'{"".join(current_word)}{curr_derivation} -> ', end="")
             else:
                 print(f'{"".join(current_word)}{curr_derivation}', end="")
@@ -94,12 +95,15 @@ class Grammar:
                     self.__generate_next_string(current_word, separate_term, max_length)
             elif len(curr_derivation) == 1:
                 self.__generate_next_string(current_word, curr_derivation[0], max_length)
-            elif 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
+            elif 'q' in curr_derivation[curr_derivation.index("q"):] and curr_derivation[
+                curr_derivation.index("q") + 1].isnumeric():
                 for separate_term in curr_derivation:
                     if separate_term != "q" and not separate_term.isnumeric():
                         self.__generate_next_string(current_word, separate_term, max_length)
                     elif separate_term == "q" and curr_derivation[curr_derivation.index("q") + 1].isnumeric():
-                        self.__generate_next_string(current_word, curr_derivation[curr_derivation.index("q"):curr_derivation.index("q") + 2], max_length)
+                        self.__generate_next_string(current_word, curr_derivation[
+                                                                  curr_derivation.index("q"):curr_derivation.index(
+                                                                      "q") + 2], max_length)
 
 
         # Case: if there is no rule/produce for this specific Non-Terminal Term -> ends recursion
@@ -165,9 +169,132 @@ class Grammar:
         # Return object of type FiniteAutomaton, with the parameters that I found above
         return FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
 
+    def check_type_grammar(self):
+        # Check if Grammar is Extended Regular Grammar
+        is_extended = False
 
-    # def check_grammar(self):
-    #
+        # Check if Grammar is Left Linear Regular Grammar
+        is_left_linear = True
+
+        # Check if Grammar is Right Linear Regular Grammar
+        is_right_linear = True
+
+        # Check if Grammar is Regular Grammar
+        is_type_3 = True
+
+        # Check if Grammar is Context-Free Grammar
+        is_type_2 = True
+
+        # Check if Grammar is Context-Sensitive Grammar
+        is_type_1 = True
+
+        # Check if Grammar is Unrestricted Grammar
+        is_type_0 = True
+
+        # Check if Grammar is Invalid
+        is_invalid = False
+
+        print(self.P)
+
+        for LHS, RHS_list in self.P.items():
+            # If Grammar is Invalid, exit loop.
+            if is_invalid:
+                break
+
+            # Edge-Case: Not valid Non-Terminal Term Left-Hand Side
+            for term in LHS:
+                if term not in self.V_n and term.isupper():
+                    is_invalid = True
+                    break
+
+            # Check if already invalid => no need to check further
+            if is_invalid:
+                break
+            # Edge-Case: Not valid Terminal Term or Non-Terminal Term in Right-Hand Side
+            else:
+                for production in RHS_list:
+                    if is_invalid:
+                        break
+                    for term_prod in production:
+                        # Not Valid Terminal Term
+                        if term_prod.islower() and term_prod not in self.V_t:
+                            print(f"Term {term_prod} is not valid Terminal Term!")
+                            is_invalid = True
+                            break
+
+                        # Not Valid Non-Terminal Term
+                        if term_prod.isupper() and term_prod not in self.V_n:
+                            print(f"Term {term_prod} is not valid Non-Terminal Term!")
+                            is_invalid = True
+                            break
+
+            # If Left-Hand Side has more than one Non-Terminal Term, then Grammar is not Regular and not Context-Free
+            if len(LHS) != 1:
+                is_type_3 = False
+                is_type_2 = False
+
+                # If the length of Left-Hand Side is greater than at least one Right-Hand Side => Grammar is not
+                # Context-Sensitive
+                for RHS in RHS_list:
+                    if len(LHS) > len(RHS):
+                        is_type_1 = False
+
+            # If Regular Grammar and first term is Non-Terminal and rest are terminals, then Left Linear Regular Grammar
+            if is_type_3:
+                for RHS in RHS_list:
+                    if len(RHS) == 1 and not RHS[0].islower():
+                        # If Right-Hand Side has one Non-Terminal Term that => Grammar is not Regular
+                        if RHS[0] not in self.V_n:
+                            is_type_3 = False
+                            break
+                        else:
+                            continue
+
+                    # If Regular Grammar and first term is Non-Terminal and rest are terminals,
+                    # then Left Linear Regular Grammar
+                    if RHS[0].isupper():
+                        is_right_linear = False
+                        for rest_terms in RHS[1:]:
+                            if rest_terms.isupper():
+                                is_type_3 = False
+                                break
+                    # If Regular Grammar and last term is Non-Terminal and rest has at least one Non-Terminal,
+                    # then Grammar is not Regular
+                    if RHS[-1].isupper():
+                        if not is_right_linear:
+                            is_type_3 = False
+                            break
+                        is_left_linear = False
+                        for rest_terms in RHS[:-1]:
+                            if rest_terms.isupper():
+                                is_type_3 = False
+                                break
+
+                    # Check if Right-Hand Side is longer than 2 terms => Extended Regular Grammar
+                    if len(RHS) > 2 and is_type_3:
+                        is_extended = True
+
+        print("Grammar is: ", end="")
+        if is_invalid:
+            print("Invalid")
+        elif is_type_3:
+            if is_left_linear:
+                if is_extended:
+                    print("Type 3 - Extended Left Linear Regular Grammar")
+                else:
+                    print("Type 3 - Left Linear Regular Grammar")
+            elif is_right_linear:
+                if is_extended:
+                    print("Type 3 - Extended Right Linear Regular Grammar")
+                else:
+                    print("Type 3 - Right Linear Regular Grammar")
+        elif is_type_2:
+            print("Type 2 - Context-Free Grammar")
+        elif is_type_1:
+            print("Type 1 - Context-Sensitive Grammar")
+        elif is_type_0:
+            print("Type 0 - Unrestricted Grammar")
+
 
 # Rudimentary Method for finding final states.  
 

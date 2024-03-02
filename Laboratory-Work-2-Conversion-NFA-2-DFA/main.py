@@ -26,8 +26,8 @@ if __name__ == '__main__':
     print("Group: FAF-222\n")
 
     # Non-Terminal Terms
-    V_n = ["q0", "q1", "q2"]
-    # V_n = ["S", "B", "D"]
+    V_n2 = ["q0", "q1", "q2"]
+    V_n = ["S", "B", "D", "A"]
     print("Non-Terminal Terms:", V_n, "\n")
 
     # Terminal Terms
@@ -35,23 +35,23 @@ if __name__ == '__main__':
     print("Terminal Terms:", V_t, "\n")
 
     # Rules
-    P = {
+    P2 = {
         "q0": ["aq1", "bq1"],
         "q1": ["bq2", "cq1", "aq0"],
         "q2": ["b", "aq2"]
     }
-    # P = {
-    #     "S": ["aB", "bB"],
-    #     "B": ["bD", "cB", "aS"],
-    #     "D": ["b", "aD"]
-    # }
+    P = {
+        "S": ["aB", "bB"],
+        "B": ["bD", "cB", "aS"],
+        "D": ["b", "aD"]
+    }
     print("Rules:")
     for curr_term in P:
         print(curr_term + " -> " + str(P[curr_term]))
 
     # Start Term
-    S = "q0"
-    # S = "S"
+    S2 = "q0"
+    S = "S"
     print("\nStart Term:", S)
 
     # Maximum Length for generated Words
@@ -59,6 +59,9 @@ if __name__ == '__main__':
 
     # Instance of Grammar Class
     grammar = Grammar.Grammar(V_n, V_t, P, S)
+    grammar.check_type_grammar()
+
+    grammar2 = Grammar.Grammar(V_n2, V_t, P2, S2)
 
     # List that will store all unique Words
     generated_words = []
@@ -96,6 +99,9 @@ if __name__ == '__main__':
     finite_automaton = grammar.to_finite_automaton()
     finite_automaton.print_variables()
 
+    finite_automaton2 = grammar2.to_finite_automaton()
+    finite_automaton2.print_variables()
+
     # Check of method: should be ACCEPTED for all words, because they were generated using this grammar
     # print("\nCHECKING GENERATED WORDS FOR ACCEPTANCE:")
     # for word in generated_words:
@@ -129,15 +135,16 @@ if __name__ == '__main__':
         lst = [''.join(comb) for comb in itertools.product(V_t, repeat=i)]
         for word in lst:
             possible_words.append(word)
-    #
-    # for word in possible_words:
-    #     result = finite_automaton.string_belong_to_language(word)
-    #     print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
+
+    for word in possible_words:
+        result = finite_automaton.string_belong_to_language(word)
+        print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
 
     # for word in possible_words:
     #     print(word)
 
-    finite_automaton.draw_graph()
+    finite_automaton.draw_graph("finite_automaton")
+    finite_automaton2.draw_graph("finite_automaton2")
 
 
     # finite_automaton = FiniteAutomaton.FiniteAutomaton()
@@ -155,7 +162,6 @@ if __name__ == '__main__':
     #     print(f"\nWord {word} is {"Accepted" if result else "Rejected"}")
 
     new_grammar = Grammar.Grammar()
-
 
     finite_automaton = grammar.to_finite_automaton()
     finite_automaton.print_variables()

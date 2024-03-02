@@ -117,7 +117,7 @@ class FiniteAutomaton:
         print("q0:", self.q0)
         print("F:", self.F)
 
-    def draw_graph(self):
+    def draw_graph(self, name):
         graph = Digraph(comment='Graphical Representation of Finite Automaton')
         # Add states to the graph of Finite Automaton
         for state in self.Q:
@@ -142,7 +142,7 @@ class FiniteAutomaton:
         # Draw the Graph of FA
         path = os.path.dirname(os.path.realpath(__file__)) + "\Graph_Representation\\"
         print(path)
-        graph.render(path + 'finite_automaton', view=True)
+        graph.render(path + name, view=True)
 
     # def string_belong_to_language(self, input_string):
     #     # Edge-case: if Input String contain Terms that are not accepted by the Finite Automaton.
