@@ -127,11 +127,24 @@ class FiniteAutomaton:
                 graph.attr('node', shape='doublecircle')
             else:
                 graph.attr('node', shape='circle')
-            graph.node(state)
+            if type(state) is list:
+                if len(state) == 1:
+                    graph.node(state[0])
+                else:
+                    graph.node("".join(state))
+            else:
+                graph.node(state)
+
         # Add transitions to the graph of Finite Automaton
         for (state, term), next_states in self.sigma.items():
             for next_state in next_states:
-                graph.edge(state, next_state, label=term)
+                if type(state) is tuple:
+                    if len(state) == 1:
+                        graph.edge(state[0], next_state, label=term)
+                    else:
+                        graph.edge("".join(state), next_state, label=term)
+                else:
+                    graph.edge(state, next_state, label=term)
 
         # Show the State that is Start State
         # Delete from the Graph the outline of the Invisible State
@@ -184,3 +197,76 @@ class FiniteAutomaton:
                 # # No need to iterate further, we know that FA is NFA
                 # break
         return is_NFA, ambiguous_states
+
+    def to_DFA(self):
+        # Edge-Case: If FA is DFA, no need to convert
+        if not self.NFA_or_DFA()[0]:
+            print("Finite Automaton is already Deterministic!")
+            return self
+
+        # Start State
+        q0_DFA = self.q0
+
+        # Alphabet is the same
+        delta_DFA = self.delta
+
+        # New Final States Set
+        F = self.F
+
+        # New State List
+        Q_DFA = [[q0_DFA]]
+
+        # New Transition List
+        sigma_DFA = {}
+
+        for converted_state in Q_DFA:
+            lst = []
+            for transition in self.sigma.keys():
+                if len(converted_state) == 1:
+                    if converted_state[0] in transition:
+                        if len(self.sigma[transition]) == 1:
+                            if converted_state[0] not in sigma_DFA:
+                                sigma_DFA[tuple([converted_state[0], transition[1]])] = self.sigma[transition]
+                                lst.append(self.sigma[transition])
+                            else:
+                                sigma_DFA[tuple([converted_state[0], transition[1]])] = sigma_DFA[tuple([converted_state[0], transition[1]])] + self.sigma[transition]
+                        else:
+                            if converted_state[0] not in sigma_DFA:
+                                if len(self.sigma[transition]) > 1:
+                                    lst.append(self.sigma[transition])
+                                    sigma_DFA[tuple([converted_state[0], transition[1]])] = ["".join(self.sigma[transition])]
+                                else:
+                                    sigma_DFA[tuple([converted_state[0], transition[1]])] = sigma_DFA[tuple([converted_state[0], transition[1]])] + self.sigma[transition]
+                            else:
+                                sigma_DFA[tuple([converted_state[0], transition[1]])] += self.sigma[transition]
+                else:
+                    for component_state in converted_state:
+                        if component_state in transition:
+                            if len(self.sigma[transition]) == 1:
+                                if component_state not in sigma_DFA:
+                                    sigma_DFA[tuple([tuple(converted_state), transition[1]])] = self.sigma[transition]
+                                else:
+                                    sigma_DFA[tuple([tuple(converted_state), transition[1]])] = sigma_DFA[tuple([tuple(
+                                        converted_state), transition[1]])] + self.sigma[transition]
+                            else:
+                                combined_state = "".join(self.sigma[transition])
+                                if component_state not in sigma_DFA:
+                                    sigma_DFA[tuple([component_state, transition[1]])] = self.sigma[transition]
+                                else:
+                                    sigma_DFA[tuple([component_state, transition[1]])] += self.sigma[transition]
+
+            for state in lst:
+                if len(state) == 1:
+                    if state not in Q_DFA:
+                        Q_DFA.append(state)
+                else:
+                    if state not in Q_DFA:
+                        Q_DFA.append(state)
+
+        F_DFA = []
+        for states in delta_DFA:
+            for final_state in self.F:
+                if final_state in states:
+                    F_DFA.append(states)
+
+        return FiniteAutomaton(Q_DFA, delta_DFA, sigma_DFA, q0_DFA, F_DFA)
