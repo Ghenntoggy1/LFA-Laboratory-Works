@@ -7,14 +7,13 @@ digraph {
 	node [shape=circle]
 	q2
 	node [shape=doublecircle]
-	q_f
+	q3
 	q0 -> q1 [label=a]
-	q0 -> q1 [label=b]
+	q0 -> q2 [label=b]
 	q1 -> q2 [label=b]
-	q1 -> q1 [label=c]
-	q1 -> q0 [label=a]
-	q2 -> q_f [label=b]
-	q2 -> q2 [label=a]
+	q1 -> q3 [label=a]
+	q2 -> q0 [label=c]
+	q2 -> q3 [label=c]
 	node [shape=none]
 	start [label=""]
 	start -> q0

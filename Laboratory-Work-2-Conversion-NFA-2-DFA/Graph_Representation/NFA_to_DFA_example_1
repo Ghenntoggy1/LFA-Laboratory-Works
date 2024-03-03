@@ -3,20 +3,20 @@ digraph {
 	node [shape=circle]
 	S
 	node [shape=circle]
-	B
-	node [shape=circle]
-	D
-	node [shape=circle]
 	A
+	node [shape=circle]
+	B
 	node [shape=doublecircle]
-	q_f
-	S -> B [label=a]
+	C
+	node [shape=doublecircle]
+	SC
+	S -> A [label=a]
 	S -> B [label=b]
-	B -> D [label=b]
-	B -> B [label=c]
-	B -> S [label=a]
-	D -> q_f [label=b]
-	D -> D [label=a]
+	A -> C [label=a]
+	A -> B [label=b]
+	B -> SC [label=c]
+	SC -> A [label=a]
+	SC -> B [label=b]
 	node [shape=none]
 	start [label=""]
 	start -> S

@@ -159,9 +159,11 @@ class FiniteAutomaton:
         print(path)
         graph.render(path + name, view=True)
 
-    def to_grammar(self):
+    def to_grammar(self, choice):
         # Non-Terminal Terms - will hold possible Non-Terminal Terms = States
         V_n = self.Q
+        if choice == 0 and "q_f" in V_n:
+            V_n.remove("q_f")
         # Terminal Terms - will hold possible Terminal Terms = Alphabet
         V_t = self.delta
         # Start Term = Start State
@@ -172,14 +174,27 @@ class FiniteAutomaton:
         # from the dictionary)
         for (state, term), next_states in self.sigma.items():
             for next_state in next_states:
-                if state not in P:
-                    P[state] = [term + next_state]
-                else:
-                    P[state].append(term + next_state)
+                if choice == 1:
+                    if state not in P:
+                        P[state] = [term + next_state]
+                    else:
+                        P[state].append(term + next_state)
+                elif choice == 0:
+                    if state not in P:
+                        if next_state != "q_f":
+                            P[state] = [term + next_state]
+                        else:
+                            P[state] = [term]
+                    else:
+                        if next_state != "q_f":
+                            P[state].append(term + next_state)
+                        else:
+                            P[state] = [term]
 
-        for final_state in self.F:
-            if final_state not in P:
-                P[final_state] = ["\u03B5"]
+        if choice == 1:
+            for final_state in self.F:
+                if final_state not in P:
+                    P[final_state] = ["\u03B5"]
 
         return Grammar.Grammar(V_n, V_t, P, S)
 
@@ -217,13 +232,6 @@ class FiniteAutomaton:
         sigma_DFA = {}
 
         for converted_state in Q_DFA:
-            # lst = []
-            # Lst will hold the new states that appear
-            # for transition, next_state in self.sigma.items():
-            #     for curr_state in converted_state:
-            #         if next_state not in lst and curr_state in transition[0]:
-            #             lst.append(next_state)
-
             for terminal_term in delta_DFA:
                 if len(converted_state) == 1:
                     try:
@@ -263,7 +271,6 @@ class FiniteAutomaton:
                         sigma_DFA[tuple([tuple(converted_state), terminal_term])] = ["".join(combined_state)]
                         if combined_state not in Q_DFA:
                             Q_DFA.append(combined_state)
-
         F_DFA = []
         for final_state in self.F:
             for states in Q_DFA:
