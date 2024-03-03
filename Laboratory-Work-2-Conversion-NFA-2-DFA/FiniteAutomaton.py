@@ -136,15 +136,27 @@ class FiniteAutomaton:
                 graph.node(state)
 
         # Add transitions to the graph of Finite Automaton
+        # Initialize a dictionary to track edges
+        edges = {}
+
+        # Iterate over transitions
         for (state, term), next_states in self.sigma.items():
             for next_state in next_states:
-                if type(state) is tuple:
-                    if len(state) == 1:
-                        graph.edge(state[0], next_state, label=term)
-                    else:
-                        graph.edge("".join(state), next_state, label=term)
+                # Construct a unique identifier for the edge
+                edge_key = (state, next_state)
+
+                # If the edge already exists, concatenate the label
+                if edge_key in edges:
+                    edges[edge_key] += ', ' + term
+                # Otherwise, add the edge to the dictionary
                 else:
-                    graph.edge(state, next_state, label=term)
+                    edges[edge_key] = term
+
+        # Iterate over the collected edges and add them to the Graphviz graph
+        for (start, end), label in edges.items():
+            if isinstance(start, tuple) and len(start) > 1:
+                start = "".join(start)
+            graph.edge(str(start), str(end), label=label)
 
         # Show the State that is Start State
         # Delete from the Graph the outline of the Invisible State
@@ -231,11 +243,15 @@ class FiniteAutomaton:
         # New Transition List
         sigma_DFA = {}
 
+        # Iterate over the new States List
         for converted_state in Q_DFA:
+            # Iterate over all terminal terms
             for terminal_term in delta_DFA:
+                # Check if the state that is analyzed is not formed of multiple states
                 if len(converted_state) == 1:
                     try:
                         l = [converted_state[0], terminal_term]
+                        # If for the current single state that is analyzed exist a
                         next_state = self.sigma[tuple(l)]
 
                         if len(next_state) == 1:
@@ -267,10 +283,16 @@ class FiniteAutomaton:
                         except KeyError:
                             continue
 
+                    # If New State list is not empty, then add to the new Transition Table and add to States List.
                     if combined_state:
                         sigma_DFA[tuple([tuple(converted_state), terminal_term])] = ["".join(combined_state)]
                         if combined_state not in Q_DFA:
                             Q_DFA.append(combined_state)
+
+                    # If Complete DFA, then add the rest of the transitions to the Transition Set
+                    if choice == 1:
+                        if tuple([tuple(converted_state), terminal_term]) not in sigma_DFA:
+                            sigma_DFA[tuple([tuple(converted_state), terminal_term])] = ["q_d"]
         F_DFA = []
         for final_state in self.F:
             for states in Q_DFA:

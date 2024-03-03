@@ -12,11 +12,16 @@ digraph {
 	SC
 	S -> A [label=a]
 	S -> B [label=b]
+	S -> q_d [label=c]
 	A -> C [label=a]
 	A -> B [label=b]
+	A -> q_d [label=c]
+	B -> q_d [label="a, b"]
 	B -> SC [label=c]
+	C -> q_d [label="a, b, c"]
 	SC -> A [label=a]
 	SC -> B [label=b]
+	SC -> q_d [label=c]
 	node [shape=none]
 	start [label=""]
 	start -> S
