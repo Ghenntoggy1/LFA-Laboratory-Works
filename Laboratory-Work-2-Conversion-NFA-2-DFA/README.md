@@ -1,4 +1,4 @@
-# Intro to formal languages. Regular grammars. Finite Automata.
+# Determinism in Finite Automata. Conversion from NDFA 2 DFA. Chomsky Hierarchy.
 
 ### Course: Formal Languages & Finite Automata
 ### Author: Gusev Roman
@@ -8,30 +8,29 @@
 
 ## Theory:
 * ### Definitions:
-  * **Alphabet** - is a finite, nonempty set of symbols
-  * **String** - also called as "word", is a finite sequence of symbols chosen from the alphabet
-  * **Length of the String** - indicates how many symbols are in mentioned string
-  * **Language** - is a set of strings from an alphabet
-  * **Concatenation of Strings** - is the process of putting Strings right next to each other [[1]](#bib1) 
+  * **Grammar**: A grammar is a set of rules used to generate strings in a formal language. It consists of a finite set of symbols called the alphabet, along with a set of production rules that specify how symbols from the alphabet can be combined to form strings.
+  * **Finite Automaton**: A finite automaton is a mathematical model used to recognize patterns within strings. It consists of a finite set of states, a set of transitions between these states, and a set of input symbols. Finite automata can be deterministic (DFA) or nondeterministic (NFA) depending on the rules governing the transitions.
+  * **NFA**: A Nondeterministic Finite Automaton (NFA) is a type of finite automaton where for some transitions, there may be multiple possible next states for a given input symbol. This allows for greater flexibility in recognizing patterns compared to deterministic finite automata.
+  * **DFA**: A Deterministic Finite Automaton (DFA) is a type of finite automaton where each transition is uniquely determined by the current state and the input symbol. DFAs are simpler than NFAs but have equivalent recognition power.
+  * **Chomsky Hierarchy**: The Chomsky Hierarchy is a classification of formal grammars into four types based on their generative power. These types are Type 0 (unrestricted grammars), Type 1 (context-sensitive grammars), Type 2 (context-free grammars), and Type 3 (regular grammars), arranged in increasing order of generative power. This hierarchy is named after the linguist Noam Chomsky, who introduced it in the 1950s.
 
 ## Objectives:
 
-* Discover what a language is and what it needs to have in order to be considered a formal one;
-* Provide the initial setup for the evolving project that you will work on during this semester. You can deal with each laboratory work as a separate task or project to demonstrate your understanding of the given themes, but you also can deal with labs as stages of making your own big solution, your own project. Do the following:
-  1. Create GitHub repository to deal with storing and updating your project;
-  2. Choose a programming language. Pick one that will be easiest for dealing with your tasks, you need to learn how to solve the problem itself, not everything around the problem (like setting up the project, launching it correctly and etc.);
-  3. Store reports separately in a way to make verification of your work simpler (duh)
-* According to my variant number (11), get the grammar definition and do the following:
-  1. Implement a type/class for your grammar;
-  2. Add one function that would generate 5 valid strings from the language expressed by your given grammar;
-  3. Implement some functionality that would convert and object of type Grammar to one of type Finite Automaton;
-  4. For the Finite Automaton, please add a method that checks if an input string can be obtained via the state transition from it;
+* Understand what an automaton is and what it can be used for;
+* Continuing the work in the same repository and the same project, the following need to be added: 
+  1. Provide a function in your grammar type/class that could classify the grammar based on Chomsky hierarchy.
+  2. For this you can use the variant (11) from the previous lab;
+* According to my variant number (11), get the finite automaton definition and do the following tasks:
+  1. Implement conversion of a finite automaton to a regular grammar;
+  2. Determine whether your FA is deterministic or non-deterministic;
+  3. Implement some functionality that would convert an NDFA to a DFA;
+  4. Represent the finite automaton graphically (Optional, and can be considered as a **_bonus point_**);
+     1. You can use external libraries, tools or APIs to generate the figures/diagrams;
+     2. Your program needs to gather and send the data about the automaton and the lib/tool/API return the visual representation.
 ## Implementation description
-* For the start, I had to implement and introduce the alphabet and rules that were
-provided in my Variant (11). I began with defining 2 Lists for Non-Terminal Terms,
-Terminal Terms, 1 Dictionary for the rules/constraints and the Start Term. After that I
-instantiated a Grammar object with those Lists and Dictionary and instantiated a constant
-for maximum length of words that will come in hand later.
+* For the start, I used the files that were developed in the previous [laboratory work nr.1](../Laboratory-Work-1-Grammar-Finite-Automaton).
+During the development of the project for current Laboratory Work, I enhanced some features that were implemented in the
+previous work.
 ```python
 ...
 if __name__ == '__main__':

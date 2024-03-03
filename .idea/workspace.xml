@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,26 +36,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.FiniteAutomaton.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor&quot;: &quot;Run&quot;,
-    &quot;Python.afwa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;lab-2-test&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-2-Conversion-NFA-2-DFA/main.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;PyConsoleConfigurable.Python Console&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.FiniteAutomaton.executor": "Debug",
+    "Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor": "Run",
+    "Python.afwa.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "lab-2-test",
+    "last_opened_file_path": "D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-2-Conversion-NFA-2-DFA",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="LFA-Laboratory-Works" is-module-sdk="true">
@@ -148,7 +142,7 @@
       <workItem from="1709374283008" duration="13535000" />
       <workItem from="1709454231255" duration="290000" />
       <workItem from="1709454686170" duration="1063000" />
-      <workItem from="1709463365234" duration="11397000" />
+      <workItem from="1709463365234" duration="12811000" />
     </task>
     <servers />
   </component>
