@@ -119,34 +119,36 @@ if __name__ == '__main__':
     grammar_converted.print_variables()
 
     # States
-    # Q = ['q0', 'q1', 'q2']
-    Q = ['q0', 'q1', 'q2', 'q3']
+    Q = ['q0', 'q1', 'q2']
+    # Q = ['q0', 'q1', 'q2', 'q3']
 
     # Alphabet
-    # delta = ['a', 'b']
-    delta = ['a', 'b', 'c']
+    delta = ['a', 'b']
+    # delta = ['a', 'b', 'c']
 
     # Start State
     q0 = 'q0'
 
     # Final States
-    # F = ['q2']
-    F = ['q3']
+    F = ['q2']
+    # F = ['q3']
 
     # Transitions
-    # sigma = {
-    #     ('q0', 'a'): ['q0', 'q1'],
-    #     ('q1', 'a'): ['q1'],
-    #     ('q1', 'b'): ['q1', 'q2']
-    # }
-
     sigma = {
-        ('q0', 'a'): ['q1'],
-        ('q0', 'b'): ['q2'],
-        ('q1', 'a'): ['q3'],
-        ('q1', 'b'): ['q2'],
-        ('q2', 'c'): ['q0', 'q3']
+        ('q0', 'a'): ['q0', 'q1'],
+        ('q0', 'b'): ['q0'],
+        ('q1', 'a'): ['q2'],
+        ('q2', 'a'): ['q2'],
+        ('q2', 'b'): ['q2']
     }
+
+    # sigma = {
+    #     ('q0', 'a'): ['q1'],
+    #     ('q0', 'b'): ['q2'],
+    #     ('q1', 'a'): ['q3'],
+    #     ('q1', 'b'): ['q2'],
+    #     ('q2', 'c'): ['q0', 'q3']
+    # }
     print("\nGiven Finite Automaton:", end="")
     finite_automaton_lab_2 = FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
     finite_automaton_lab_2.print_variables()

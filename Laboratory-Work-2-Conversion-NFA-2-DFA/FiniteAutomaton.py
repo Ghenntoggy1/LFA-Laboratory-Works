@@ -217,11 +217,12 @@ class FiniteAutomaton:
         sigma_DFA = {}
 
         for converted_state in Q_DFA:
-            lst = []
-            for transition, next_state in self.sigma.items():
-                for curr_state in converted_state:
-                    if next_state not in lst and curr_state in transition[0]:
-                        lst.append(next_state)
+            # lst = []
+            # Lst will hold the new states that appear
+            # for transition, next_state in self.sigma.items():
+            #     for curr_state in converted_state:
+            #         if next_state not in lst and curr_state in transition[0]:
+            #             lst.append(next_state)
 
             for terminal_term in delta_DFA:
                 if len(converted_state) == 1:
@@ -231,8 +232,12 @@ class FiniteAutomaton:
 
                         if len(next_state) == 1:
                             sigma_DFA[tuple(l)] = next_state
+                            if next_state not in Q_DFA:
+                                Q_DFA.append(next_state)
                         else:
                             sigma_DFA[tuple(l)] = ["".join(next_state)]
+                            if next_state not in Q_DFA:
+                                Q_DFA.append(next_state)
 
                     except KeyError:
                         if choice == 1:
@@ -241,11 +246,23 @@ class FiniteAutomaton:
                             sigma_DFA[tuple(l)] = [next_state]
                 else:
                     combined_state = []
-                    print(converted_state)
+                    for curr_state in converted_state:
+                        try:
+                            l = [curr_state, terminal_term]
 
-            for state in lst:
-                if state not in Q_DFA:
-                    Q_DFA.append(state)
+                            next_state = self.sigma[tuple(l)]
+
+                            for part_state in next_state:
+                                if part_state not in combined_state:
+                                    combined_state.append(part_state)
+
+                        except KeyError:
+                            continue
+
+                    if combined_state:
+                        sigma_DFA[tuple([tuple(converted_state), terminal_term])] = ["".join(combined_state)]
+                        if combined_state not in Q_DFA:
+                            Q_DFA.append(combined_state)
 
         F_DFA = []
         for final_state in self.F:
