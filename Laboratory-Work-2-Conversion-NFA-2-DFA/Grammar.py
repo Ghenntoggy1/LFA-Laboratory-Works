@@ -17,12 +17,13 @@ class Grammar:
 
     # Print function to easy print the variables in the console.
     def print_variables(self):
-        print("\nV_n:", self.V_n)
-        print("V_t:", self.V_t)
-        print("S:", self.S)
-        print("P:")
+        print("\nV_n =", self.V_n)
+        print("V_t =", self.V_t)
+        print("S =", self.S)
+        print("P = {")
         for (k, v) in self.P.items():
-            print(k, "->", v)
+            print("  " + k, "->", v)
+        print("}")
 
     def create_grammar(self):
         print("CREATE YOUR OWN GRAMMAR:")
