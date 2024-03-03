@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/FiniteAutomaton.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/FiniteAutomaton.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/FiniteAutomaton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +51,8 @@
     &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-1-Grammar-Finite-Automaton/Report&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lab-2-test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-2-Conversion-NFA-2-DFA/main.py&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -67,6 +72,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-2-Conversion-NFA-2-DFA" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-1-Grammar-Finite-Automaton\Report" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -88,7 +94,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -101,7 +107,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -134,15 +140,39 @@
       <workItem from="1708121712830" duration="160000" />
       <workItem from="1708297130602" duration="846000" />
       <workItem from="1708298413248" duration="5426000" />
-      <workItem from="1708350441695" duration="345000" />
+      <workItem from="1708350441695" duration="2396000" />
+      <workItem from="1708392428228" duration="807000" />
+      <workItem from="1708630037346" duration="2000" />
+      <workItem from="1708960211132" duration="34000" />
+      <workItem from="1709312460634" duration="22689000" />
+      <workItem from="1709374283008" duration="13535000" />
+      <workItem from="1709454231255" duration="290000" />
+      <workItem from="1709454686170" duration="1063000" />
+      <workItem from="1709463365234" duration="11397000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/Grammar.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton/Grammar.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1708350667143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1709475720384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />

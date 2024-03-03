@@ -1,0 +1,28 @@
+// Graphical Representation of Finite Automaton
+digraph {
+	node [shape=circle]
+	q0
+	node [shape=circle]
+	q1
+	node [shape=circle]
+	q2
+	node [shape=doublecircle]
+	q3
+	node [shape=doublecircle]
+	q0q3
+	q0 -> q1 [label=a]
+	q0 -> q2 [label=b]
+	q0 -> q_d [label=c]
+	q1 -> q3 [label=a]
+	q1 -> q2 [label=b]
+	q1 -> q_d [label=c]
+	q2 -> q_d [label="a, b"]
+	q2 -> q0q3 [label=c]
+	q3 -> q_d [label="a, b, c"]
+	q0q3 -> q1 [label=a]
+	q0q3 -> q2 [label=b]
+	q0q3 -> q_d [label=c]
+	node [shape=none]
+	start [label=""]
+	start -> q0
+}
