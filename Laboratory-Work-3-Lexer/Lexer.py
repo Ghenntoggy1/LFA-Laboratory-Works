@@ -1,5 +1,6 @@
 from Error import LanguageError
 from Token import Token
+from Tokens import FileType, VariableType
 
 
 class LexerError(LanguageError):
@@ -123,28 +124,26 @@ class Lexer:
         else:
             return self.make_operator()
 
-    def make_formula(self):
-        return self.make_keyword_token("Formula")
-
-    def make_data(self):
-        return self.make_keyword_token("Data")
-
-    def make_readfrom(self):
-        return self.make_keyword_token("ReadFrom")
-
     def make_keyword_token(self, keyword_type):
         while self.line.next().isalnum() and not self.line.finished():
             self.line.take()
 
-        token_value = self.line.taken()
-        if token_value == keyword_type:
+        if self.line.taken() in VariableType:
+            return self.new_token("VARIABLE_TYPE")
+        elif self.line.taken() == keyword_type:
             return self.new_token(keyword_type.upper())
 
-        raise LexerError(self.new_token(keyword_type), f"Maybe you meant '{keyword_type}' instead?")
+        raise LexerError(self.new_token("VARIABLE_TYPE"), f"Maybe you meant '{keyword_type}' instead?")
 
     def make_ID(self):
         while self.line.next().isalnum() and not self.line.finished():
             self.line.take()
+
+        try:
+            if self.line.taken().lower() in FileType:
+                return self.new_token("FILE_TYPE")
+        except KeyError:
+            pass
 
         return self.new_token("ID")
 

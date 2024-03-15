@@ -3,7 +3,7 @@
         "# This is Table Data read from TXT File;",
         "# Operators"
     ],
-    "DATA": [
+    "VARIABLE_TYPE": [
         "Data"
     ],
     "ID": [
@@ -20,13 +20,17 @@
         "("
     ],
     "PATH": [
-        "\"/path1/folder1/file1\""
+        "\"/path1/folder1/file.txt\""
     ],
     "RPAREN": [
         ")"
     ],
     "SEMICOLON": [
         ";"
+    ],
+    "FILE_TYPE": [
+        "csv",
+        "txt"
     ],
     "NUMBER": [
         "1",

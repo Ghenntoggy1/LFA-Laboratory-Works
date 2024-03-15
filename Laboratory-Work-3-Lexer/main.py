@@ -18,6 +18,7 @@ def select_file():
 
     return file_path
 
+
 def main():
     print("Laboratory Work 3 - Lexer")
     print("Student: Gusev Roman")
@@ -36,6 +37,7 @@ def main():
         else:
             print("Invalid choice!")
 
+    print("")
     if type_input.lower() == "c":
         lines = ""
         print("Enter lines of code. Type 'exit' to finish.")
@@ -81,7 +83,9 @@ def main():
 
             json_object = json.dumps(convert(tokens), indent=4)
 
-            with open(f"./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json", "w") as outfile:
+            with open(
+                    f"./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json",
+                    "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
             print(error)

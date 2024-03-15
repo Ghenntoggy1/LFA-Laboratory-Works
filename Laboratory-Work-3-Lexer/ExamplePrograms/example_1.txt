@@ -1,5 +1,7 @@
 # This is Table Data read from TXT File;
-Data tableData = ReadFrom("/path1/folder1/file1");
+Data tableData = ReadFrom("/path1/folder1/file.txt");
+csv
+txt
 # Operators
 1 / 1
 1 // 2

@@ -1,7 +1,9 @@
 {
-    "PATH": [
-        "\"\"",
-        "\"\""
+    "VARIABLE_TYPE": [
+        "Formula"
+    ],
+    "ID": [
+        "formula"
     ],
     "EOF": [
         "EOF"
