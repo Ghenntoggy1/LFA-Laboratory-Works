@@ -1,5 +1,3 @@
-import os
-
 from Lexer import Lexer
 from SourceLine import SourceLine
 from Error import LanguageError
@@ -7,6 +5,8 @@ from Error import LanguageError
 import json
 import tkinter as tk
 from tkinter import filedialog
+import os
+
 
 def select_file():
     root = tk.Tk()

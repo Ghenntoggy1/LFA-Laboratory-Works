@@ -57,6 +57,9 @@ class Lexer:
         if self.line.next() in "/":
             return self.make_comment_block()
 
+        if self.line.next() == '"':
+            return self.make_path()
+
         if self.line.next().isalpha():
             if self.line.next() == "F":
                 return self.make_keyword_token("Formula")
@@ -69,6 +72,16 @@ class Lexer:
 
         self.line.take()
         raise LexerError(self.new_token("?"), "Unrecognized Symbol!")
+
+    def make_path(self):
+        self.line.take()  # Consume the starting double quote
+        path = ""
+        while self.line.next() != '"' and not self.line.finished():
+            path += self.line.take()  # Add characters to the path
+        if self.line.finished():
+            raise LexerError(self.new_token("PATH"), "Path not terminated with double quote")
+        self.line.take()  # Consume the ending double quote
+        return self.new_token("PATH")
 
     def make_semicolon(self):
         self.line.take()

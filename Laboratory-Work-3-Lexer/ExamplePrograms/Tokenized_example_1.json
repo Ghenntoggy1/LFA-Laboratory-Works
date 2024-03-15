@@ -13,12 +13,22 @@
         "=",
         "="
     ],
+    "READFROM": [
+        "ReadFrom"
+    ],
     "LPAREN": [
         "("
     ],
+    "PATH": [
+        "\"/path1/folder1/file1\""
+    ],
+    "RPAREN": [
+        ")"
+    ],
+    "SEMICOLON": [
+        ";"
+    ],
     "NUMBER": [
-        "1",
-        "1",
         "1",
         "1",
         "1",
@@ -45,19 +55,12 @@
         "3"
     ],
     "OPERATOR": [
-        "+",
         "/",
         "//",
         "*",
         "**",
         "+",
         "-"
-    ],
-    "RPAREN": [
-        ")"
-    ],
-    "SEMICOLON": [
-        ";"
     ],
     "COMPARISON_OPERATOR": [
         "==",
