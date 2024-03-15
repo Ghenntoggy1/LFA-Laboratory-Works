@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_example_2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Graph_Representation/NFA_to_DFA_lab_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Report/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-2-Conversion-NFA-2-DFA/Report/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,26 +40,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.FiniteAutomaton.executor": "Debug",
-    "Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor": "Run",
-    "Python.afwa.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-2-Conversion-NFA-2-DFA/Report",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.FiniteAutomaton.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor&quot;: &quot;Run&quot;,
+    &quot;Python.afwa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-2-Conversion-NFA-2-DFA/Report&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;PyConsoleConfigurable.Python Console&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="LFA-Laboratory-Works" is-module-sdk="true">
@@ -147,6 +148,8 @@
       <workItem from="1709454231255" duration="290000" />
       <workItem from="1709454686170" duration="1063000" />
       <workItem from="1709463365234" duration="12811000" />
+      <workItem from="1709558480714" duration="2668000" />
+      <workItem from="1709724751224" duration="71000" />
     </task>
     <servers />
   </component>
@@ -170,7 +173,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1709497348502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1709564512327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
