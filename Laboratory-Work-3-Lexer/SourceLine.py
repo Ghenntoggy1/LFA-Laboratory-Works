@@ -10,20 +10,12 @@ class SourceLine:
 
     # Refers to next character that code will work on
     def next(self):
-        if self.finished():
-            return "EOF"
-        else:
-            return self.line[self.locale[1]]
-        # return "EOF" if self.finished() else self.line[self.locale[1]]
+        return "EOF" if self.finished() else self.line[self.locale[1]]
 
     # Adjusts the states and takes one symbol at a time
     def take(self):
         symbol = self.next()
-        # self.locale[1] += 0 if self.finished() else 1
-        if self.finished():
-            self.locale[1] += 0
-        else:
-            self.locale[1] += 1
+        self.locale[1] += 0 if self.finished() else 1
 
         return symbol
 
