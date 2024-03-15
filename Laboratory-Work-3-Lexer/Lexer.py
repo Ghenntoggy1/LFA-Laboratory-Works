@@ -57,14 +57,15 @@ class Lexer:
         if self.line.next() in "/":
             return self.make_comment_block()
 
-        if self.line.next().isalpha() and self.line.next() == "F":
-            return self.make_formula()
-
-        if self.line.next().isalpha() and self.line.next() == "D":
-            return self.make_data()
-
         if self.line.next().isalpha():
-            return self.make_ID()
+            if self.line.next() == "F":
+                return self.make_keyword_token("Formula")
+            elif self.line.next() == "D":
+                return self.make_keyword_token("Data")
+            elif self.line.next() == "R":
+                return self.make_keyword_token("ReadFrom")
+            else:
+                return self.make_ID()
 
         self.line.take()
         raise LexerError(self.new_token("?"), "Unrecognized Symbol!")
@@ -109,45 +110,30 @@ class Lexer:
         else:
             return self.make_operator()
 
-    def make_data(self):
-        while self.line.next().isalnum() and not self.line.finished():
-            self.line.take()
-
-        if self.line.taken() == "Data":
-            return self.new_token("DATA")
-
-        raise LexerError(self.new_token("Data"), "Maybe you meant 'Data' instead?")
-
     def make_formula(self):
+        return self.make_keyword_token("Formula")
+
+    def make_data(self):
+        return self.make_keyword_token("Data")
+
+    def make_readfrom(self):
+        return self.make_keyword_token("ReadFrom")
+
+    def make_keyword_token(self, keyword_type):
         while self.line.next().isalnum() and not self.line.finished():
             self.line.take()
 
-        if self.line.taken() == "Formula":
-            return self.new_token("FORMULA")
+        token_value = self.line.taken()
+        if token_value == keyword_type:
+            return self.new_token(keyword_type.upper())
 
-        raise LexerError(self.new_token("Formula"), "Maybe you meant 'Formula' instead?")
+        raise LexerError(self.new_token(keyword_type), f"Maybe you meant '{keyword_type}' instead?")
 
     def make_ID(self):
         while self.line.next().isalnum() and not self.line.finished():
             self.line.take()
 
         return self.new_token("ID")
-
-    # def make_identifier(self):
-    #     while self.line.next().isalnum() and not self.line.finished():
-    #         self.line.take()
-    #
-    #     if self.line.taken() == "Formula":
-    #         return self.new_token("FORMULA")
-    #
-    #     if self.line.taken() == "Data":
-    #         return self.new_token("DATA")
-    #
-    #     if self.line.taken() == "ReadFrom":
-    #         return self.new_token("READFROM")
-    #
-    #
-    #     raise LexerError(self.new_token("?"), "Unrecognized Symbol!")
 
     def make_punctuator(self):
         self.line.take()

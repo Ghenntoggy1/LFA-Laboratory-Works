@@ -1,9 +1,22 @@
+import os
+
 from Lexer import Lexer
 from SourceLine import SourceLine
 from Error import LanguageError
 
 import json
+import tkinter as tk
+from tkinter import filedialog
 
+def select_file():
+    root = tk.Tk()
+    root.withdraw()
+    root.attributes("-topmost", True)
+
+    file_path = filedialog.askopenfilename(initialdir="./Laboratory_Work_3-Lexer/ExamplePrograms",
+                                           title="Select a file")
+
+    return file_path
 
 def main():
     print("Laboratory Work 3 - Lexer")
@@ -43,13 +56,19 @@ def main():
 
             json_object = json.dumps(convert(tokens), indent=4)
 
-            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
             print(error)
 
     elif type_input.lower() == "f":
-        with open('./Laboratory-Work-3-Lexer/ExamplePrograms/example_1.txt') as f:
+        file_path = select_file()
+
+        if not file_path:
+            print("No file selected.")
+            return
+
+        with open(file_path) as f:
             lines = f.read()
 
         try:
@@ -62,7 +81,7 @@ def main():
 
             json_object = json.dumps(convert(tokens), indent=4)
 
-            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+            with open(f"./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json", "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
             print(error)
@@ -84,7 +103,7 @@ def main():
 
                 json_object = json.dumps(convert(tokens), indent=4)
 
-                with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+                with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                     outfile.write(json_object)
             except LanguageError as error:
                 print(error)
@@ -93,7 +112,6 @@ def main():
 def convert(lst):
     res_dict = {}
     for i in range(0, len(lst)):
-        print(lst[i])
         key = lst[i].kind
         value = lst[i].string
         if key in res_dict:
