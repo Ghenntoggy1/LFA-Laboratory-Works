@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/example_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/example_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Lexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,7 @@
       <workItem from="1709558480714" duration="2668000" />
       <workItem from="1709724751224" duration="71000" />
       <workItem from="1710495278570" duration="8063000" />
-      <workItem from="1710520983749" duration="14208000" />
+      <workItem from="1710520983749" duration="16907000" />
     </task>
     <servers />
   </component>
@@ -172,21 +172,11 @@
           <line>25</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1710536544913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1710539327780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />

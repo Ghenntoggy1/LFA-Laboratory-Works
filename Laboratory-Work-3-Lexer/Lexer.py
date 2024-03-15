@@ -78,38 +78,36 @@ class Lexer:
 
         # Check if the next character is "=" to determine if it's a complete comparison operator
         if self.line.next() == "=":
-            operator += self.line.take()  # Take the "=" character
-            return self.new_token("COMPARISON_OPERATOR")  # Return the complete comparison operator token
+            operator += self.line.take()
+            return self.new_token("COMPARISON_OPERATOR")
 
         # If the next character is not "=", treat the standalone character as an assignment operator
         if operator == ">" or operator == "<":
-            return self.new_token("COMPARISON_OPERATOR")  # Return the comparison operator token
+            return self.new_token("COMPARISON_OPERATOR")
         else:
-            return self.new_token("ASSIGN_OPERATOR")  # Return the assignment operator token
+            return self.new_token("ASSIGN_OPERATOR")
 
     def make_comment_line(self):
         while not self.line.next() == "\n" and not self.line.finished():
             self.line.take()
-
         return self.new_token("COMMENT_LINE")
 
     def make_comment_block(self):
-        self.line.take()  # Consume "/"
+        self.line.take()
         if self.line.next() == "*":
-            self.line.take()  # Consume "*"
+            self.line.take()
             while True:
                 if self.line.next() == "*":
-                    self.line.take()  # Consume "*"
+                    self.line.take()
                     if self.line.next() == "/":
-                        self.line.take()  # Consume "/"
+                        self.line.take()
                         return self.new_token("COMMENT_BLOCK")
                 elif self.line.finished():
                     raise LexerError(self.new_token("COMMENT_BLOCK"), "Block comment not terminated")
                 else:
-                    self.line.take()  # Consume non-terminating characters
+                    self.line.take()
         else:
             return self.make_operator()
-
 
     def make_data(self):
         while self.line.next().isalnum() and not self.line.finished():
@@ -160,8 +158,11 @@ class Lexer:
         return self.new_token("LPAREN") if "(" in self.line.taken() else self.new_token("RPAREN")
 
     def make_operator(self):
+        if self.line.taken() == "/":
+            if self.line.next() == "/":
+                self.line.take()
+            return self.new_token("OPERATOR")
         op = self.line.take()
-
         if op == "*" and self.line.next() == "*":
             self.line.take()
 

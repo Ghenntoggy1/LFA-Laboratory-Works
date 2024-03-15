@@ -2,6 +2,8 @@ from Lexer import Lexer
 from SourceLine import SourceLine
 from Error import LanguageError
 
+import json
+
 
 def main():
     print("Laboratory Work 3 - Lexer")
@@ -38,6 +40,11 @@ def main():
             print("TOKENS:")
             for token in tokens:
                 print(token)
+
+            json_object = json.dumps(convert(tokens), indent=4)
+
+            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+                outfile.write(json_object)
         except LanguageError as error:
             print(error)
 
@@ -52,6 +59,11 @@ def main():
             print("TOKENS:")
             for token in tokens:
                 print(token)
+
+            json_object = json.dumps(convert(tokens), indent=4)
+
+            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+                outfile.write(json_object)
         except LanguageError as error:
             print(error)
 
@@ -69,8 +81,26 @@ def main():
                 print("TOKENS:")
                 for token in tokens:
                     print(token)
+
+                json_object = json.dumps(convert(tokens), indent=4)
+
+                with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json", "w") as outfile:
+                    outfile.write(json_object)
             except LanguageError as error:
                 print(error)
+
+
+def convert(lst):
+    res_dict = {}
+    for i in range(0, len(lst)):
+        print(lst[i])
+        key = lst[i].kind
+        value = lst[i].string
+        if key in res_dict:
+            res_dict[key].append(value)
+        else:
+            res_dict[key] = [value]
+    return res_dict
 
 
 if __name__ == "__main__":

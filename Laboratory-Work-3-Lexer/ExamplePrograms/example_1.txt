@@ -1,5 +1,12 @@
 # This is Table Data read from TXT File;
-Data tableData = 1 + 1;
+Data tableData = (1 + 1);
+# Operators
+1 / 1
+1 // 2
+1 * 1
+1 ** 2
+1 + 1
+1 - 1
 1 == 1
 2 >= 1
 3 <= 1
