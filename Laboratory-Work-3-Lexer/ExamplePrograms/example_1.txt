@@ -1,5 +1,6 @@
 # This is Table Data read from TXT File;
 Data tableData = ReadFrom("/path1/folder1/file.txt");
+VisualData(console) dataset=(tableData);
 csv
 txt
 ExportToFile("/path1/") dataset = (tableData) name = (new.txt);
@@ -17,9 +18,9 @@ ExportToFile("/path1/") dataset = (tableData) name = (new.txt);
 1 < 2
 2 > 3
 
-Formula formulaData = formula[x**2 + x*2 + y]
-VisualFormula(formulaData) range=(1,2)
-ExportToImage("/path2/") graph(formulaData) name=(newGraph.png)
+Formula formulaData = formula[x**2 + x*2 + y];
+VisualFormula(formulaData) range=(1,2);
+ExportToImage("/path2/") graph(formulaData) name=(newGraph.png);
 /* Line 1
 Data excelData = ReadFrom("/path2/folder1/file.xlss");
 Line 3 */

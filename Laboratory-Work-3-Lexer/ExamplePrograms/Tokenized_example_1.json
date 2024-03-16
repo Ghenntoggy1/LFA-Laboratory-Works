@@ -6,11 +6,13 @@
     "VARIABLE_TYPE": [
         "Data",
         "dataset",
+        "dataset",
         "name",
         "Formula",
         "name"
     ],
     "ID": [
+        "tableData",
         "tableData",
         "tableData",
         "new",
@@ -30,12 +32,15 @@
         "=",
         "=",
         "=",
+        "=",
         "="
     ],
     "READ_FROM": [
         "ReadFrom"
     ],
     "LPAREN": [
+        "(",
+        "(",
         "(",
         "(",
         "(",
@@ -60,13 +65,24 @@
         ")",
         ")",
         ")",
+        ")",
+        ")",
         ")"
     ],
     "SEMICOLON": [
         ";",
+        ";",
+        ";",
+        ";",
+        ";",
         ";"
     ],
+    "VISUALIZATION_TYPE": [
+        "VisualData",
+        "VisualFormula"
+    ],
     "FILE_TYPE": [
+        "console",
         "csv",
         "txt",
         "txt"
@@ -131,9 +147,6 @@
     "RBRACKET": [
         "[",
         "]"
-    ],
-    "VISUALIZATION_TYPE": [
-        "VisualFormula"
     ],
     "RANGE": [
         "range"

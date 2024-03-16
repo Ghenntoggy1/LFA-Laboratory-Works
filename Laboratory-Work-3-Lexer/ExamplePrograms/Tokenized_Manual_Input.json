@@ -1,33 +1,31 @@
 {
     "VISUALIZATION_TYPE": [
-        "VisualFormula"
+        "VisualData"
     ],
     "LPAREN": [
         "(",
+        "(",
         "("
     ],
-    "ID": [
-        "x"
+    "FILE_TYPE": [
+        "console"
     ],
     "RPAREN": [
         ")",
+        ")",
         ")"
     ],
-    "RANGE": [
-        "range"
+    "PLOT_TYPE": [
+        "graph"
+    ],
+    "VARIABLE_TYPE": [
+        "dataset"
     ],
     "ASSIGN_OPERATOR": [
         "="
     ],
-    "NUMBER": [
-        "1",
-        "2"
-    ],
-    "COLON": [
-        ","
-    ],
-    "SEMICOLON": [
-        ";"
+    "ID": [
+        "new"
     ],
     "EOF": [
         "EOF"
