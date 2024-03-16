@@ -2,7 +2,7 @@
 Data tableData = ReadFrom("/path1/folder1/file.txt");
 csv
 txt
-ExportToFile("/path") dataset = (tableData) name = (new.txt);
+ExportToFile("/path1/") dataset = (tableData) name = (new.txt);
 # Operators
 1.11 / 1
 1 // 2
@@ -18,7 +18,7 @@ ExportToFile("/path") dataset = (tableData) name = (new.txt);
 2 > 3
 
 Formula formulaData = formula[x**2 + x*2 + y]
-
+ExportToImage("/path2/") graph(formulaData) name=(newGraph.png)
 /* Line 1
 Data excelData = ReadFrom("/path2/folder1/file.xlss");
 Line 3 */

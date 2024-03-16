@@ -6,20 +6,24 @@
     "VARIABLE_TYPE": [
         "Data",
         "dataset",
-        "Formula"
+        "name",
+        "Formula",
+        "name"
     ],
     "ID": [
         "tableData",
         "tableData",
-        "name",
         "new",
         "formulaData",
         "formula",
         "x",
         "x",
-        "y"
+        "y",
+        "formulaData",
+        "newGraph"
     ],
     "ASSIGN_OPERATOR": [
+        "=",
         "=",
         "=",
         "=",
@@ -33,13 +37,20 @@
         "(",
         "(",
         "(",
+        "(",
+        "(",
+        "(",
         "("
     ],
     "PATH": [
         "\"/path1/folder1/file.txt\"",
-        "\"/path\""
+        "\"/path1/\"",
+        "\"/path2/\""
     ],
     "RPAREN": [
+        ")",
+        ")",
+        ")",
         ")",
         ")",
         ")",
@@ -55,9 +66,11 @@
         "txt"
     ],
     "EXPORT_TO_TYPE": [
-        "ExportToFile"
+        "ExportToFile",
+        "ExportToImage"
     ],
     "DOT": [
+        ".",
         "."
     ],
     "NUMBER": [
@@ -110,6 +123,12 @@
     "RBRACKET": [
         "[",
         "]"
+    ],
+    "PLOT_TYPE": [
+        "graph"
+    ],
+    "IMAGE_TYPE": [
+        "png"
     ],
     "COMMENT_BLOCK": [
         "/* Line 1\nData excelData = ReadFrom(\"/path2/folder1/file.xlss\");\nLine 3 */"

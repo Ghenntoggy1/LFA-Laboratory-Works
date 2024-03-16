@@ -1,6 +1,6 @@
 from Error import LanguageError
 from Token import Token
-from Tokens import FileType, VariableType, ExportToType
+from Tokens import FileType, VariableType, ExportToType, ImageType, PlotType
 
 
 class LexerError(LanguageError):
@@ -72,7 +72,7 @@ class Lexer:
             elif self.line.next() == "R":
                 return self.make_read_from()
             elif self.line.next() == "E":
-                return self.make_keyword_token("ExportTo")
+                return self.make_export_to()
             else:
                 return self.make_ID()
 
@@ -101,6 +101,15 @@ class Lexer:
             return self.new_token("READ_FROM")
 
         raise LexerError(self.new_token("READ_FROM"), "Maybe you meant 'ReadFrom' instead?")
+
+    def make_export_to(self):
+        while self.line.next().isalnum() and not self.line.finished():
+            self.line.take()
+
+        if self.line.taken() in ExportToType:
+            return self.new_token("EXPORT_TO_TYPE")
+
+        raise LexerError(self.new_token(self.line.taken().upper()), "Maybe you meant 'ExportToImage' or 'ExportToFile' instead?")
 
     def make_semicolon(self):
         self.line.take()
@@ -160,8 +169,15 @@ class Lexer:
         if self.line.taken().lower() in FileType:
             return self.new_token("FILE_TYPE")
 
+        if self.line.taken().lower() in ImageType:
+            return self.new_token("IMAGE_TYPE")
+
+        if self.line.taken().lower() in PlotType:
+            return self.new_token("PLOT_TYPE")
+
         if self.line.taken() in VariableType:
             return self.new_token("VARIABLE_TYPE")
+
         return self.new_token("ID")
 
     def make_punctuator(self):

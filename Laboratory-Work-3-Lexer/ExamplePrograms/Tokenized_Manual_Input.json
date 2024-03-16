@@ -1,7 +1,6 @@
 {
-    "RBRACKET": [
-        "[",
-        "]"
+    "EXPORT_TO_TYPE": [
+        "ExportToImage"
     ],
     "EOF": [
         "EOF"
