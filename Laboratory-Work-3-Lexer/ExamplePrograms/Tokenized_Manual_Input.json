@@ -1,9 +1,7 @@
 {
-    "VARIABLE_TYPE": [
-        "Formula"
-    ],
-    "ID": [
-        "formula"
+    "RBRACKET": [
+        "[",
+        "]"
     ],
     "EOF": [
         "EOF"

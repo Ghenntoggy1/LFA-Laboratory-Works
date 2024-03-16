@@ -1,6 +1,6 @@
 from Error import LanguageError
 from Token import Token
-from Tokens import FileType, VariableType
+from Tokens import FileType, VariableType, ExportToType
 
 
 class LexerError(LanguageError):
@@ -37,6 +37,9 @@ class Lexer:
         if self.line.next() in "()":
             return self.make_parenthesis()
 
+        if self.line.next() in "[]":
+            return self.make_brackets()
+
         if self.line.next() == ";":
             return self.make_semicolon()
 
@@ -67,12 +70,18 @@ class Lexer:
             elif self.line.next() == "D":
                 return self.make_keyword_token("Data")
             elif self.line.next() == "R":
-                return self.make_keyword_token("ReadFrom")
+                return self.make_read_from()
+            elif self.line.next() == "E":
+                return self.make_keyword_token("ExportTo")
             else:
                 return self.make_ID()
 
         self.line.take()
         raise LexerError(self.new_token("?"), "Unrecognized Symbol!")
+
+    def make_brackets(self):
+        self.line.take()
+        return self.new_token("LBRACKET") if self.line.taken == "[" else self.new_token("RBRACKET")
 
     def make_path(self):
         self.line.take()  # Consume the starting double quote
@@ -83,6 +92,15 @@ class Lexer:
             raise LexerError(self.new_token("PATH"), "Path not terminated with double quote")
         self.line.take()  # Consume the ending double quote
         return self.new_token("PATH")
+
+    def make_read_from(self):
+        while self.line.next().isalnum() and not self.line.finished():
+            self.line.take()
+
+        if self.line.taken() == "ReadFrom":
+            return self.new_token("READ_FROM")
+
+        raise LexerError(self.new_token("READ_FROM"), "Maybe you meant 'ReadFrom' instead?")
 
     def make_semicolon(self):
         self.line.take()
@@ -130,8 +148,8 @@ class Lexer:
 
         if self.line.taken() in VariableType:
             return self.new_token("VARIABLE_TYPE")
-        elif self.line.taken() == keyword_type:
-            return self.new_token(keyword_type.upper())
+        elif self.line.taken() in ExportToType:
+            return self.new_token("EXPORT_TO_TYPE")
 
         raise LexerError(self.new_token("VARIABLE_TYPE"), f"Maybe you meant '{keyword_type}' instead?")
 
@@ -139,12 +157,11 @@ class Lexer:
         while self.line.next().isalnum() and not self.line.finished():
             self.line.take()
 
-        try:
-            if self.line.taken().lower() in FileType:
-                return self.new_token("FILE_TYPE")
-        except KeyError:
-            pass
+        if self.line.taken().lower() in FileType:
+            return self.new_token("FILE_TYPE")
 
+        if self.line.taken() in VariableType:
+            return self.new_token("VARIABLE_TYPE")
         return self.new_token("ID")
 
     def make_punctuator(self):
@@ -170,7 +187,8 @@ class Lexer:
         while self.line.next() in "0123456789.":
             self.line.take()
 
+        if self.line.taken().count(".") == 1 and len(self.line.taken()) == 1:
+            return self.new_token("DOT")
         if self.line.taken().count(".") < 2:
             return self.new_token("NUMBER")
-
         raise LexerError(self.new_token("Number"), "Numbers can have only one decimal point!")

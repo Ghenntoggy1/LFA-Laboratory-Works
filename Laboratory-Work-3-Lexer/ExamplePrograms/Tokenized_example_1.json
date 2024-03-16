@@ -4,40 +4,68 @@
         "# Operators"
     ],
     "VARIABLE_TYPE": [
-        "Data"
+        "Data",
+        "dataset",
+        "Formula"
     ],
     "ID": [
-        "tableData"
+        "tableData",
+        "tableData",
+        "name",
+        "new",
+        "formulaData",
+        "formula",
+        "x",
+        "x",
+        "y"
     ],
     "ASSIGN_OPERATOR": [
         "=",
+        "=",
+        "=",
+        "=",
         "="
     ],
-    "READFROM": [
+    "READ_FROM": [
         "ReadFrom"
     ],
     "LPAREN": [
+        "(",
+        "(",
+        "(",
         "("
     ],
     "PATH": [
-        "\"/path1/folder1/file.txt\""
+        "\"/path1/folder1/file.txt\"",
+        "\"/path\""
     ],
     "RPAREN": [
+        ")",
+        ")",
+        ")",
         ")"
     ],
     "SEMICOLON": [
+        ";",
         ";"
     ],
     "FILE_TYPE": [
         "csv",
+        "txt",
         "txt"
     ],
+    "EXPORT_TO_TYPE": [
+        "ExportToFile"
+    ],
+    "DOT": [
+        "."
+    ],
     "NUMBER": [
-        "1",
+        "1.11",
         "1",
         "1",
         "2",
-        "1",
+        "1.1",
         "1",
         "1",
         "2",
@@ -56,7 +84,9 @@
         "1",
         "2",
         "2",
-        "3"
+        "3",
+        "2",
+        "2"
     ],
     "OPERATOR": [
         "/",
@@ -64,7 +94,11 @@
         "*",
         "**",
         "+",
-        "-"
+        "-",
+        "**",
+        "+",
+        "*",
+        "+"
     ],
     "COMPARISON_OPERATOR": [
         "==",
@@ -72,6 +106,10 @@
         "<=",
         "<",
         ">"
+    ],
+    "RBRACKET": [
+        "[",
+        "]"
     ],
     "COMMENT_BLOCK": [
         "/* Line 1\nData excelData = ReadFrom(\"/path2/folder1/file.xlss\");\nLine 3 */"

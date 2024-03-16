@@ -12,3 +12,10 @@ class FileType(Enum):
 class VariableType(Enum):
     FORMULA = "Formula"
     DATA = "Data"
+    DATASET = "dataset"
+
+
+class ExportToType(Enum):
+    EXPORT_TO_IMAGE = "ExportToImage"
+    EXPORT_TO_FILE = "ExportToFile"
+

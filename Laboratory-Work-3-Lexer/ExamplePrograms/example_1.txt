@@ -2,10 +2,11 @@
 Data tableData = ReadFrom("/path1/folder1/file.txt");
 csv
 txt
+ExportToFile("/path") dataset = (tableData) name = (new.txt);
 # Operators
-1 / 1
+1.11 / 1
 1 // 2
-1 * 1
+1.1 * 1
 1 ** 2
 1 + 1
 1 - 1
@@ -15,6 +16,9 @@ txt
 1 = 2
 1 < 2
 2 > 3
+
+Formula formulaData = formula[x**2 + x*2 + y]
+
 /* Line 1
 Data excelData = ReadFrom("/path2/folder1/file.xlss");
 Line 3 */
