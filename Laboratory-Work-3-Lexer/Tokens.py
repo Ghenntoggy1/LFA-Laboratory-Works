@@ -33,3 +33,7 @@ class ExportToType(Enum):
     EXPORT_TO_IMAGE = "ExportToImage"
     EXPORT_TO_FILE = "ExportToFile"
 
+
+class VisualizationType(Enum):
+    VISUALIZE_DATA = "VisualData"
+    VISUALIZE_FORMULA = "VisualFormula"

@@ -1,6 +1,6 @@
 from Error import LanguageError
 from Token import Token
-from Tokens import FileType, VariableType, ExportToType, ImageType, PlotType
+from Tokens import FileType, VariableType, ExportToType, ImageType, PlotType, VisualizationType
 
 
 class LexerError(LanguageError):
@@ -43,6 +43,9 @@ class Lexer:
         if self.line.next() == ";":
             return self.make_semicolon()
 
+        if self.line.next() == ",":
+            return self.make_colon()
+
         if self.line.next() in "<>=":
             return self.make_comparison()
 
@@ -73,11 +76,22 @@ class Lexer:
                 return self.make_read_from()
             elif self.line.next() == "E":
                 return self.make_export_to()
+            elif self.line.next() == "V":
+                return self.make_visualization()
             else:
                 return self.make_ID()
 
         self.line.take()
         raise LexerError(self.new_token("?"), "Unrecognized Symbol!")
+
+    def make_visualization(self):
+        while self.line.next().isalnum() and not self.line.finished():
+            self.line.take()
+
+        if self.line.taken() in VisualizationType:
+            return self.new_token("VISUALIZATION_TYPE")
+
+        raise LexerError(self.new_token("VISUALIZATION_TYPE"), "Maybe you meant 'VisualData' or 'VisualFormula' instead?")
 
     def make_brackets(self):
         self.line.take()
@@ -109,11 +123,15 @@ class Lexer:
         if self.line.taken() in ExportToType:
             return self.new_token("EXPORT_TO_TYPE")
 
-        raise LexerError(self.new_token(self.line.taken().upper()), "Maybe you meant 'ExportToImage' or 'ExportToFile' instead?")
+        raise LexerError(self.new_token("EXPORT_TO_TYPE"), "Maybe you meant 'ExportToImage' or 'ExportToFile' instead?")
 
     def make_semicolon(self):
         self.line.take()
         return self.new_token("SEMICOLON")
+
+    def make_colon(self):
+        self.line.take()
+        return self.new_token("COLON")
 
     def make_comparison(self):
         operator = self.line.take()  # Take the first character of the comparison operator
@@ -177,6 +195,9 @@ class Lexer:
 
         if self.line.taken() in VariableType:
             return self.new_token("VARIABLE_TYPE")
+
+        if self.line.taken() == "range":
+            return self.new_token("RANGE")
 
         return self.new_token("ID")
 

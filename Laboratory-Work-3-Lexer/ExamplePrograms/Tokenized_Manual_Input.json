@@ -1,6 +1,33 @@
 {
-    "EXPORT_TO_TYPE": [
-        "ExportToImage"
+    "VISUALIZATION_TYPE": [
+        "VisualFormula"
+    ],
+    "LPAREN": [
+        "(",
+        "("
+    ],
+    "ID": [
+        "x"
+    ],
+    "RPAREN": [
+        ")",
+        ")"
+    ],
+    "RANGE": [
+        "range"
+    ],
+    "ASSIGN_OPERATOR": [
+        "="
+    ],
+    "NUMBER": [
+        "1",
+        "2"
+    ],
+    "COLON": [
+        ","
+    ],
+    "SEMICOLON": [
+        ";"
     ],
     "EOF": [
         "EOF"

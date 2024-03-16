@@ -18,6 +18,7 @@ ExportToFile("/path1/") dataset = (tableData) name = (new.txt);
 2 > 3
 
 Formula formulaData = formula[x**2 + x*2 + y]
+VisualFormula(formulaData) range=(1,2)
 ExportToImage("/path2/") graph(formulaData) name=(newGraph.png)
 /* Line 1
 Data excelData = ReadFrom("/path2/folder1/file.xlss");

@@ -20,9 +20,11 @@
         "x",
         "y",
         "formulaData",
+        "formulaData",
         "newGraph"
     ],
     "ASSIGN_OPERATOR": [
+        "=",
         "=",
         "=",
         "=",
@@ -40,6 +42,8 @@
         "(",
         "(",
         "(",
+        "(",
+        "(",
         "("
     ],
     "PATH": [
@@ -48,6 +52,8 @@
         "\"/path2/\""
     ],
     "RPAREN": [
+        ")",
+        ")",
         ")",
         ")",
         ")",
@@ -99,6 +105,8 @@
         "2",
         "3",
         "2",
+        "2",
+        "1",
         "2"
     ],
     "OPERATOR": [
@@ -123,6 +131,15 @@
     "RBRACKET": [
         "[",
         "]"
+    ],
+    "VISUALIZATION_TYPE": [
+        "VisualFormula"
+    ],
+    "RANGE": [
+        "range"
+    ],
+    "COLON": [
+        ","
     ],
     "PLOT_TYPE": [
         "graph"
