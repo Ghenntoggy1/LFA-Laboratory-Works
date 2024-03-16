@@ -1,4 +1,4 @@
-# Determinism in Finite Automata. Conversion from NDFA 2 DFA. Chomsky Hierarchy.
+# Lexer & Scanner.
 
 ### Course: Formal Languages & Finite Automata
 ### Author: Gusev Roman
@@ -8,25 +8,16 @@
 
 ## Theory:
 * ### Definitions:
-  * **Grammar**: A grammar is a set of rules used to generate strings in a formal language. It consists of a finite set of symbols called the alphabet, along with a set of production rules that specify how symbols from the alphabet can be combined to form strings.
-  * **Finite Automaton**: A finite automaton is a mathematical model used to recognize patterns within strings. It consists of a finite set of states, a set of transitions between these states, and a set of input symbols. Finite automata can be deterministic (DFA) or nondeterministic (NFA) depending on the rules governing the transitions.
-  * **NFA**: A Nondeterministic Finite Automaton (NFA) is a type of finite automaton where for some transitions, there may be multiple possible next states for a given input symbol. This allows for greater flexibility in recognizing patterns compared to deterministic finite automata.
-  * **DFA**: A Deterministic Finite Automaton (DFA) is a type of finite automaton where each transition is uniquely determined by the current state and the input symbol. DFAs are simpler than NFAs but have equivalent recognition power.
-  * **Chomsky Hierarchy**: The Chomsky Hierarchy is a classification of formal grammars into four types based on their generative power. These types are Type 0 (unrestricted grammars), Type 1 (context-sensitive grammars), Type 2 (context-free grammars), and Type 3 (regular grammars), arranged in increasing order of generative power. This hierarchy is named after the linguist Noam Chomsky, who introduced it in the 1950s.
-
+  * **Lexer**: The lexical analyzer defines how the contents of a file are broken into tokens, which is the basis for supporting custom language features [[1]](#bib1).
+  * **Token**: A lexical token is a string with an assigned and thus identified meaning.
+  * **Lexeme**: A lexeme is only a string of characters known to be of a certain kind.
+  
 ## Objectives:
 
-* Understand what an automaton is and what it can be used for;
-* Continuing the work in the same repository and the same project, the following need to be added: 
-  1. Provide a function in your grammar type/class that could classify the grammar based on Chomsky hierarchy.
-  2. For this you can use the variant (11) from the previous lab;
-* According to my variant number (11), get the finite automaton definition and do the following tasks:
-  1. Implement conversion of a finite automaton to a regular grammar;
-  2. Determine whether your FA is deterministic or non-deterministic;
-  3. Implement some functionality that would convert an NDFA to a DFA;
-  4. Represent the finite automaton graphically (Optional, and can be considered as a **_bonus point_**);
-     1. You can use external libraries, tools or APIs to generate the figures/diagrams;
-     2. Your program needs to gather and send the data about the automaton and the lib/tool/API return the visual representation.
+* Understand what lexical analysis [[2]](#bib2) is;
+* Get familiar with the inner workings of a lexer/scanner/tokenizer;
+* Implement a sample lexer and show how it works.
+
 ## Implementation description
 * For the start, I used the files that were developed in the previous [Laboratory Work nr.1](../Laboratory-Work-1-Grammar-Finite-Automaton).
 During the development of the project for current Laboratory Work, I enhanced some features that were implemented in the
@@ -1167,4 +1158,6 @@ of a not very complex Algorithm and managed to make my own implementation of it.
 between Complete DFA and Incomplete DFA, how they are constructed and how their graphical representation looks like.
 
 ## References:
-<a id="bib1"></a>[1] Formal Languages and Finite Automata Guide for practical lessons Chapter 2 - TUM - https://else.fcim.utm.md/pluginfile.php/64791/mod_resource/content/0/Chapter_2.pdf
+<a id="bib1"></a>[1] “Lexer and Parser Definition | IntelliJ Platform Plugin SDK.” n.d. IntelliJ Platform Plugin SDK Help. Accessed March 16, 2024. https://plugins.jetbrains.com/docs/intellij/lexer-and-parser-definition.html.
+
+<a id="bib1"></a>[2] “Kaleidoscope: Kaleidoscope Introduction and the Lexer — LLVM 19.0.0git Documentation.” n.d. Llvm.org. Accessed March 16, 2024. https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/LangImpl01.html.
