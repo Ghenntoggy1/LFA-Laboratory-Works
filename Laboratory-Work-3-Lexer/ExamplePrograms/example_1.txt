@@ -1,8 +1,6 @@
 # This is Table Data read from TXT File;
 Data tableData = ReadFrom("/path1/folder1/file.txt");
 VisualData(console) dataset=(tableData);
-csv
-txt
 ExportToFile("/path1/") dataset = (tableData) name = (new.txt);
 # Operators
 1.11 / 1

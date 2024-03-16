@@ -83,8 +83,6 @@
     ],
     "FILE_TYPE": [
         "console",
-        "csv",
-        "txt",
         "txt"
     ],
     "EXPORT_TO_TYPE": [
