@@ -22,7 +22,20 @@
 * For the start, I decided to implement a Lexer for the PBL DSL that me and the team I work with decided to develop.
 During the work on this Laboratory Work, I decided to implement an example Lexer that I found in some guides on YouTube [[3]](#bib3).
 Specifically, I followed the structure of the presented in the video Lexer, but for the extension I used only my knowledge.
-
+* The Lexer I developed pass through the entire Input symbol by symbol until the End of File, and transform each
+combination of the Input into Lexemes. The mathematical expressions are not required to be separated
+by Whitespace and may be written in both, for example "2+2" and "2 + 2", forms, and will be tokenized correctly.
+For the "words" type Lexemes, they are required to be separated by whitespace. This is done in order to greedily tokenize
+them and eliminate cases in inputs such as "Formula1", that may be tokenized like:
+  ```
+  FORMULA_TOKEN : Formula
+  NUMBER: 1
+  ```
+  and tokenize that as a single word, that might give theoretically output as:
+  ```
+  IDENTIFIER: Formula1
+  ```
+  This was done in order to have a defined structure for the Tokens, that will lead to a whitespace-sensitive Language.
 * First thing developed was the Tokens themselves. I have several Tokens that I decided to hold in Enum classes, and that have been used in the
 Lexer to classify them.
 ```python
@@ -107,148 +120,141 @@ class Token:
 
 * Next Class developed for the Lexer implementation was "SourceLine", that is used to hold the input from the user and will
 hold also a lot of useful functionalities that will be called by the Lexer class and will track the Tokens based on their index in the 
-input.
+input. First of all, I developed the Constructor, that will hold the Input from the user, will hold some locale variables,
+a list of 2 integers, that will be the position of the START of the Token and END of the Token, that was done because
+some Tokens are multi-symbol Tokens, and Marked, that will hold the wrong portion of the Token, in case that this Token is invalid.
 ```python
-class Grammar:
+class SourceLine:
+    def __init__(self, line):
+        self.line = line  # Actual line from the User Input
+        self.locale = [0, 0]  # Track START and END of a Token
+        self.marked = [len(line), -1]
     ...
-    def check_type_grammar(self):
-        # Check if Grammar is Extended Regular Grammar
-        is_extended = False
-
-        # Check if Grammar is Left Linear Regular Grammar
-        is_left_linear = True
-
-        # Check if Grammar is Right Linear Regular Grammar
-        is_right_linear = True
-
-        # Check if Grammar is Regular Grammar
-        is_type_3 = True
-
-        # Check if Grammar is Context-Free Grammar
-        is_type_2 = True
-
-        # Check if Grammar is Context-Sensitive Grammar
-        is_type_1 = True
-
-        # Check if Grammar is Unrestricted Grammar
-        is_type_0 = True
-
-        # Check if Grammar is Invalid
-        is_invalid = False
-        ...
 ```
 
-* Here, I check if during the checks of the Rules, the grammar is valid - if no, exit the loop and that's it. Otherwise
-I check the edge-case when the grammar contains rules that involve terms that are not in the Lists that hold them.
-After that, I check the RHS on containing invalid Terms, both Terminal and Non-Terminal.
+* After that, I have a method to check if the Input from the User was processed entirely. This is done by the comparison check
+between the locale variable and the length of the input - if the SourceLine locale passed the length of the string input or
+is equal to this length, then the input was tokenized entirely.
 ```python
-class Grammar:
+class SourceLine:
     ...
-    def check_type_grammar(self):
-        ...
-        for LHS, RHS_list in self.P.items():
-            # If Grammar is Invalid, exit loop.
-            if is_invalid:
-                break
-
-            # Edge-Case: Not valid Non-Terminal Term Left-Hand Side
-            for term in LHS:
-                if term not in self.V_n and term.isupper():
-                    is_invalid = True
-                    break
-
-            # Check if already invalid => no need to check further
-            if is_invalid:
-                break
-            # Edge-Case: Not valid Terminal Term or Non-Terminal Term in Right-Hand Side
-            else:
-                for production in RHS_list:
-                    if is_invalid:
-                        break
-                    for term_prod in production:
-                        # Not Valid Terminal Term
-                        if term_prod.islower() and term_prod not in self.V_t:
-                            print(f"Term {term_prod} is not valid Terminal Term!")
-                            is_invalid = True
-                            break
-
-                        # Not Valid Non-Terminal Term
-                        if term_prod.isupper() and term_prod not in self.V_n:
-                            print(f"Term {term_prod} is not valid Non-Terminal Term!")
-                            is_invalid = True
-                            break
-        ...
+    # Checks if line was processed entirely
+    def finished(self):
+        return self.locale[1] >= len(self.line)
+    ...
 ```
 
-* Here, I check if the LHS has multiple Non-Terminal Terms, then the grammar is not of Type 3 and 2. Then, I check if the
-length of the LHS is greater than the length of the RHS. If yes, then it is not Type 1 and is Type 0 Grammar, otherwise - continue checking further.
+* After that, I developed the method to actually take and adjust the state of the variables in order to progress in the 
+Token components further. This method will peek the next symbol and will increment the locale variables - specifically the
+END position if the Input is not processed fully, otherwise will stay the same. Also, this method returns the symbol that was peeked
 ```python
-class Grammar:
+class SourceLine:
     ...
-    def check_type_grammar(self):
-        ...
-        # If Left-Hand Side has more than one Non-Terminal Term, then Grammar is not Regular and not Context-Free
-        if len(LHS) != 1:
-            is_type_3 = False
-            is_type_2 = False
+    # Adjusts the states and takes one symbol at a time
+    def take(self):
+        symbol = self.next()
+        self.locale[1] += 0 if self.finished() else 1
 
-            # If the length of Left-Hand Side is greater than at least one Right-Hand Side => Grammar is not
-            # Context-Sensitive
-            for RHS in RHS_list:
-                if len(LHS) > len(RHS):
-                    is_type_1 = False
-        ...
+        return symbol
+    ...
 ```
 
-* If the grammar is Type 3, then check for the RHS if it contains only one Non-Terminal Term, then Grammar is not of Type 4 and exit this loop.
-If it's not the case, then check for linearity of the Grammars. If rules has both Left Linear Rules and Right Linear Rules, then
-Grammar is not of Type 3 and is of Type 2. In the end, check for the multiple terminals on the sides of the Non-Terminal Terms in rules.
-If there are more than 1 Terminal Term, then it is Extended Regular Grammar.
+* Here is presented a method to Ignore some Symbols from the Input, such as Whitespaces or others. This is done by setting the
+START Position/Index of the Token to END Position/Index - they will become the same and will be after the Ignored Symbols.
 ```python
-class Grammar:
+class SourceLine:
     ...
-    def check_type_grammar(self):
-        ...
-        # If Regular Grammar and first term is Non-Terminal and rest are terminals, then Left Linear Regular Grammar
-        if is_type_3:
-            for RHS in RHS_list:
-                if len(RHS) == 1 and not RHS[0].islower():
-                    # If Right-Hand Side has one Non-Terminal Term and no Terminal Terms => Grammar is not Regular
-                    if RHS[0] not in self.V_n:
-                        is_type_3 = False
-                        break
-                    else:
-                        continue
+    # Ignores current Locale for example spaces
+    def ignore(self):
+        self.locale[0] = self.locale[1]
+    ...
+```
 
-                # If Regular Grammar and first term is Non-Terminal and rest are terminals,
-                # then Left Linear Regular Grammar
-                if RHS[0].isupper():
-                    if not is_left_linear:
-                        is_type_3 = False
-                        break
-                    is_right_linear = False
-                    for rest_terms in RHS[1:]:
-                        for rest_term in rest_terms:
-                            if rest_term.isupper():
-                                is_type_3 = False
-                                break
-                # If Regular Grammar and last term is Non-Terminal and rest has at least one Non-Terminal,
-                # then Grammar is not Regular
-                if RHS[-1].isupper():
-                    if not is_right_linear:
-                        is_type_3 = False
-                        break
-                    is_left_linear = False
-                    for rest_terms in RHS[:-1]:
-                        for rest_term in rest_terms:
-                            if rest_term.isupper():
-                                is_type_3 = False
-                                break
+* After that, I have a method to retrieve the entire Multi-Symbol Token. This is done by String Slicing. This method will
+Slice the Input String and will retrieve the Token between START and END Indices.
+```python
+class SourceLine:
+    ...
+    # Takes MultiCharacter Symbol
+    def taken(self):
+        return self.line[self.locale[0]:self.locale[1]]
+    ...
+```
 
-                # Check if Right-Hand Side is longer than 2 terms => Extended Regular Grammar
-                if len(RHS) > 2 and is_type_3:
-                    is_extended = True
-        ...
+* Here I present the method that will update the Locale variables in order to assign it correctly those START and END
+Positions for the new Token that will be created. This method was featured in the Constructor for the Token class.
+This is done by the assignment of the Locale variables and the actual Token string when the Token is constructed itself.
+After the that the locales that are in the class SourceLine are reset to the END of the current Token.
+```python
+class SourceLine:
+    ...
+    def new_locale(self):
+        locale, taken = self.locale.copy(), self.taken()
+        self.locale[0] = self.locale[1]
+        return locale, taken
+    ...
+```
+
+* Here I have 2 methods that are related to Error handling, i.e., will show where the error in the String is. Given the Token,
+that has its own Locale variables, it will compare them with the marked variables. Marked are initially set outside the Token range,
+and for the START Position of the mistake Symbol, it will take the minimum value between START of the Token and the outside
+bound of the marked variable, and for the END - it is the maximum value. After that, it will append to a string called
+"marks", that will hold the marks, and in a for loop it will add the "^" marks that will indicate where the mistake is
+between the boundaries of the marked values.
+```python
+class SourceLine:
+    ...
+    def mark(self, token):
+        self.marked[0] = min(token.locale[0], self.marked[0])
+        self.marked[1] = max(token.locale[1], self.marked[1])
+
+    # Creates Error Marks
+    def get_marks(self):
+        marks = "  "
+
+        for i in range(len(self.line) + 1):
+            between = self.marked[0] <= i < self.marked[1]
+            marks += "^" if between or self.marked[0] == i else " "
+
+        return marks
+```
+
+* After that, I have developed a new class for Error handling, i.e., will be the class for the actual LanguageError, of type
+RuntimeError, that will get the marks of the Token where error was obtained and will output them, with the actual name of
+the Error that will be assigned when subclasses of that LanguageError class will be created.
+```python
+class LanguageError(RuntimeError):
+    def __init__(self, component, message):
+        component.mark()
+        self.line = component.line
+        self.message = message
+
+    def __str__(self):
+        return f"{self.line.get_marks()}\n{type(self).__name__} : {self.message}"
+```
+
+* For the actual Lexer, I created a new python file with the same name - Lexer. First of all, I imported all the 
+previously created files and also created a class for the LexerError, that is a subclass of the LanguageError, that will be
+used to create more specific Errors further.
+```python
+from Error import LanguageError
+from Token import Token
+from Tokens import FileType, VariableType, ExportToType, ImageType, PlotType, VisualizationType
+
+class LexerError(LanguageError):
+    pass
+...
+```
+
+* After that, I created the class for the Lexer, that has a Constructor in the beginning, that will hold the actual Input
+of the User, that was converted to the SourceLine class - this will provide the extensive use of the methods that were developed
+in that class.
+```python
+...
+class Lexer:
+    def __init__(self):
+        self.line = None
+    ...
 ```
 
 * In the end, I print out the Type of the Grammar that is provided in the main class.
