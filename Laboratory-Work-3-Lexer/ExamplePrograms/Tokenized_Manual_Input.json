@@ -1,33 +1,26 @@
 {
-    "VISUALIZATION_TYPE": [
-        "VisualData"
-    ],
-    "LPAREN": [
-        "(",
-        "(",
-        "("
-    ],
-    "FILE_TYPE": [
-        "console"
-    ],
-    "RPAREN": [
-        ")",
-        ")",
-        ")"
-    ],
-    "PLOT_TYPE": [
-        "graph"
-    ],
-    "VARIABLE_TYPE": [
-        "dataset"
-    ],
-    "ASSIGN_OPERATOR": [
-        "="
-    ],
-    "ID": [
-        "new"
-    ],
-    "EOF": [
-        "EOF"
-    ]
+    "VARIABLE_TYPE": {
+        "Formula": [
+            0,
+            7
+        ]
+    },
+    "ID": {
+        "formula": [
+            8,
+            15
+        ]
+    },
+    "NUMBER": {
+        "1": [
+            16,
+            17
+        ]
+    },
+    "EOF": {
+        "EOF": [
+            17,
+            17
+        ]
+    }
 }
