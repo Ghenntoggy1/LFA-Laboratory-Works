@@ -1,6 +1,23 @@
 from enum import Enum
 
 
+class OperatorType(Enum):
+    MULTIPLY = "*"
+    DIVISION = "/"
+    ADDITION = "+"
+    SUBTRACTION = "-"
+    POWER = "**"
+
+
+class ComparatorType(Enum):
+    EQUALS = "=="
+    NOT_EQUALS = "!="
+    LESS_THAN = "<"
+    GREATER_THAN = ">"
+    LESS_THAN_OR_EQUALS = "<="
+    GREATER_THAN_OR_EQUALS = ">="
+
+
 class FileType(Enum):
     CSV = "csv"
     TEXT = "txt"

@@ -19,98 +19,95 @@
 * Implement a sample lexer and show how it works.
 
 ## Implementation description
-* For the start, I used the files that were developed in the previous [Laboratory Work nr.1](../Laboratory-Work-1-Grammar-Finite-Automaton).
-During the development of the project for current Laboratory Work, I enhanced some features that were implemented in the
-previous work. Specifically, judging by the format of Finite Automaton from my Variant in current Laboratory Work, I changed
-the code a bit in order for it to take as input also Grammars and Finite Automatons that uses notation "q_" of the Non-Terminal
-Terms.
+* For the start, I decided to implement a Lexer for the PBL DSL that me and the team I work with decided to develop.
+During the work on this Laboratory Work, I decided to implement an example Lexer that I found in some guides on YouTube [[3]](#bib3).
+Specifically, I followed the structure of the presented in the video Lexer, but for the extension I used only my knowledge.
+
+* First thing developed was the Tokens themselves. I have several Tokens that I decided to hold in Enum classes, and that have been used in the
+Lexer to classify them.
 ```python
-class Grammar:
-    ...
-    try:
-        state_index = terms.index("q")
-    except ValueError:
-        state_index = -1
-    if state_index >= 0 and terms[state_index + 1].isnumeric():
-        terminal_terms = terms[:state_index]
-        for term in terminal_terms:
-            current_input_term += term
-        next_state = "".join(terms[state_index: state_index + 2])
-    else:
-        for term in terms:
-            if term.islower() and term in delta:
-                current_input_term += term
-            if term.isupper() and term in Q:
-                next_state = term
-    ...
+from enum import Enum
+
+class OperatorType(Enum):
+    MULTIPLY = "*"
+    DIVISION = "/"
+    ADDITION = "+"
+    SUBTRACTION = "-"
+    POWER = "**"
+    
+class ComparatorType(Enum):
+    EQUALS = "=="
+    NOT_EQUALS = "!="
+    LESS_THAN = "<"
+    GREATER_THAN = ">"
+    LESS_THAN_OR_EQUALS = "<="
+    GREATER_THAN_OR_EQUALS = ">="
+
+class FileType(Enum):
+    CSV = "csv"
+    TEXT = "txt"
+    JSON = "json"
+    EXCEL = "excel"
+    CONSOLE = "console"
+
+class ImageType(Enum):
+    JPG = "jpg"
+    PNG = "png"
+
+class PlotType(Enum):
+    GRAPH = "graph"
+    BAR = "bar"
+    PIE = "pie"
+    PLOT = "plot"
+    HIST = "hist"
+
+class VariableType(Enum):
+    FORMULA = "Formula"
+    DATA = "Data"
+    DATASET = "dataset"
+    NAME = "name"
+
+class ExportToType(Enum):
+    EXPORT_TO_IMAGE = "ExportToImage"
+    EXPORT_TO_FILE = "ExportToFile"
+
+class VisualizationType(Enum):
+    VISUALIZE_DATA = "VisualData"
+    VISUALIZE_FORMULA = "VisualFormula"
 ```
-* At the same time, I developed an algorithm that will take input grammar from the user. It is done in similar manner as
-in the previous Laboratory Work - there was possible to input the Finite Automaton using terminal. Now it can be done for
-both Grammar and Finite Automaton, in both classical formats - using Uppercase letters for Non-Terminals and "q_" notation.
+* At the same time, I started with the Token class, that will describe what type of Lexeme I have in input.
+Here I defined the Constructor for the Token, where it gets the type/kind of the Token (type is a reserved keyword in python
+therefore I used kind), and the line of the input - whole input of the User. Also, it gets the string, that is the Token itself.
+But there may be a case when the String returned is empty, so it is replaced with "EOF" - End of File Token.
 ```python
-class Grammar:
-    ...
-    def create_grammar(self):
-          print("CREATE YOUR OWN GRAMMAR:")
-    
-          V_n = input("INPUT NON-TERMINAL TERMS SEPARATED BY COMMA: ")
-          V_n = V_n.split(",")
-          print(V_n)
-          self.V_n = V_n
-    
-          V_t = input("INPUT TERMINAL TERMS SEPARATED BY COMMA: ")
-          V_t = V_t.split(",")
-          print(V_t)
-          self.V_t = V_t
-    
-          S = input("INPUT START TERM: ")
-          print(S)
-          self.S = S
-    
-          print(
-              "INPUT RULES (SEPARATED BY COMMA \"{LEFT-HAND SIDE},{RIGHT-HAND SIDE}\"): ")
-          P = {}
-          while True:
-              rule_string = input("")
-              rule = rule_string.split(",")
-              print(rule)
-              LHS = rule[0]
-              print(LHS)
-              if LHS in P:
-                  P[LHS].append(rule[1])
-              else:
-                  P[LHS] = [rule[1]]
-              print(f"{rule[0]} -> {rule[1]}")
-              if input("CONTINUE? (Y/N) ").lower() == "n":
-                  break
-          self.P = P
+class Token:
+    def __init__(self, kind, line):
+        self.kind = kind
+        self.line = line
+        self.locale, self.string = line.new_locale()
+
+        # If retrieved string is empty, then set it as "EOF", otherwise - stays the same retrieved string
+        self.string = self.string or "EOF"
     ...
 ```
 
-* For the first task - develop an algorithm that will classify Grammars by Chomsky Hierarchy, I decided to delve in the 
-research and found several rules for each Type from the Hierarchy:
-  * Type 3 - Regular Grammar:
-    * Left-Hand Side contains only one Non-Terminal
-    * Right-Hand Side contains at least 1 Terminal Term and 1 or 0 Non-Terminals on either left or right side of the Terminal Term
-  * Type 2 - Context-Free Grammar:
-    * Left-Hand Side contains only one Non-Terminal
-    * Right-Hand Side contains a String of Non-Terminal Terms and Terminal Terms
-  * Type 1 - Context-Sensitive Grammar:
-    * Left-Hand Side contains at least 1 Non-Terminal Term
-    * Right-Hand Side contains a String of Non-Terminal Terms and Terminal Terms
-    * Number of Terms in Right-Hand Side should be higher or equal to Number of Terms in Left-Hand Side
-  * Type 0 - Unrestricted Grammar:
-    * Left-Hand Side contains at least 1 Non-Terminal Term
-    * Right-Hand Side contains a String of Non-Terminal Terms and Terminal Terms
-I implemented those rules and took in count that there are multiple types of Regular Grammars, such as:
-  * Right Linear Regular Grammar - Non-Terminal Terms are on the right of the Terminal Term in RHS
-  * Left Linear Regular Grammar - Non-Terminal Terms are on the left of the Terminal Term in RHS
-  * Extended Right Linear Regular Grammar - Non-Terminal Terms are on the right of the multiple Terminal Terms in RHS
-  * Extended Left Linear Regular Grammar - Non-Terminal Terms are on the left of the multiple Terminal Terms in RHS
-These types of the classification were done easily by counting the number of characters in the RHS.
-Also, I handled the case when Grammar is invalid and will be classified as Invalid.
+* After that, Token class has 2 other methods in it - "\_\_repr__" that will be the representation of the Token in a visual 
+human-readable form for data structures such as Lists, because they call specifically this method. Tokens will be present in a list, therefore this method is required.
+* At the same time, 2-nd method - "mark", will be used to make the visual representation of the Incorrect Tokens during the evaluation.
+This method will be explained in depth further.
+```python
+class Token:
+    ...
+    def __repr__(self):
+        return f"{self.kind}: '{self.string}'"
 
-First of all, I initialized booleans that will hold the type of the grammar.
+    def mark(self):
+        self.line.mark(self)
+```
+
+* Next Class developed for the Lexer implementation was "SourceLine", that is used to hold the input from the user and will
+hold also a lot of useful functionalities that will be called by the Lexer class and will track the Tokens based on their index in the 
+input.
 ```python
 class Grammar:
     ...
@@ -1161,3 +1158,5 @@ between Complete DFA and Incomplete DFA, how they are constructed and how their 
 <a id="bib1"></a>[1] “Lexer and Parser Definition | IntelliJ Platform Plugin SDK.” n.d. IntelliJ Platform Plugin SDK Help. Accessed March 16, 2024. https://plugins.jetbrains.com/docs/intellij/lexer-and-parser-definition.html.
 
 <a id="bib1"></a>[2] “Kaleidoscope: Kaleidoscope Introduction and the Lexer — LLVM 19.0.0git Documentation.” n.d. Llvm.org. Accessed March 16, 2024. https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/LangImpl01.html.
+
+<a id="bib1"></a>[3] “How to Create Your Own Programming Language - Episode 2: The Lexer.” n.d. Www.youtube.com. Accessed March 17, 2024. https://www.youtube.com/watch?v=N103OVKmDR4.

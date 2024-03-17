@@ -118,10 +118,11 @@ def convert(lst):
     for i in range(0, len(lst)):
         key = lst[i].kind
         value = lst[i].string
+        locale = lst[i].locale
         if key in res_dict:
-            res_dict[key].append(value)
+            res_dict[key].update({value: locale})
         else:
-            res_dict[key] = [value]
+            res_dict[key] = {value: locale}
     return res_dict
 
 

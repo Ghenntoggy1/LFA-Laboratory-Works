@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Lexer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_example_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_example_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/Tokens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Lab-3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-3-Lexer/main.py&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-3-Lexer&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -68,15 +70,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-2-Conversion-NFA-2-DFA\Report" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-2-Conversion-NFA-2-DFA" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-1-Grammar-Finite-Automaton\Report" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\1" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer" />
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\LexerFiles" />
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\Lexer" />
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\1" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\util" />
-      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-1-Grammar-Finite-Automaton\Report" />
     </key>
   </component>
   <component name="RunManager">
@@ -152,7 +156,9 @@
       <workItem from="1709558480714" duration="2668000" />
       <workItem from="1709724751224" duration="71000" />
       <workItem from="1710495278570" duration="8063000" />
-      <workItem from="1710520983749" duration="19324000" />
+      <workItem from="1710520983749" duration="29079000" />
+      <workItem from="1710676104673" duration="119000" />
+      <workItem from="1710679631266" duration="2577000" />
     </task>
     <servers />
   </component>
@@ -176,7 +182,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1710541802964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1710682208511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
