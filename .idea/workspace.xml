@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-3-Lexer/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,11 +72,11 @@
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-1-Grammar-Finite-Automaton\Report" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\Report" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\LexerFiles" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\Lexer" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\1" />
-      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\util" />
     </key>
   </component>
   <component name="RunManager">
@@ -155,7 +154,7 @@
       <workItem from="1710495278570" duration="8063000" />
       <workItem from="1710520983749" duration="29079000" />
       <workItem from="1710676104673" duration="119000" />
-      <workItem from="1710679631266" duration="9814000" />
+      <workItem from="1710679631266" duration="13055000" />
     </task>
     <servers />
   </component>

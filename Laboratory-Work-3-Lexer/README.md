@@ -353,7 +353,6 @@ class Lexer:
         ...
 ```
 
-
 * Here is the method to make Tokens. Each next Symbol from the Input will be checked to match any of the
 Token Type. Specifically, in this code snippet is shown how Word Lexemes are matched to a Token Type,
 such as: FORMULA Token (keyword - Formula) or VISULIZATION_TYPE Token (VisualData or VisualFormula). They all call their own specific
@@ -426,9 +425,9 @@ class Lexer:
 ```
 
 * Here I provided the Tokenization of COMMENT_BLOCK Tokens. In the Language I had, there are two Commenting possibilities:
-  * COMMENT_LINE: using "#", that will comment the symbols after this symbol,
-  * COMMENT_BLOCK: using "/\*" and "\*/" that will comment all from inside.
-  .First of all, I take the first character of the 
+  * **COMMENT_LINE**: using "#", that will comment the symbols after this symbol,
+  * **COMMENT_BLOCK**: using "/\*" and "\*/" that will comment all from inside.
+  First of all, I take the first character of the 
   Lexeme and check if the next one is "*" and then take all the elements until it finds "\*/" symbols.
   In case that the comment block was not closed, it will raise an error with the message that says that the comment block
   should be enclosed.
@@ -456,11 +455,11 @@ class Lexer:
 ```
 
 * Here I provided the Tokenization of Keyword Tokens. In the Language I had, there are multiple keywords:
-  * FILE_TYPE: csv, txt, json, excel, console,
-  * IMAGE_TYPE: png, jpg,
-  * VARIABLE_TYPE: Data, Formula, dataset, name,
-  * PLOT_TYPE: graph, pie, bar, hist, plot,
-  * ID: any string that starts with a letter. 
+  * **FILE_TYPE**: csv, txt, json, excel, console,
+  * **IMAGE_TYPE**: png, jpg,
+  * **VARIABLE_TYPE**: Data, Formula, dataset, name,
+  * **PLOT_TYPE**: graph, pie, bar, hist, plot,
+  * **ID**: any string that starts with a letter. 
   First of all, I take the whole Lexeme, and check if they are in one of the mentioned Token Types Enum classes. If they are not,
   then it is an ID Token = Identifier.
 ```python
@@ -590,7 +589,6 @@ because there are also methods that are only 2 lines of code length and are simi
 * Also, by the use of Tkinter libray, I provide User to choosem manually a .txt File from the Explorer in order to 
 tokenize its insides:
 ```python
-...
 ...
 def select_file():
     root = tk.Tk()
