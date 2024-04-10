@@ -117,6 +117,7 @@ class Grammar:
 
         copy_p = new_P.copy()
         for nullable_symbol in set_nullable_symbols:
+            print("\nFor Nullable Symbol =", nullable_symbol)
             for (LHS, RHS) in new_P.items():
                 new_productions = set()  # Store new productions here
                 for production in RHS:
@@ -130,8 +131,15 @@ class Grammar:
                         new_production = "".join(new_words)
                         if new_production != production:
                             new_productions.add(new_production)
+                        if "" in new_productions:
+                            new_productions.remove("")
                 # Update original set after the loop
+                old_productions = copy_p[LHS].copy()
                 copy_p[LHS].update(new_productions)
+                if old_productions != copy_p[LHS]:
+                    print(f"OLD RULE: {LHS} -> {old_productions}")
+                    print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
+                    print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
 
         new_P = copy_p
         print("\nNew Production Rules without \u03B5-productions:")

@@ -55,9 +55,17 @@ if __name__ == '__main__':
         "S": {"bA", "AC"},
         "A": {"bS", "BC", "AbAa"},
         "B": {"BbaA", "a", "bSa"},
-        "C": {"epsilon", "aC"},
+        "C": {"epsilon", "aC", "C"},
         "D": {"AB"}
     }
+
+    # P = {
+    #     "S": {"bA", "AC"},
+    #     "A": {"bS", "BC", "AbAa"},
+    #     "B": {"BbaA", "a", "bSa"},
+    #     "C": {"epsilon"},
+    #     "D": {"AB"}
+    # }
 
     # Start Term
     S = "S"
