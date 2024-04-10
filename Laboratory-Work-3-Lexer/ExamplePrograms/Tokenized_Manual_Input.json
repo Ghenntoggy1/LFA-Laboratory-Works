@@ -1,26 +1,20 @@
 {
-    "VARIABLE_TYPE": {
-        "Formula": [
-            0,
-            7
-        ]
-    },
-    "ID": {
-        "formula": [
-            8,
-            15
-        ]
-    },
     "NUMBER": {
         "1": [
-            16,
-            17
+            5,
+            6
+        ]
+    },
+    "COMPARISON_OPERATOR": {
+        "==": [
+            2,
+            4
         ]
     },
     "EOF": {
         "EOF": [
-            17,
-            17
+            6,
+            6
         ]
     }
 }
