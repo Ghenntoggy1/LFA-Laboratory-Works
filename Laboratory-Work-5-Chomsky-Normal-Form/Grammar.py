@@ -81,6 +81,7 @@ class Grammar:
 
     def convert_to_Chomsky_Normal_Form(self):
         if self.type_grammar == 2:
+            print("\nPerformin Conversion to Chomsky Normal Form...")
             print("\nPerforming Elimination of \u03B5-productions...")
             new_P = self.eliminate_epsilon_productions()
 
@@ -118,37 +119,45 @@ class Grammar:
         print("Set of Nullable Symbols =", set_nullable_symbols)
 
         copy_p = new_P.copy()
-        for nullable_symbol in set_nullable_symbols:
-            print("\nFor Nullable Symbol =", nullable_symbol)
-            for (LHS, RHS) in new_P.items():
-                new_productions = set()  # Store new productions here
-                for production in RHS:
-                    symbols = list(production)
-                    indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
-                    power_set = powerset(indices)
-                    for replacements in power_set:
-                        new_words = list(symbols)
-                        for index in replacements:
-                            new_words[index] = ""
-                        new_production = "".join(new_words)
-                        if new_production != production:
-                            new_productions.add(new_production)
-                        if "" in new_productions:
-                            new_productions.remove("")
-                # Update original set after the loop
-                old_productions = copy_p[LHS].copy()
-                copy_p[LHS].update(new_productions)
-                if old_productions != copy_p[LHS]:
-                    print(f"OLD RULE: {LHS} -> {old_productions}")
-                    print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
-                    print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
+        if len(set_nullable_symbols) > 0:
+            for nullable_symbol in set_nullable_symbols:
+                print("\nFor Nullable Symbol =", nullable_symbol)
+                for (LHS, RHS) in new_P.items():
+                    new_productions = set()  # Store new productions here
+                    for production in RHS:
+                        symbols = list(production)
+                        indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
+                        power_set = powerset(indices)
+                        for replacements in power_set:
+                            new_words = list(symbols)
+                            for index in replacements:
+                                new_words[index] = ""
+                            new_production = "".join(new_words)
+                            if new_production != production:
+                                new_productions.add(new_production)
+                            if "" in new_productions:
+                                new_productions.remove("")
+                    # Update original set after the loop
+                    old_productions = copy_p[LHS].copy()
+                    copy_p[LHS].update(new_productions)
+                    if old_productions != copy_p[LHS]:
+                        print(f"OLD RULE: {LHS} -> {old_productions}")
+                        print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
+                        print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
 
         new_P = copy_p
-        print("\nNew Production Rules without \u03B5-productions:")
-        print(new_P)
+        if len(set_nullable_symbols) > 0:
+            print("\nNew Production Rules without \u03B5-productions:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
+        else:
+            print("No \u03B5-productions were found!")
         return new_P
 
     def eliminate_unit_productions(self, new_P):
+        prev_P = new_P.copy()
         copy_p = new_P.copy()
         has_unit_productions = True
         iteration = 0
@@ -175,10 +184,39 @@ class Grammar:
                     if len(production) == 1 and production.isupper():
                         has_unit_productions = True
 
-            print(new_P)
+            print(f"New Production Rules after iteration {iteration}:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
         new_P = copy_p
-        print("\nNew Production Rules without \u03B5-productions and unit-productions:")
-        print(new_P)
+
+        # Calculate the difference between new_P and productive_productions
+        difference = {}
+        for symbol in new_P:
+            if symbol in prev_P:
+                difference_set = prev_P[symbol] - new_P[symbol]
+                if len(difference_set) != 0:
+                    difference[symbol] = difference_set
+
+        if len(difference.keys()) != 0:
+            print("\nNew Production Rules without \u03B5-productions and unit-productions:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
+            print("Difference between previous Production Rules and Production Rules without Unit Productions:")
+            print("Expanded/Removed Unit Productions = {")
+            for (k, v) in difference.items():
+                print("  " + k, "->", v)
+            print("}")
+        else:
+            print("No unit production expanded/removed.")
+            print("\nProduction Rules stay the same:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
         return new_P
 
     def eliminate_unproductive_symbols(self, new_P):
@@ -220,14 +258,16 @@ class Grammar:
                             else:
                                 productive_productions[LHS].add(production)
 
+            print(f"New Production Rules after iteration {iteration}:")
+            print("P = {")
+            for (k, v) in productive_productions.items():
+                print("  " + k, "->", v)
+            print("}")
+
             # Check if there's any change in productive_productions
             if prev_productive_productions == productive_productions:
                 print("No more productive productions")
                 has_unproductive_symbols = False
-
-        print("\nSet of Productive Non-Terminal Terms:", productive_symbols_set)
-        print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions:")
-        print(productive_productions)
 
         # Calculate the difference between new_P and productive_productions
         difference = {}
@@ -237,13 +277,31 @@ class Grammar:
                 if len(difference_set) != 0:
                     difference[symbol] = difference_set
 
-        print("Difference between previous Production Rules and productive Production Rules:")
-        print("Unproductive Rules that were removed:", difference)
+        if len(difference.keys()) != 0:
+            print("\nSet of Productive Non-Terminal Terms:", productive_symbols_set)
+            print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions:")
+            print("P = {")
+            for (k, v) in productive_productions.items():
+                print("  " + k, "->", v)
+            print("}")
 
+            print("Difference between previous Production Rules and productive Production Rules:")
+            print("Removed Unproductive Rules = {")
+            for (k, v) in difference.items():
+                print("  " + k, "->", v)
+            print("}")
+        else:
+            print("No unproductive rules removed.")
+            print("\nProduction Rules stay the same:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
         return productive_productions, productive_symbols_set
 
 
     def eliminate_inaccessible_symbols(self, new_P, new_V_n):
+        prev_P = new_P.copy()
         copy_P = new_P.copy()
         accessible_symbols_set = set()
         for (LHS, RHS) in new_P.items():
@@ -266,10 +324,39 @@ class Grammar:
         new_V_n = accessible_symbols_set
         new_P = copy_P
 
-        print("\nNew Set of Non-Terminal Terms:", new_V_n)
-        print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions "
-              "and inaccessible symbols:")
-        print(new_P)
+        # Calculate the difference between new_P and productive_productions
+        removed_symbols_with_productions = {}
+        for symbol in prev_P:
+            if symbol not in new_P:
+                removed_symbols_with_productions[symbol] = prev_P[symbol]
+
+        removed_symbols = set()
+        for symbol in prev_P:
+            if symbol not in new_P:
+                removed_symbols.add(symbol)
+
+        if len(removed_symbols) != 0:
+            print("\nNew Set of Non-Terminal Terms:", new_V_n)
+            print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions "
+                  "and inaccessible symbols:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
+            print("Non-terminal symbols removed:", removed_symbols)
+            print("Difference between previous Production Rules and Production Rules without inaccessible symbols:")
+            print("Rules that were removed:")
+            print("Removed_Rules = {")
+            for symbol, productions in removed_symbols_with_productions.items():
+                print(f"  {symbol} -> {productions}")
+            print("}")
+        else:
+            print("No non-terminal symbols removed.")
+            print("\nProduction Rules stay the same:")
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
 
         return new_P, new_V_n
 

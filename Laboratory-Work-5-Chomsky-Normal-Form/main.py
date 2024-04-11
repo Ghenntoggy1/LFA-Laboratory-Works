@@ -36,6 +36,13 @@ if __name__ == '__main__':
     # Terminal Terms
     V_t = {"a", "b"}
 
+    P = {
+        "S": {"bA", "AC"},
+        "A": {"bS", "BC", "AbAa"},
+        "B": {"BbaA", "a", "bSa"},
+        "C": {"epsilon"},
+        "D": {"AB"}
+    }
     # P = {
     #         "S": {"bA", "ACAC"},
     #         "A": {"bS", "BC", "AbAa"},
@@ -44,20 +51,6 @@ if __name__ == '__main__':
     #         "D": {"AB"}
     #     }
 
-    # P = {
-    #     "S": {"aX", "bY", "Z"},
-    #     "X": {"aSa", "aa"},
-    #     "Y": {"a", "X"},
-    #     "Z": {"ab"}
-    # }
-    #
-    # P = {
-    #     "S": {"bA", "AC"},
-    #     "A": {"bS", "BC", "AbAa"},
-    #     "B": {"BbaA", "a", "bSa"},
-    #     "C": {"epsilon"},
-    #     "D": {"AB"}
-    # }
     #
     # P = {
     #     "S": {"AaD", "a"},
@@ -66,22 +59,14 @@ if __name__ == '__main__':
     #     "D": {"b"},
     #     "C": {"aA"}
     # }
-    #
+
     # P = {
-    #     "S": {"bA", "AC"},
-    #     "A": {"bS", "BC", "AbAa"},
-    #     "B": {"BbaA", "a", "bSa"},
-    #     "C": {"epsilon", "aC", "C"},
+    #     "S": {"AC", "bA", "B", "aA"},
+    #     "A": {"epsilon", "aS", "ABAb"},
+    #     "B": {"a", "AbSA"},
+    #     "C": {"abC"},
     #     "D": {"AB"}
     # }
-
-    P = {
-        "S": {"AC", "bA", "B", "aA"},
-        "A": {"epsilon", "aS", "ABAb"},
-        "B": {"a", "AbSA"},
-        "C": {"abC"},
-        "D": {"AB"}
-    }
 
     # Start Term
     S = "S"
