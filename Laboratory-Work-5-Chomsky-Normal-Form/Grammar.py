@@ -84,10 +84,10 @@ class Grammar:
             new_P = self.eliminate_epsilon_productions()
 
             print("\nPerforming Elimination of unit-productions...")
-            self.eliminate_unit_productions(new_P)
+            new_P = self.eliminate_unit_productions(new_P)
 
             print("Performing Elimination of inaccessible symbols...")
-            self.eliminate_inaccessible_symbols()
+            self.eliminate_inaccessible_symbols(new_P)
 
             print("Performing Elimination of Unproductive Symbols...")
             self.eliminate_unproductive_symbols()
@@ -177,9 +177,34 @@ class Grammar:
         new_P = copy_p
         print("\nNew Production Rules without \u03B5-productions and unit-productions:")
         print(new_P)
+        return new_P
 
-    def eliminate_inaccessible_symbols(self):
-        pass
+    def eliminate_inaccessible_symbols(self, new_P):
+        copy_P = new_P.copy()
+        accessible_symbols_set = set()
+        for (LHS, RHS) in new_P.items():
+            for production in RHS:
+                for symbol in production:
+                    if symbol.isupper() and symbol != LHS:
+                        accessible_symbols_set.add(symbol)
+
+        inaccessible_symbols_set = self.V_n.difference(accessible_symbols_set)
+        print("Set of Accessible Symbols =", accessible_symbols_set)
+        print("Set of Inaccessible Symbols =", inaccessible_symbols_set)
+        for inaccessible_symbol in inaccessible_symbols_set:
+            try:
+                copy_P.pop(inaccessible_symbol)
+            except KeyError:
+                continue
+
+        new_V_n = accessible_symbols_set
+        new_P = copy_P
+
+        print("\nNew Set of Non-Terminal Terms:", new_V_n)
+        print("\nNew Production Rules without \u03B5-productions, unit-productions and inaccessible symbols:")
+        print(new_P)
+
+        return new_P, new_V_n
 
     def eliminate_unproductive_symbols(self):
         pass
