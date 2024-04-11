@@ -5,6 +5,7 @@ from re import sub
 from itertools import chain, combinations
 
 
+
 def powerset(iterable):
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
@@ -86,13 +87,14 @@ class Grammar:
             print("\nPerforming Elimination of unit-productions...")
             new_P = self.eliminate_unit_productions(new_P)
 
-            print("Performing Elimination of inaccessible symbols...")
-            self.eliminate_inaccessible_symbols(new_P)
+            print("Performing Elimination of unproductive Symbols...")
+            new_P, new_V_n = self.eliminate_unproductive_symbols(new_P)
 
-            print("Performing Elimination of Unproductive Symbols...")
-            self.eliminate_unproductive_symbols()
+            print("\nPerforming Elimination of inaccessible symbols...")
+            new_P, new_V_n = self.eliminate_inaccessible_symbols(new_P, new_V_n)
 
             # TODO: Conversion to CNF
+            # if
         else:
             print("Grammar is not of type 2! Can't convert to Chomsky Normal Form!")
 
@@ -179,16 +181,80 @@ class Grammar:
         print(new_P)
         return new_P
 
-    def eliminate_inaccessible_symbols(self, new_P):
+    def eliminate_unproductive_symbols(self, new_P):
+        productive_symbols_set = set()
+        productive_productions = {}
+
+        iteration = 0
+        has_unproductive_symbols = True
+
+        print("Finding Productive Symbols:")
+        while has_unproductive_symbols:
+            iteration += 1
+            print(f"Iteration {iteration}:")
+
+            prev_productive_productions = productive_productions.copy()
+            for (LHS, RHS) in new_P.items():
+                for production in RHS:
+                    if len(production) == 1:
+                        if production.islower() and production in self.V_t:
+                            if LHS not in productive_symbols_set:
+                                print(f"{LHS} -> {production}")
+                            productive_symbols_set.add(LHS)
+                            if LHS not in productive_productions:
+                                productive_productions[LHS] = {production}
+                            else:
+                                productive_productions[LHS].add(production)
+                    else:
+                        is_productive = True
+                        for symbol in production:
+                            if symbol.isupper():
+                                # if is_productive:
+                                if symbol not in productive_symbols_set:
+                                    is_productive = False
+                        if is_productive:
+                            print(f"{LHS} -> {production}")
+                            productive_symbols_set.add(LHS)
+                            if LHS not in productive_productions:
+                                productive_productions[LHS] = {production}
+                            else:
+                                productive_productions[LHS].add(production)
+
+            # Check if there's any change in productive_productions
+            if prev_productive_productions == productive_productions:
+                print("No more productive productions")
+                has_unproductive_symbols = False
+
+        print("\nSet of Productive Non-Terminal Terms:", productive_symbols_set)
+        print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions:")
+        print(productive_productions)
+
+        # Calculate the difference between new_P and productive_productions
+        difference = {}
+        for symbol in productive_productions:
+            if symbol in new_P:
+                difference_set = new_P[symbol] - productive_productions[symbol]
+                if len(difference_set) != 0:
+                    difference[symbol] = difference_set
+
+        print("Difference between previous Production Rules and productive Production Rules:")
+        print("Unproductive Rules that were removed:", difference)
+
+        return productive_productions, productive_symbols_set
+
+
+    def eliminate_inaccessible_symbols(self, new_P, new_V_n):
         copy_P = new_P.copy()
         accessible_symbols_set = set()
         for (LHS, RHS) in new_P.items():
             for production in RHS:
+                if LHS == self.S and len(production) == 1 and production in self.V_t:
+                    accessible_symbols_set.add(LHS)
                 for symbol in production:
                     if symbol.isupper() and symbol != LHS:
                         accessible_symbols_set.add(symbol)
 
-        inaccessible_symbols_set = self.V_n.difference(accessible_symbols_set)
+        inaccessible_symbols_set = new_V_n.difference(accessible_symbols_set)
         print("Set of Accessible Symbols =", accessible_symbols_set)
         print("Set of Inaccessible Symbols =", inaccessible_symbols_set)
         for inaccessible_symbol in inaccessible_symbols_set:
@@ -201,14 +267,11 @@ class Grammar:
         new_P = copy_P
 
         print("\nNew Set of Non-Terminal Terms:", new_V_n)
-        print("\nNew Production Rules without \u03B5-productions, unit-productions and inaccessible symbols:")
+        print("\nNew Production Rules without \u03B5-productions, unit-productions, unproductive-productions "
+              "and inaccessible symbols:")
         print(new_P)
 
         return new_P, new_V_n
-
-    def eliminate_unproductive_symbols(self):
-        pass
-
 
 
     def check_type_grammar(self):

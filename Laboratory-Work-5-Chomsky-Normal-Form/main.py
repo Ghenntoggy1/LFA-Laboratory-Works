@@ -51,14 +51,6 @@ if __name__ == '__main__':
     #     "Z": {"ab"}
     # }
     #
-    P = {
-        "S": {"bA", "AC"},
-        "A": {"bS", "BC", "AbAa"},
-        "B": {"BbaA", "a", "bSa"},
-        "C": {"epsilon", "aC", "C"},
-        "D": {"AB"}
-    }
-
     # P = {
     #     "S": {"bA", "AC"},
     #     "A": {"bS", "BC", "AbAa"},
@@ -66,6 +58,30 @@ if __name__ == '__main__':
     #     "C": {"epsilon"},
     #     "D": {"AB"}
     # }
+    #
+    # P = {
+    #     "S": {"AaD", "a"},
+    #     "B": {"C"},
+    #     "A": {"Bb"},
+    #     "D": {"b"},
+    #     "C": {"aA"}
+    # }
+    #
+    # P = {
+    #     "S": {"bA", "AC"},
+    #     "A": {"bS", "BC", "AbAa"},
+    #     "B": {"BbaA", "a", "bSa"},
+    #     "C": {"epsilon", "aC", "C"},
+    #     "D": {"AB"}
+    # }
+
+    P = {
+        "S": {"AC", "bA", "B", "aA"},
+        "A": {"epsilon", "aS", "ABAb"},
+        "B": {"a", "AbSA"},
+        "C": {"abC"},
+        "D": {"AB"}
+    }
 
     # Start Term
     S = "S"
