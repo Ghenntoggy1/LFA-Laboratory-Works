@@ -14,8 +14,8 @@ def powerset(iterable):
 class Grammar:
     # Constructor with some state variables as needed.
     # {V_n, V_t, P, S}
-    def __init__(self, V_n=None, V_t=None, P=None, S=None):
-        self.type_grammar = None
+    def __init__(self, V_n=None, V_t=None, P=None, S=None, type=None):
+        self.type_grammar = type
         if V_n is None or V_t is None or P is None or S is None:
             self.create_grammar()
         else:
@@ -28,7 +28,8 @@ class Grammar:
                         v.remove(deriv)
                         v.add("\u03B5")
             self.S = S
-            self.check_type_grammar()
+            if type is None:
+                self.check_type_grammar()
 
     # Print function to easy print the variables in the console.
     def print_variables(self):
@@ -81,7 +82,7 @@ class Grammar:
 
     def convert_to_Chomsky_Normal_Form(self):
         if self.type_grammar == 2:
-            print("\nPerformin Conversion to Chomsky Normal Form...")
+            print("\nPerforming Conversion to Chomsky Normal Form...")
             print("\nPerforming Elimination of \u03B5-productions...")
             new_P = self.eliminate_epsilon_productions()
 
@@ -95,9 +96,117 @@ class Grammar:
             new_P, new_V_n = self.eliminate_inaccessible_symbols(new_P, new_V_n)
 
             # TODO: Conversion to CNF
-            # if
+            print("\nConverting to Chomsky Normal Form...")
+            new_V_t = self.V_t.copy()
+            if "\u03B5" in new_V_t:
+                new_V_t.remove("\u03B5")
+            new_S = self.S
+
+            CNF_P = {}
+
+            old_P = new_P.copy()
+            for (LHS, RHS) in new_P.items():
+                new_RHS = set()
+                for production in RHS:
+                    new_RHS.add(tuple(production))
+                new_P[LHS] = new_RHS
+
+            has_new_rules = True
+            iteration = 0
+            while has_new_rules:
+                copy_P = new_P.copy()
+                iteration += 1
+                print("Iteration {}".format(iteration))
+                for (LHS, RHS) in new_P.items():
+                    for production in set(RHS):
+                        if type(production) is tuple:
+                            production_list = list(production)
+                        else:
+                            break
+                        if len(production_list) == 1 and production_list[0] in new_V_t:
+                            print(f"DELETED RULE: {LHS} -> {production}")
+                            copy_P[LHS].remove(production)
+                            copy_P[LHS].add("".join(production_list))
+                            print(f"ADDED RULE: {LHS} -> {"".join(production_list)}")
+                            print("P = {")
+                            for (k, v) in copy_P.items():
+                                print("  " + k, "->", v)
+                            print("}")
+                        else:
+                            if len(production_list) >= 2:
+                                copy_old_list = production
+                                copy_P[LHS].remove(production)
+                                for symbol in production_list:
+                                    if symbol in new_V_t:
+                                        new_Non_Terminal = symbol.upper() + "(" + symbol + ")"
+                                        new_V_n.add(new_Non_Terminal)
+                                        production_list[production_list.index(symbol)] = new_Non_Terminal
+                                        if new_Non_Terminal not in copy_P:
+                                            copy_P[new_Non_Terminal] = {symbol}
+                                            print(f"ADDED RULE: {new_Non_Terminal} -> {symbol}")
+                                            print("P = {")
+                                            for (k, v) in copy_P.items():
+                                                print("  " + k, "->", v)
+                                            print("}")
+                                        else:
+                                            copy_P[new_Non_Terminal].add(symbol)
+                                if len(production_list) == 2:
+                                    copy_P[LHS].add("".join(production_list))
+                                    print(f"DELETED RULE: {LHS} -> {copy_old_list}")
+                                    print(f"ADDED RULE: {LHS} -> {"".join(production_list)}")
+                                    print("P = {")
+                                    for (k, v) in copy_P.items():
+                                        print("  " + k, "->", v)
+                                    print("}")
+                                else:
+                                    new_production = [production_list[0]]
+                                    rest_production = production_list[1:len(production_list)]
+
+                                    non_terminal_to_post = ""
+                                    lst_existing_new_non_terminal = set([key for key in copy_P.keys() if re.match(r'^D\(\d+\)$', key)])
+                                    for key in lst_existing_new_non_terminal:
+                                        if ("".join(rest_production) == "".join("".join(item) for item in copy_P[key])
+                                                and re.match(r'^D\(\d+\)$', key)):
+                                            non_terminal_to_post = key
+                                    if non_terminal_to_post == "":
+                                        new_int = len(lst_existing_new_non_terminal) + 1
+                                        non_terminal_to_post = f"D({str(new_int)})"
+                                    new_production.append(non_terminal_to_post)
+                                    copy_P[non_terminal_to_post] = {tuple(rest_production)}
+
+                                    print(f"DELETED RULE: {LHS} -> {"".join(production_list)}")
+                                    print(f"ADDED RULE: {LHS} -> {"".join(new_production)}")
+                                    print(f"NEW ADDED RULE: {non_terminal_to_post} -> {"".join(rest_production)}")
+                                    copy_P[LHS].add("".join(new_production))
+                                    print("P = {")
+                                    for (k, v) in copy_P.items():
+                                        print("  " + k, "->", v)
+                                    print("}")
+                if copy_P == new_P:
+                    print("No new Rules.")
+                    print("V_n =", set(new_P.keys()))
+                    has_new_rules = False
+                    print("P = {")
+                    for (k, v) in new_P.items():
+                        print("  " + k, "->", v)
+                    print("}")
+                else:
+                    new_P = copy_P
+
+            print("CFG IN CHOSMKY NORMAL FORM:")
+            print("S =", new_S)
+            print("V_t =", new_V_t)
+            new_V_n = set(new_P.keys())
+            print("V_n =", new_V_n)
+            print("P = {")
+            for (k, v) in new_P.items():
+                print("  " + k, "->", v)
+            print("}")
+
+            return Grammar(V_n=new_V_n, V_t=new_V_t, P=new_P, S=new_S, type=self.type_grammar)
         else:
             print("Grammar is not of type 2! Can't convert to Chomsky Normal Form!")
+            return None
 
     def eliminate_epsilon_productions(self):
         new_P = {}
@@ -620,7 +729,7 @@ class Grammar:
     #     return FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
 
 
-# Rudimentary Method for finding final states.  
+# Rudimentary Method for finding final states.
 
 # # Check if in the derivation list we can achieve a final state - if the rule derives into an expression
 # # without non-terminal term.

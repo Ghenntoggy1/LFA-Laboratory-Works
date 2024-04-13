@@ -51,7 +51,7 @@ if __name__ == '__main__':
     #         "D": {"AB"}
     #     }
 
-    #
+
     # P = {
     #     "S": {"AaD", "a"},
     #     "B": {"C"},
@@ -80,8 +80,6 @@ if __name__ == '__main__':
     print("\nGenerating Grammar from Input from Laboratory Work 5...")
     grammar = Grammar.Grammar(V_n, V_t, P, S)
 
-    # grammar2 = Grammar.Grammar()
-
     print("Printing Grammar from Input from Laboratory Work 5:", end="")
     grammar.print_variables()
 
@@ -89,7 +87,7 @@ if __name__ == '__main__':
     print("Checking Type of Grammar:")
     grammar.check_type_grammar()
 
-    grammar.convert_to_Chomsky_Normal_Form()
+    CNF_Grammar = grammar.convert_to_Chomsky_Normal_Form()
 
     # # Instance of Grammar Class with q_ notation of Non-Terminal Terms
     # print("\nGenerating Grammar from Input from Laboratory Work 1 with q_ notation...")
