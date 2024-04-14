@@ -74,15 +74,6 @@ if __name__ == '__main__':
     #     "D": {"Aba"}
     # }
     #
-    V_n = {"S", "A", "B", "C", "D"}
-    V_t = {"a", "b"}
-    P = {
-        "S": {"AC", "bA", "B", "aA"},
-        "A": {"epsilon", "aS", "ABAb"},
-        "B": {"a", "AbSA"},
-        "C": {"abC"},
-        "D": {"AB"}
-    }
     S = "S"
     # Start Term
     S = "S"
