@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/Grammar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/Grammar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +181,7 @@
       <workItem from="1713009000423" duration="35580000" />
       <workItem from="1713082946676" duration="15027000" />
       <workItem from="1713099754447" duration="10390000" />
-      <workItem from="1713110168696" duration="101000" />
+      <workItem from="1713110168696" duration="2520000" />
     </task>
     <servers />
   </component>
@@ -213,6 +211,6 @@
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$test.coverage" NAME="test Coverage Results" MODIFIED="1707423432537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713109056476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713110442527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
