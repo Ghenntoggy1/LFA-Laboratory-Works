@@ -95,6 +95,7 @@ class Grammar:
             print("\nPerforming Elimination of inaccessible symbols...")
             new_P, new_V_n = self.eliminate_inaccessible_symbols(new_P, new_V_n)
 
+
             # TODO: Conversion to CNF
             print("\nConverting to Chomsky Normal Form...")
             new_V_t = self.V_t.copy()
@@ -235,24 +236,6 @@ class Grammar:
                             flag = True
                     if not flag:
                         set_nullable_symbols.add(LHS)
-
-                    # else:
-                    #     if production == "\u03B5":
-                    #         set_nullable_symbols.add(LHS)
-                    #     else:
-                    #         flag = False
-                    #         for symbol in production:
-                    #             if symbol in self.V_t:
-                    #                 flag = True
-                    #         if not flag:
-                    #             for symbol in production:
-                    #                 if symbol in set_nullable_symbols:
-                    #                     set_nullable_symbols.add(LHS)
-                    #                     break
-                    #         if LHS not in new_P:
-                    #             new_P[LHS] = {production}
-                    #         else:
-                    #             new_P[LHS].add(production)
             if copy_set == set_nullable_symbols:
                 break
 
@@ -440,14 +423,13 @@ class Grammar:
             print("}")
         return productive_productions, productive_symbols_set
 
-
     def eliminate_inaccessible_symbols(self, new_P, new_V_n):
         prev_P = new_P.copy()
         copy_P = new_P.copy()
         accessible_symbols_set = set()
         for (LHS, RHS) in new_P.items():
             for production in RHS:
-                if LHS == self.S and len(production) == 1 and production in self.V_t:
+                if LHS == self.S:
                     accessible_symbols_set.add(LHS)
                 for symbol in production:
                     if symbol.isupper() and symbol != LHS:

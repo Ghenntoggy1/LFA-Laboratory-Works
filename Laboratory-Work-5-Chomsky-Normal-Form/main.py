@@ -30,12 +30,19 @@ if __name__ == '__main__':
     print("Group: FAF-222")
 
     # Non-Terminal Terms
-    V_n = {"S", "A", "B", "D", "C", "E"}
+    V_n = {"S", "A", "B", "D", "C"}
     # V_n = {"S", "X", "Y", "Z"}
 
     # Terminal Terms
     V_t = {"a", "b", "c"}
+    # V_t = {"0", "1"}
 
+    # P = {
+    #     "S": {"XYX", "XY", "YX", "1Y", "1", "XX", "0X", "0"},
+    #     "X": {"0X", "0"},
+    #     "Y": {"1Y", "1"},
+    #     "Z": {"1Y", "1"}
+    # }
     # P = {
     #     "S": {"bA", "AC"},
     #     "A": {"bS", "BC", "AbAa"},
@@ -67,15 +74,23 @@ if __name__ == '__main__':
     #     "D": {"Aba"}
     # }
     #
+    # P = {
+    #     "S": {"ABC", "aA", "bB", "CD", "epsilon"},
+    #     "A": {"aA", "Aa", "D", "B"},
+    #     "B": {"bB", "BC", "C", "epsilon"},
+    #     "C": {"cC", "Cc", "D"},
+    #     "D": {"AD", "aD", "B"},
+    #     "E": {"epsilon", "S"}
+    # }
+    V_n = {"S", "A", "B", "C", "D"}
+    V_t = {"a", "b"}
     P = {
-        "S": {"ABC", "aA", "bB", "CD", "epsilon"},
-        "A": {"aA", "Aa", "D", "B"},
-        "B": {"bB", "BC", "C", "epsilon"},
-        "C": {"cC", "Cc", "D"},
-        "D": {"AD", "aD", "B"},
-        "E": {"epsilon", "S"}
+        "S": {"AC", "bA", "B", "aA"},
+        "A": {"epsilon", "aS", "ABAb"},
+        "B": {"a", "AbSA"},
+        "C": {"abC"},
+        "D": {"AB"}
     }
-
     # Start Term
     S = "S"
 
