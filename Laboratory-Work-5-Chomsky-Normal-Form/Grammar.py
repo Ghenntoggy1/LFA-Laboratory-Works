@@ -217,44 +217,77 @@ class Grammar:
             # Iterate over all the RHS possible derivations
             for production in RHS:
                 # If derivation is ε, then add this symbol to the set from above
-                if production == "\u03B5":
-                    set_nullable_symbols.add(LHS)
-                else:
-                    if LHS not in new_P:
-                        new_P[LHS] = {production}
+                # if len(RHS) == 1:
+                    if production == "\u03B5":
+                        set_nullable_symbols.add(LHS)
                     else:
-                        new_P[LHS].add(production)
+                        if LHS not in new_P:
+                            new_P[LHS] = {production}
+                        else:
+                            new_P[LHS].add(production)
+        while True:
+            copy_set = set_nullable_symbols.copy()
+            for (LHS, RHS) in self.P.items():
+                for production in RHS:
+                    flag = False
+                    for symbol in production:
+                        if symbol not in set_nullable_symbols:
+                            flag = True
+                    if not flag:
+                        set_nullable_symbols.add(LHS)
+
+                    # else:
+                    #     if production == "\u03B5":
+                    #         set_nullable_symbols.add(LHS)
+                    #     else:
+                    #         flag = False
+                    #         for symbol in production:
+                    #             if symbol in self.V_t:
+                    #                 flag = True
+                    #         if not flag:
+                    #             for symbol in production:
+                    #                 if symbol in set_nullable_symbols:
+                    #                     set_nullable_symbols.add(LHS)
+                    #                     break
+                    #         if LHS not in new_P:
+                    #             new_P[LHS] = {production}
+                    #         else:
+                    #             new_P[LHS].add(production)
+            if copy_set == set_nullable_symbols:
+                break
 
         print("Set of Nullable Symbols =", set_nullable_symbols)
 
         copy_p = new_P.copy()
         if len(set_nullable_symbols) > 0:
-            for nullable_symbol in set_nullable_symbols:
-                print("\nFor Nullable Symbol =", nullable_symbol)
-                for (LHS, RHS) in new_P.items():
-                    new_productions = set()  # Store new productions here
-                    for production in RHS:
-                        symbols = list(production)
-                        indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
-                        power_set = powerset(indices)
-                        for replacements in power_set:
-                            new_words = list(symbols)
-                            for index in replacements:
-                                new_words[index] = ""
-                            new_production = "".join(new_words)
-                            if new_production != production:
-                                new_productions.add(new_production)
-                            if "" in new_productions:
-                                new_productions.remove("")
-                    # Update original set after the loop
-                    old_productions = copy_p[LHS].copy()
-                    copy_p[LHS].update(new_productions)
-                    if old_productions != copy_p[LHS]:
-                        print(f"OLD RULE: {LHS} -> {old_productions}")
-                        print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
-                        print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
-
-        new_P = copy_p
+            # while True:
+                for nullable_symbol in set_nullable_symbols:
+                    print("\nFor Nullable Symbol =", nullable_symbol)
+                    for (LHS, RHS) in new_P.items():
+                        new_productions = set()  # Store new productions here
+                        for production in RHS:
+                            symbols = list(production)
+                            indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
+                            power_set = powerset(indices)
+                            for replacements in power_set:
+                                new_words = list(symbols)
+                                for index in replacements:
+                                    new_words[index] = ""
+                                new_production = "".join(new_words)
+                                if new_production != production:
+                                    new_productions.add(new_production)
+                                if "" in new_productions:
+                                    new_productions.remove("")
+                        # Update original set after the loop
+                        old_productions = copy_p[LHS].copy()
+                        copy_p[LHS].update(new_productions)
+                        if old_productions != copy_p[LHS]:
+                            print(f"OLD RULE: {LHS} -> {old_productions}")
+                            print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
+                            print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
+                # if copy_p == new_P:
+                #     break
+                new_P = copy_p
         if len(set_nullable_symbols) > 0:
             print("\nNew Production Rules without \u03B5-productions:")
             print("P = {")
@@ -339,12 +372,11 @@ class Grammar:
         while has_unproductive_symbols:
             iteration += 1
             print(f"Iteration {iteration}:")
-
             prev_productive_productions = productive_productions.copy()
             for (LHS, RHS) in new_P.items():
                 for production in RHS:
                     if len(production) == 1:
-                        if production.islower() and production in self.V_t:
+                        if production in self.V_t:
                             if LHS not in productive_symbols_set:
                                 print(f"{LHS} -> {production}")
                             productive_symbols_set.add(LHS)
@@ -403,7 +435,7 @@ class Grammar:
             print("No unproductive rules removed.")
             print("\nProduction Rules stay the same:")
             print("P = {")
-            for (k, v) in new_P.items():
+            for (k, v) in productive_productions.items():
                 print("  " + k, "->", v)
             print("}")
         return productive_productions, productive_symbols_set

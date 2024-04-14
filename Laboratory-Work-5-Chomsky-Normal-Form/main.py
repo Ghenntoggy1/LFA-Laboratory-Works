@@ -30,11 +30,11 @@ if __name__ == '__main__':
     print("Group: FAF-222")
 
     # Non-Terminal Terms
-    V_n = {"S", "A", "B", "C", "D"}
+    V_n = {"S", "A", "B", "C", "D", "E"}
     # V_n = {"S", "X", "Y", "Z"}
 
     # Terminal Terms
-    V_t = {"a", "b"}
+    V_t = {"a", "b", "c"}
 
     P = {
         "S": {"bA", "AC"},
@@ -61,11 +61,19 @@ if __name__ == '__main__':
     # }
 
     # P = {
-    #     "S": {"AC", "bA", "B", "aA"},
-    #     "A": {"epsilon", "aS", "ABAb"},
-    #     "B": {"a", "AbSA"},
-    #     "C": {"abC"},
-    #     "D": {"AB"}
+    #     "S": {"dB", "AB"},
+    #     "A": {"d", "dS", "aAaAb", "epsilon"},
+    #     "B": {"a", "aS", "A"},
+    #     "D": {"Aba"}
+    # }
+
+    # P = {
+    #     "S": {"ABC", "aA", "bB", "CD", "epsilon"},
+    #     "A": {"aA", "Aa", "D", "B"},
+    #     "B": {"bB", "BC", "C", "epsilon"},
+    #     "C": {"cC", "Cc", "D"},
+    #     "D": {"AD", "aD", "B"},
+    #     "E": {"epsilon", "S"}
     # }
 
     # Start Term
@@ -88,6 +96,7 @@ if __name__ == '__main__':
     grammar.check_type_grammar()
 
     CNF_Grammar = grammar.convert_to_Chomsky_Normal_Form()
+
 
     # # Instance of Grammar Class with q_ notation of Non-Terminal Terms
     # print("\nGenerating Grammar from Input from Laboratory Work 1 with q_ notation...")
