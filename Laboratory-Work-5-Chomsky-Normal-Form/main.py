@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # V_n = {"S", "X", "Y", "Z"}
 
     # Terminal Terms
-    V_t = {"a", "b", "c"}
+    V_t = {"a", "b"}
     # V_t = {"0", "1"}
 
     # P = {
@@ -43,13 +43,13 @@ if __name__ == '__main__':
     #     "Y": {"1Y", "1"},
     #     "Z": {"1Y", "1"}
     # }
-    # P = {
-    #     "S": {"bA", "AC"},
-    #     "A": {"bS", "BC", "AbAa"},
-    #     "B": {"BbaA", "a", "bSa"},
-    #     "C": {"epsilon"},
-    #     "D": {"AB"}
-    # }
+    P = {
+        "S": {"bA", "AC"},
+        "A": {"bS", "BC", "AbAa"},
+        "B": {"BbaA", "a", "bSa"},
+        "C": {"epsilon"},
+        "D": {"AB"}
+    }
     # P = {
     #         "S": {"bA", "ACAC"},
     #         "A": {"bS", "BC", "AbAa"},
@@ -74,14 +74,6 @@ if __name__ == '__main__':
     #     "D": {"Aba"}
     # }
     #
-    # P = {
-    #     "S": {"ABC", "aA", "bB", "CD", "epsilon"},
-    #     "A": {"aA", "Aa", "D", "B"},
-    #     "B": {"bB", "BC", "C", "epsilon"},
-    #     "C": {"cC", "Cc", "D"},
-    #     "D": {"AD", "aD", "B"},
-    #     "E": {"epsilon", "S"}
-    # }
     V_n = {"S", "A", "B", "C", "D"}
     V_t = {"a", "b"}
     P = {
@@ -91,6 +83,7 @@ if __name__ == '__main__':
         "C": {"abC"},
         "D": {"AB"}
     }
+    S = "S"
     # Start Term
     S = "S"
 
@@ -111,7 +104,6 @@ if __name__ == '__main__':
     grammar.check_type_grammar()
 
     CNF_Grammar = grammar.convert_to_Chomsky_Normal_Form()
-
 
     # # Instance of Grammar Class with q_ notation of Non-Terminal Terms
     # print("\nGenerating Grammar from Input from Laboratory Work 1 with q_ notation...")

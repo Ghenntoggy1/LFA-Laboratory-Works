@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/Grammar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/Grammar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/UnitTests/UnproductiveTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/UnitTests/UnproductiveTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/UnitTests/PreCNFConversionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/UnitTests/PreCNFConversionTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +44,14 @@
     "Python tests.Python tests for UnitTest.UnitTestsEpsilonElimination.executor": "Run",
     "Python tests.Python tests for UnitTest.UnitTestsToCNF.executor": "Run",
     "Python tests.Python tests for UnproductiveTest.UnitTestsUnproductiveElimination.test_eliminate_unit_productions_1.executor": "Run",
+    "Python tests.Python tests in CNFTest.py.executor": "Run",
     "Python tests.Python tests in EpsilonTest.py.executor": "Run",
     "Python tests.Python tests in InaccessibleTest.py.executor": "Run",
+    "Python tests.Python tests in PreCNFConversionTest.py.executor": "Run",
     "Python tests.Python tests in UnitTest.py.executor": "Run",
     "Python tests.Python tests in UnproductiveTest.py.executor": "Run",
     "Python tests.Python tests in UnreachableTest.py.executor": "Run",
+    "Python tests.Python tests in finalTest.py.executor": "Run",
     "Python.FiniteAutomaton.executor": "Debug",
     "Python.Grammar.executor": "Run",
     "Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor": "Run",
@@ -179,7 +181,7 @@
       <workItem from="1712864756249" duration="15014000" />
       <workItem from="1712997536009" duration="1404000" />
       <workItem from="1713009000423" duration="35580000" />
-      <workItem from="1713082946676" duration="8012000" />
+      <workItem from="1713082946676" duration="13538000" />
     </task>
     <servers />
   </component>
@@ -203,12 +205,12 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$.coverage" NAME=" Coverage Results" MODIFIED="1713092469453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$.coverage" NAME=" Coverage Results" MODIFIED="1713097788587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$Grammar.coverage" NAME="Grammar Coverage Results" MODIFIED="1713092401450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$Grammar.coverage" NAME="Grammar Coverage Results" MODIFIED="1713098051566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$test.coverage" NAME="test Coverage Results" MODIFIED="1707423432537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713092404996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713098055587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

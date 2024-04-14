@@ -2,7 +2,7 @@ import unittest
 from .. import Grammar
 
 
-class UnitTestsInaccessibleElimination(unittest.TestCase):
+class UnitTestsPreCNFConversion(unittest.TestCase):
     def setUp(self):
         V_n = {"S", "X", "Y"}
         V_t = {"0", "1"}
@@ -80,7 +80,6 @@ class UnitTestsInaccessibleElimination(unittest.TestCase):
         new_P = self.grammar2.eliminate_epsilon_productions()
         new_P = self.grammar2.eliminate_unit_productions(new_P=new_P)
         new_P, new_V_n = self.grammar2.eliminate_unproductive_symbols(new_P=new_P)
-        new_P, new_V_n = self.grammar2.eliminate_inaccessible_symbols(new_P=new_P, new_V_n=new_V_n)
         new_P, new_V_n = self.grammar2.eliminate_inaccessible_symbols(new_P=new_P, new_V_n=new_V_n)
         expected_new_P = {
             "S": {"bA", "aA", "b", "a", "AbSA", "AbS", "bS", "bSA"},
