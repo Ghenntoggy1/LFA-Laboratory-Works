@@ -5,7 +5,6 @@ from re import sub
 from itertools import chain, combinations
 
 
-
 def powerset(iterable):
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
@@ -95,17 +94,12 @@ class Grammar:
             print("\nPerforming Elimination of inaccessible symbols...")
             new_P, new_V_n = self.eliminate_inaccessible_symbols(new_P, new_V_n)
 
-
-            # TODO: Conversion to CNF
             print("\nConverting to Chomsky Normal Form...")
             new_V_t = self.V_t.copy()
             if "\u03B5" in new_V_t:
                 new_V_t.remove("\u03B5")
             new_S = self.S
 
-            CNF_P = {}
-
-            old_P = new_P.copy()
             for (LHS, RHS) in new_P.items():
                 new_RHS = set()
                 for production in RHS:
@@ -164,7 +158,8 @@ class Grammar:
                                     rest_production = production_list[1:len(production_list)]
 
                                     non_terminal_to_post = ""
-                                    lst_existing_new_non_terminal = set([key for key in copy_P.keys() if re.match(r'^D\(\d+\)$', key)])
+                                    lst_existing_new_non_terminal = set(
+                                        [key for key in copy_P.keys() if re.match(r'^D\(\d+\)$', key)])
                                     for key in lst_existing_new_non_terminal:
                                         if ("".join(rest_production) == "".join("".join(item) for item in copy_P[key])
                                                 and re.match(r'^D\(\d+\)$', key)):
@@ -218,14 +213,13 @@ class Grammar:
             # Iterate over all the RHS possible derivations
             for production in RHS:
                 # If derivation is ε, then add this symbol to the set from above
-                # if len(RHS) == 1:
-                    if production == "\u03B5":
-                        set_nullable_symbols.add(LHS)
+                if production == "\u03B5":
+                    set_nullable_symbols.add(LHS)
+                else:
+                    if LHS not in new_P:
+                        new_P[LHS] = {production}
                     else:
-                        if LHS not in new_P:
-                            new_P[LHS] = {production}
-                        else:
-                            new_P[LHS].add(production)
+                        new_P[LHS].add(production)
         while True:
             copy_set = set_nullable_symbols.copy()
             for (LHS, RHS) in self.P.items():
@@ -243,34 +237,31 @@ class Grammar:
 
         copy_p = new_P.copy()
         if len(set_nullable_symbols) > 0:
-            # while True:
-                for nullable_symbol in set_nullable_symbols:
-                    print("\nFor Nullable Symbol =", nullable_symbol)
-                    for (LHS, RHS) in new_P.items():
-                        new_productions = set()  # Store new productions here
-                        for production in RHS:
-                            symbols = list(production)
-                            indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
-                            power_set = powerset(indices)
-                            for replacements in power_set:
-                                new_words = list(symbols)
-                                for index in replacements:
-                                    new_words[index] = ""
-                                new_production = "".join(new_words)
-                                if new_production != production:
-                                    new_productions.add(new_production)
-                                if "" in new_productions:
-                                    new_productions.remove("")
-                        # Update original set after the loop
-                        old_productions = copy_p[LHS].copy()
-                        copy_p[LHS].update(new_productions)
-                        if old_productions != copy_p[LHS]:
-                            print(f"OLD RULE: {LHS} -> {old_productions}")
-                            print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
-                            print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
-                # if copy_p == new_P:
-                #     break
-                new_P = copy_p
+            for nullable_symbol in set_nullable_symbols:
+                print("\nFor Nullable Symbol =", nullable_symbol)
+                for (LHS, RHS) in new_P.items():
+                    new_productions = set()  # Store new productions here
+                    for production in RHS:
+                        symbols = list(production)
+                        indices = [i for i, v in enumerate(symbols) if v == nullable_symbol]
+                        power_set = powerset(indices)
+                        for replacements in power_set:
+                            new_words = list(symbols)
+                            for index in replacements:
+                                new_words[index] = ""
+                            new_production = "".join(new_words)
+                            if new_production != production:
+                                new_productions.add(new_production)
+                            if "" in new_productions:
+                                new_productions.remove("")
+                    # Update original set after the loop
+                    old_productions = copy_p[LHS].copy()
+                    copy_p[LHS].update(new_productions)
+                    if old_productions != copy_p[LHS]:
+                        print(f"OLD RULE: {LHS} -> {old_productions}")
+                        print(f"NEW RULE: {LHS} -> {copy_p[LHS]}")
+                        print(f"DIFFERENCE: {copy_p[LHS].difference(old_productions)}")
+            new_P = copy_p
         if len(set_nullable_symbols) > 0:
             print("\nNew Production Rules without \u03B5-productions:")
             print("P = {")
@@ -299,9 +290,11 @@ class Grammar:
                 for production in RHS_copy:
                     if len(production) == 1 and production.isupper():
                         nr_unit_production += 1
+                        print(f"Old Productions: {LHS} -> {RHS}")
                         print(f"Unit Production {nr_unit_production}: {LHS} -> {production}")
                         new_derivations = copy_p[LHS].union(new_P[production])
                         new_derivations.remove(production)
+                        print(f"New Productions: {LHS} -> {new_derivations}")
                         copy_p[LHS] = new_derivations
                 new_P = copy_p
             for (LHS, RHS) in new_P.items():
@@ -482,7 +475,6 @@ class Grammar:
             print("}")
 
         return new_P, new_V_n
-
 
     def check_type_grammar(self):
         # Check if Grammar is Extended Regular Grammar
@@ -741,7 +733,6 @@ class Grammar:
     #
     #     # Return object of type FiniteAutomaton, with the parameters that I found above
     #     return FiniteAutomaton.FiniteAutomaton(Q, delta, sigma, q0, F)
-
 
 # Rudimentary Method for finding final states.
 

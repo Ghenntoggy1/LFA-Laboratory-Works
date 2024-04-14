@@ -24,7 +24,7 @@ import itertools
 import random
 
 if __name__ == '__main__':
-    print("Laboratory Work 5 - Determinism in Finite Automata. Conversion from NDFA 2 DFA. Chomsky Hierarchy.")
+    print("Laboratory Work 5 - Chomsky Normal Form.")
     print("Variant: 11")
     print("Student: Gusev Roman")
     print("Group: FAF-222")
@@ -43,6 +43,7 @@ if __name__ == '__main__':
     #     "Y": {"1Y", "1"},
     #     "Z": {"1Y", "1"}
     # }
+
     P = {
         "S": {"bA", "AC"},
         "A": {"bS", "BC", "AbAa"},
@@ -50,6 +51,7 @@ if __name__ == '__main__':
         "C": {"epsilon"},
         "D": {"AB"}
     }
+
     # P = {
     #         "S": {"bA", "ACAC"},
     #         "A": {"bS", "BC", "AbAa"},
@@ -57,7 +59,6 @@ if __name__ == '__main__':
     #         "C": {"epsilon", "a", "aC"},
     #         "D": {"AB"}
     #     }
-
 
     # P = {
     #     "S": {"AaD", "a"},
@@ -74,7 +75,6 @@ if __name__ == '__main__':
     #     "D": {"Aba"}
     # }
     #
-    S = "S"
     # Start Term
     S = "S"
 
