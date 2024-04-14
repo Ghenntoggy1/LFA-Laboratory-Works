@@ -1,12 +1,13 @@
 import unittest
 from .. import Grammar
 
-class UnitTestsUnitElimination(unittest.TestCase):
+
+class UnitTestsUnproductiveElimination(unittest.TestCase):
     def setUp(self):
         V_n = {"S", "X", "Y"}
         V_t = {"0", "1"}
         P = {
-            "S": {"XYX", "XY", "YX", "Y", "XX", "X"},
+            "S": {"XYX", "XY", "YX", "1Y", "1", "XX", "0X", "0"},
             "X": {"0X", "0"},
             "Y": {"1Y", "1"}
         }
@@ -16,11 +17,11 @@ class UnitTestsUnitElimination(unittest.TestCase):
         V_n = {"S", "A", "B", "C", "D"}
         V_t = {"a", "b"}
         P = {
-            "S": {"AC", "bA", "B", "aA", "C", "b", "a"},
+            "S": {"AC", "bA", "aA", "b", "a", "AbSA", "abC", "AbS", "bS", "bSA"},
             "A": {"aS", "ABAb", "ABb", "BAb", "Bb"},
             "B": {"a", "AbSA", "AbS", "bS", "bSA"},
             "C": {"abC"},
-            "D": {"AB", "B"}
+            "D": {"AB", "AbSA", "AbS", "bSA", "bS", "a"}
         }
         S = "S"
         type_grammar = 2
@@ -28,7 +29,7 @@ class UnitTestsUnitElimination(unittest.TestCase):
         V_n = {"S", "A", "B"}
         V_t = {"a", "b"}
         P = {
-            "A": {"B"},
+            "A": {"aA"},
             "B": {"a"}
         }
         S = "S"
@@ -37,10 +38,11 @@ class UnitTestsUnitElimination(unittest.TestCase):
         V_n = {"S", "A", "B", "D"}
         V_t = {"a", "b", "d"}
         P = {
-            "S": {"dB", "AB", "d", "A", "B"},
+            "S": {"dB", "AB", "d", "aS", "aAaAb", "aab", "aAab", "aaAb", "a", "dS"},
             "A": {"d", "dS", "aAaAb", "aAab", "aaAb", "aab"},
-            "B": {"a", "aS", "A"},
-            "D": {"Aba", "ba"}
+            "B": {"dS", "d", "aAaAb", "aaAb", "aAab", "aab", "aS", "a"},
+            "D": {"Aba", "ba"},
+            "E": {"aE", "BE"}
         }
         S = "S"
         type_grammar = 2
@@ -48,12 +50,12 @@ class UnitTestsUnitElimination(unittest.TestCase):
         V_n = {"S", "A", "B", "C", "D"}
         V_t = {"a", "b", "c"}
         P = {
-            "S": {"ABC", "aA", "bB", "C", "CD", "A", "AB", "AC", "B", "BC", "a", "b", "D"},
-            "A": {"aA", "Aa", "D", "B", "a"},
-            "B": {"bB", "BC", "C", "b", "B"},
-            "C": {"cC", "Cc", "D", "c"},
-            "D": {"AD", "aD", "B", "A", "D", "a"},
-            "E": {"S"}
+            "S": {"ABC", "aA", "bB", "CD", "AB", "AC", "BC", "a", "b", "Aa", "cC", "c", "aD", "Cc", "AD"},
+            "A": {"Aa", "a", "aA", "cC", "BC", "aD", "Cc", "b", "c", "AD", "bB"},
+            "B": {"b", "BC", "bB", "Aa", "cC", "c", "Cc", "aA", "aD", "a", "AD"},
+            "C": {"cC", "Cc", "BC", "Aa", "b", "c", "aA", "aD", "a", "AD", "bB"},
+            "D": {"AD", "aD", "Aa", "BC", "cC", "a", "aA", "c", "b", "a", "Cc", "bB"},
+            "E": {"BC", "Aa", "ABC", "cC", "CD", "b", "a", "AB", "AD", "Cc", "AC", "bB", "aD", "aA", "c"}
         }
         S = "S"
         type_grammar = 2
@@ -61,7 +63,7 @@ class UnitTestsUnitElimination(unittest.TestCase):
 
     def test_eliminate_unit_productions_1(self):
         new_P = self.grammar1.P
-        new_P = self.grammar1.eliminate_unit_productions(new_P=new_P)
+        new_P, new_V_n = self.grammar1.eliminate_unproductive_symbols(new_P=new_P)
         expected_new_P = {
             "S": {"XYX", "XY", "YX", "1Y", "1", "XX", "0X", "0"},
             "X": {"0X", "0"},
@@ -71,28 +73,26 @@ class UnitTestsUnitElimination(unittest.TestCase):
 
     def test_eliminate_unit_productions_2(self):
         new_P = self.grammar2.P
-        new_P = self.grammar2.eliminate_unit_productions(new_P=new_P)
+        new_P, new_V_n = self.grammar2.eliminate_unproductive_symbols(new_P=new_P)
         expected_new_P = {
-            "S": {"AC", "bA", "aA", "b", "a", "AbSA", "abC", "AbS", "bS", "bSA"},
+            "S": {"bA", "aA", "b", "a", "AbSA", "AbS", "bS", "bSA"},
             "A": {"aS", "ABAb", "ABb", "BAb", "Bb"},
             "B": {"a", "AbSA", "AbS", "bS", "bSA"},
-            "C": {"abC"},
             "D": {"AB", "AbSA", "AbS", "bSA", "bS", "a"}
         }
         self.assertEqual(new_P, expected_new_P)
 
     def test_eliminate_unit_productions_3(self):
         new_P = self.grammar3.P
-        new_P = self.grammar3.eliminate_unit_productions(new_P=new_P)
+        new_P, new_V_n = self.grammar3.eliminate_unproductive_symbols(new_P=new_P)
         expected_new_P = {
-            "A": {"a"},
             "B": {"a"}
         }
         self.assertEqual(new_P, expected_new_P)
 
     def test_eliminate_unit_productions_4(self):
         new_P = self.grammar4.P
-        new_P = self.grammar4.eliminate_unit_productions(new_P=new_P)
+        new_P, new_V_n = self.grammar4.eliminate_unproductive_symbols(new_P=new_P)
         expected_new_P = {
             "S": {"dB", "AB", "d", "aS", "aAaAb", "aab", "aAab", "aaAb", "a", "dS"},
             "A": {"d", "dS", "aAaAb", "aAab", "aaAb", "aab"},
@@ -103,7 +103,7 @@ class UnitTestsUnitElimination(unittest.TestCase):
 
     def test_eliminate_unit_productions_5(self):
         new_P = self.grammar5.P
-        new_P = self.grammar5.eliminate_unit_productions(new_P=new_P)
+        new_P, new_V_n = self.grammar5.eliminate_unproductive_symbols(new_P=new_P)
         expected_new_P = {
             "S": {"ABC", "aA", "bB", "CD", "AB", "AC", "BC", "a", "b", "Aa", "cC", "c", "aD", "Cc", "AD"},
             "A": {"Aa", "a", "aA", "cC", "BC", "aD", "Cc", "b", "c", "AD", "bB"},
