@@ -28,7 +28,7 @@
      1. You can use external libraries, tools or APIs to generate the figures/diagrams;
      2. Your program needs to gather and send the data about the automaton and the lib/tool/API return the visual representation.
 ## Implementation description
-* For the start, I used the files that were developed in the previous [Laboratory Work nr.1](../Laboratory-Work-1-Grammar-Finite-Automaton).
+* For the start, I used the files that were developed in the previous [Laboratory Work nr.1](../../Laboratory-Work-1-Grammar-Finite-Automaton).
 During the development of the project for current Laboratory Work, I enhanced some features that were implemented in the
 previous work. Specifically, judging by the format of Finite Automaton from my Variant in current Laboratory Work, I changed
 the code a bit in order for it to take as input also Grammars and Finite Automatons that uses notation "q_" of the Non-Terminal
