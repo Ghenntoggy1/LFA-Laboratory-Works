@@ -12,3 +12,12 @@ class Token:
 
     def mark(self):
         self.line.mark(self)
+
+    def ast_repr(self, _):
+        return f"{self.kind} ── {self.string}"
+
+    def has(self, *strings):
+        return self.string in strings
+
+    def of(self, *kinds):
+        return self.kind in kinds

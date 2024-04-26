@@ -1,6 +1,7 @@
 from Lexer import Lexer
 from SourceLine import SourceLine
 from Error import LanguageError
+from Parser import Parser
 
 import json
 import tkinter as tk
@@ -59,7 +60,7 @@ def main():
 
             json_object = json.dumps(convert(tokens), indent=4)
 
-            with open("../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
+            with open("./Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
             print(error)
@@ -85,7 +86,7 @@ def main():
             json_object = json.dumps(convert(tokens), indent=4)
 
             with open(
-                    f"../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json",
+                    f"./Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json",
                     "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
@@ -102,14 +103,17 @@ def main():
             try:
                 source_line = SourceLine(line)
                 tokens = lexer.make_tokens(source_line)
-
+                parser = Parser()
+                tree = parser.build_ast(tokens)
                 print("TOKENS:")
                 for token in tokens:
                     print(token)
 
+                print("AST:")
+                print(tree.ast_repr())
                 json_object = json.dumps(convert(tokens), indent=4)
 
-                with open("../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
+                with open("./Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                     outfile.write(json_object)
             except LanguageError as error:
                 print(error)
