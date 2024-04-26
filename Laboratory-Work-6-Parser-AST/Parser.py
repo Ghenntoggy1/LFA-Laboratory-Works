@@ -1,8 +1,8 @@
 from Error import LanguageError
 from Expression import Expression
-# from Variable_Expression import Variable_Expression
+from Variable_Expression import Variable_Expression
 from Additive_Expression import Additive_Expression
-
+from Command_Expression import Command_Expression
 
 class ParserError(LanguageError):
     pass

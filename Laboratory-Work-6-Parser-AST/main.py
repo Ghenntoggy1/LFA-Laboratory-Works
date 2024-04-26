@@ -83,10 +83,14 @@ def main():
             source_line = SourceLine(lines)
             tokens = lexer.make_tokens(source_line)
 
+            parser = Parser()
+            tree = parser.build_ast(tokens)
             print("TOKENS:")
             for token in tokens:
                 print(token)
 
+            print("AST:")
+            print(tree.ast_repr())
             json_object = json.dumps(convert(tokens), indent=4)
 
             with open(

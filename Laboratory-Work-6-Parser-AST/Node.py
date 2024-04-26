@@ -51,6 +51,26 @@ class PrimaryNode(Node, ABC):
         return f"{self.token.kind} ── {self.token.string}"
 
 
+class TwoNode(Node, ABC):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def nodes(self):
+        return [self.left, self.right]
+
+    @classmethod
+    def construct_binary(cls, parser, make, part, ops):
+        node = part.construct(parser)
+
+        while parser.next().has(*ops):
+            op = parser.take()
+            right = part.construct(parser)
+            node = make(node, op, right)
+
+        return node
+
+
 class BinaryNode(Node, ABC):
     def __init__(self, left, op, right):
         self.left = left
