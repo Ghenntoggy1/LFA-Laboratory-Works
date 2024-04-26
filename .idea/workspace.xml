@@ -35,40 +35,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.test_eliminate_epsilon_productions_5.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for UnitTest.UnitTestsEpsilonElimination.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for UnitTest.UnitTestsToCNF.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for UnproductiveTest.UnitTestsUnproductiveElimination.test_eliminate_unit_productions_1.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in CNFTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in EpsilonTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in InaccessibleTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in PreCNFConversionTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in UnitTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in UnproductiveTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in UnreachableTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in finalTest.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.FiniteAutomaton.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.Grammar.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor&quot;: &quot;Run&quot;,
-    &quot;Python.afwa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;LAB-5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-5-Chomsky-Normal-Form/Report/ReportImages/epsilon_theory.png&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.executor": "Run",
+    "Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.test_eliminate_epsilon_productions_5.executor": "Run",
+    "Python tests.Python tests for UnitTest.UnitTestsEpsilonElimination.executor": "Run",
+    "Python tests.Python tests for UnitTest.UnitTestsToCNF.executor": "Run",
+    "Python tests.Python tests for UnproductiveTest.UnitTestsUnproductiveElimination.test_eliminate_unit_productions_1.executor": "Run",
+    "Python tests.Python tests in CNFTest.py.executor": "Run",
+    "Python tests.Python tests in EpsilonTest.py.executor": "Run",
+    "Python tests.Python tests in InaccessibleTest.py.executor": "Run",
+    "Python tests.Python tests in PreCNFConversionTest.py.executor": "Run",
+    "Python tests.Python tests in UnitTest.py.executor": "Run",
+    "Python tests.Python tests in UnproductiveTest.py.executor": "Run",
+    "Python tests.Python tests in UnreachableTest.py.executor": "Run",
+    "Python tests.Python tests in finalTest.py.executor": "Run",
+    "Python.FiniteAutomaton.executor": "Debug",
+    "Python.Grammar.executor": "Run",
+    "Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor": "Run",
+    "Python.afwa.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-6-Parser-AST",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="LFA-Laboratory-Works" is-module-sdk="true">
@@ -79,11 +79,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-6-Parser-AST" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-5-Chomsky-Normal-Form" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer\Report" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-3-Lexer" />
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-2-Conversion-NFA-2-DFA\Report" />
-      <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-2-Conversion-NFA-2-DFA" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programming\Projects\LFA-Laboratory-Works\Laboratory-Work-5-Chomsky-Normal-Form\UnitTests" />
@@ -182,6 +182,21 @@
       <workItem from="1713082946676" duration="15027000" />
       <workItem from="1713099754447" duration="10390000" />
       <workItem from="1713110168696" duration="2520000" />
+      <workItem from="1713113353817" duration="80000" />
+      <workItem from="1713183619611" duration="407000" />
+      <workItem from="1713184048610" duration="3000" />
+      <workItem from="1713187331804" duration="393000" />
+      <workItem from="1713187737330" duration="864000" />
+      <workItem from="1713188614680" duration="326000" />
+      <workItem from="1713189009815" duration="49000" />
+      <workItem from="1713189065942" duration="54000" />
+      <workItem from="1713189289200" duration="360000" />
+      <workItem from="1713189659690" duration="2010000" />
+      <workItem from="1713642051564" duration="5000" />
+      <workItem from="1713805457091" duration="19000" />
+      <workItem from="1713900763017" duration="27000" />
+      <workItem from="1713918715110" duration="7000" />
+      <workItem from="1714120661274" duration="236000" />
     </task>
     <servers />
   </component>
@@ -205,12 +220,12 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$.coverage" NAME=" Coverage Results" MODIFIED="1713109519141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$.coverage" NAME=" Coverage Results" MODIFIED="1713191727688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$FiniteAutomaton.coverage" NAME="FiniteAutomaton Coverage Results" MODIFIED="1707643190728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$Grammar.coverage" NAME="Grammar Coverage Results" MODIFIED="1713098051566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-5-Chomsky-Normal-Form" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1708036774464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/main_py$test.coverage" NAME="test Coverage Results" MODIFIED="1707423432537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713110442527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1713190921126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
