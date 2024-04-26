@@ -46,7 +46,7 @@ class Lexer:
         if self.line.next() == ",":
             return self.make_colon()
 
-        if self.line.next() in "<>=":
+        if self.line.next() in "<>=!":
             return self.make_comparison()
 
         if self.line.next() in "|_^":
@@ -140,7 +140,12 @@ class Lexer:
         if self.line.next() == "=":
             operator += self.line.take()
             return self.new_token("COMPARISON_OPERATOR")
-
+        if self.line.next() == "!":
+            operator += self.line.take()
+            if self.line.next() == "=":
+                operator += self.line.take()
+                return self.new_token("COMPARISON_OPERATOR")
+            raise LexerError(self.new_token("COMPARISON_OPERATOR"), "Invalid comparison operator")
         # If the next character is not "=", treat the standalone character as an assignment operator
         if operator == ">" or operator == "<":
             return self.new_token("COMPARISON_OPERATOR")

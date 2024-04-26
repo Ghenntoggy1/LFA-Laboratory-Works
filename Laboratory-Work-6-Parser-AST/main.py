@@ -13,7 +13,7 @@ def select_file():
     root.withdraw()
     root.attributes("-topmost", True)
 
-    file_path = filedialog.askopenfilename(initialdir="./Laboratory_Work_3-Lexer/ExamplePrograms",
+    file_path = filedialog.askopenfilename(initialdir="./Laboratory-Work-6-Parser-AST/ExamplePrograms",
                                            title="Select a file")
 
     return file_path
@@ -45,7 +45,8 @@ def main():
             line = input("> ")
             if line == "exit":
                 break
-
+            if line == "":
+                continue
             lines += line + "\n"
 
         try:
@@ -58,7 +59,7 @@ def main():
 
             json_object = json.dumps(convert(tokens), indent=4)
 
-            with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
+            with open("../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
             print(error)
@@ -84,7 +85,7 @@ def main():
             json_object = json.dumps(convert(tokens), indent=4)
 
             with open(
-                    f"./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json",
+                    f"../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_{os.path.splitext(os.path.basename(file_path))[0]}.json",
                     "w") as outfile:
                 outfile.write(json_object)
         except LanguageError as error:
@@ -96,7 +97,8 @@ def main():
             line = input("> ")
             if line == "exit":
                 break
-
+            if line == "":
+                continue
             try:
                 source_line = SourceLine(line)
                 tokens = lexer.make_tokens(source_line)
@@ -107,7 +109,7 @@ def main():
 
                 json_object = json.dumps(convert(tokens), indent=4)
 
-                with open("./Laboratory-Work-3-Lexer/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
+                with open("../Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json", "w") as outfile:
                     outfile.write(json_object)
             except LanguageError as error:
                 print(error)

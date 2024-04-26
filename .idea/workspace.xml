@@ -33,40 +33,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.executor": "Run",
-    "Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.test_eliminate_epsilon_productions_5.executor": "Run",
-    "Python tests.Python tests for UnitTest.UnitTestsEpsilonElimination.executor": "Run",
-    "Python tests.Python tests for UnitTest.UnitTestsToCNF.executor": "Run",
-    "Python tests.Python tests for UnproductiveTest.UnitTestsUnproductiveElimination.test_eliminate_unit_productions_1.executor": "Run",
-    "Python tests.Python tests in CNFTest.py.executor": "Run",
-    "Python tests.Python tests in EpsilonTest.py.executor": "Run",
-    "Python tests.Python tests in InaccessibleTest.py.executor": "Run",
-    "Python tests.Python tests in PreCNFConversionTest.py.executor": "Run",
-    "Python tests.Python tests in UnitTest.py.executor": "Run",
-    "Python tests.Python tests in UnproductiveTest.py.executor": "Run",
-    "Python tests.Python tests in UnreachableTest.py.executor": "Run",
-    "Python tests.Python tests in finalTest.py.executor": "Run",
-    "Python.FiniteAutomaton.executor": "Debug",
-    "Python.Grammar.executor": "Run",
-    "Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor": "Run",
-    "Python.afwa.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-6-Parser-AST",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for EpsilonTest.UnitTestsEpsilonElimination.test_eliminate_epsilon_productions_5.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for UnitTest.UnitTestsEpsilonElimination.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for UnitTest.UnitTestsToCNF.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for UnproductiveTest.UnitTestsUnproductiveElimination.test_eliminate_unit_productions_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in CNFTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in EpsilonTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in InaccessibleTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in PreCNFConversionTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in UnitTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in UnproductiveTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in UnreachableTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in finalTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FiniteAutomaton.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Grammar.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Laboratory-Work-1-Grammar-Finite-Automaton.executor&quot;: &quot;Run&quot;,
+    &quot;Python.afwa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-6-Parser-AST&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="LFA-Laboratory-Works" is-module-sdk="true">
