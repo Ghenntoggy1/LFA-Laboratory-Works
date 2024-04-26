@@ -1,5 +1,7 @@
 from Error import LanguageError
 from Expression import Expression
+# from Variable_Expression import Variable_Expression
+from Additive_Expression import Additive_Expression
 
 
 class ParserError(LanguageError):
@@ -9,7 +11,12 @@ class ParserError(LanguageError):
 class Parser:
     @property
     def expression(self):
+        # return Variable_Expression
         return Expression
+
+    @property
+    def formula_content(self):
+        return Additive_Expression
 
     def __init__(self):
         self.tokens = None
@@ -37,6 +44,7 @@ class Parser:
 
     def build_ast(self, tokens):
         self.tokens = tokens
+        # node = Variable_Expression.construct(self)
         node = Expression.construct(self)
         if self.next().of("EOF"):
             return node

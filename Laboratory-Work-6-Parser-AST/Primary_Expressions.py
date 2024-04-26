@@ -21,7 +21,7 @@ class Primary_Expression(Node):
                 return IdentifierOrNumber.construct(parser)
 
         left = parser.take()
-        expression = parser.expression.construct(parser)
+        expression = parser.formula_content.construct(parser)
         right = parser.expecting_has(")" if left.has("(") else left.string)
 
         return Primary_Expression(left, expression, right)

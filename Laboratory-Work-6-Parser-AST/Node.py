@@ -70,3 +70,35 @@ class BinaryNode(Node, ABC):
             node = make(node, op, right)
 
         return node
+
+
+class FourNode(Node, ABC):
+    def __init__(self, keyword, identifier, op, right):
+        self.keyword = keyword
+        self.identifier = identifier
+        self.op = op
+        self.right = right
+
+    def nodes(self):
+        return [self.keyword, self.identifier, self.op, self.right]
+
+    # @classmethod
+    # def construct_4Node(cls, parser, keyword, make, part, ops):
+    #     node = part.construct(parser)
+    #
+    #     while parser.next().has(*ops):
+    #         op = parser.take()
+    #         right = part.construct(parser)
+    #         node = make(node, op, right)
+    #
+    #     return node
+    @classmethod
+    def construct_binary(cls, parser, make, part, ops):
+        node = part.construct(parser)
+
+        while parser.next().has(*ops):
+            op = parser.take()
+            right = part.construct(parser)
+            node = make(node, op, right)
+
+        return node
