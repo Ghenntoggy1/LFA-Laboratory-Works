@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/Report/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,7 @@
     "Python.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "lab-6",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/Programming/Projects/LFA-Laboratory-Works/Laboratory-Work-6-Parser-AST/Report",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
