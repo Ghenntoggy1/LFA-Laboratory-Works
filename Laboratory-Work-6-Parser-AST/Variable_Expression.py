@@ -1,7 +1,7 @@
 from Node import Node, PrimaryNode
 from Primary_Expressions import Identifier
 from Additive_Expression import Additive_Expression
-
+from Read_From_Path_Expression import Read_From_Path_Expression
 
 class Variable_Expression(Node):
     def __init__(self, keyword, identifier, op, expression):
@@ -25,7 +25,10 @@ class Variable_Expression(Node):
         op = parser.expecting_has("=")
 
         # Parse Expression
-        expression = Additive_Expression.construct(parser)
+        if keyword.has("Formula"):
+            expression = Additive_Expression.construct(parser)
+        else:
+            expression = Read_From_Path_Expression.construct(parser)
 
         return Variable_Expression(keyword, identifier, op, expression)
 
@@ -39,7 +42,7 @@ class Formula(PrimaryNode):
 class Data(PrimaryNode):
     @classmethod
     def construct(cls, parser):
-        return Formula(parser.expecting_has("Data"))
+        return Data(parser.expecting_has("Data"))
 
 
 class FormulaOrData(PrimaryNode):
