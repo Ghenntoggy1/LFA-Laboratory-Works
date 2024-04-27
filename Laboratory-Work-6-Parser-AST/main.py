@@ -21,10 +21,10 @@ def select_file():
 
 
 def main():
-    print("Laboratory Work 3 - Lexer")
+    print("Laboratory Work 6 - Parser and AST")
     print("Student: Gusev Roman")
     print("Group: FAF-222")
-    print("\nMY LEXER:")
+    print("\nMY LEXER AND PARSER:")
 
     lexer = Lexer()
     print("Choose the type of the input:")

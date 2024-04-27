@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="504848d2-7084-4f90-a4a3-53ec8ae4e083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_example_parse.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_example_parse.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/example_parse.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/example_parse.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_Manual_Input.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_example_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/Tokenized_example_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/example_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/ExamplePrograms/example_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratory-Work-6-Parser-AST/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +205,7 @@
       <workItem from="1713918715110" duration="7000" />
       <workItem from="1714120661274" duration="547000" />
       <workItem from="1714155167103" duration="23008000" />
+      <workItem from="1714220197513" duration="6663000" />
     </task>
     <servers />
   </component>
@@ -233,6 +237,6 @@
     <SUITE FILE_PATH="coverage/main_py$afwa.coverage" NAME="afwa Coverage Results" MODIFIED="1707643138900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
     <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$lab6.coverage" NAME="lab6 Coverage Results" MODIFIED="1714159106306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
     <SUITE FILE_PATH="coverage/main_py$test.coverage" NAME="test Coverage Results" MODIFIED="1707423432537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratory-Work-1-Grammar-Finite-Automaton" />
-    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1714178585514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LFA_Laboratory_Works$main.coverage" NAME="main Coverage Results" MODIFIED="1714227550556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
